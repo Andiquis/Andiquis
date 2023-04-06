@@ -1,4 +1,4 @@
-<p align="center"><img style="width: 90%; margin: 0 auto; height: auto;" src="image1.gif"></p>
+<p align="center"><img style="width: 100px; margin: 0 auto; height: 100px;" src="image1.gif"></p>
 				</td>
 			</tr>
 		</table>
