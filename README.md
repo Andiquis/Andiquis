@@ -3,7 +3,7 @@
 <table width="80%" align="center"><tr><td width="25%"><img width="70%" src="image1.webp"></td><td colspan="3" width="75%"></td></tr></table>
 <div><table width="80%" align="center><tr>
 	<td width="25%"></td>
-	<td width="25%"><img href="https://wa.me/51942287756?text=*Hola%20estoy%20interesado%20en%20tu%20pagina%20web*" width="100px" height="100px" src="image1.png"></td>
+	<td width="25%" href="https://wa.me/51942287756?text=*Hola%20estoy%20interesado%20en%20tu%20pagina%20web*"><img width="100px" height="100px" src="image1.png"></td>
 	<td width="25%"><img width="100px" height="100px" src="image2.jfif"></td>
 	<td width="25%"><img width="100px" height="100px" src="image3.png"></td>
 	<td width="25%"><img width="100px" height="100px" src="image4.jfif"></td>
