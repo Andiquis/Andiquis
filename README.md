@@ -3,9 +3,9 @@
 <table width="80%" align="center"><tr><td width="25%"><img width="70%" src="image1.webp"></td><td colspan="3" width="75%"></td></tr></table>
 <div><table width="80%" align="center><tr>
 	<td width="25%"></td>
-	<td width="25%"><img width="20px" height="20px" src="image1.png"></td>
-	<td width="25%"><img width="20px" height="20px" src="image2.jfif"></td>
-	<td width="25%"><img width="20px" height="20px" src="image3.png"></td>
-	<td width="25%"><img width="20px" height="20px" src="image4.jfif"></td>
+	<td width="25%"><img width="50px" height="50px" src="image1.png"></td>
+	<td width="25%"><img width="50px" height="50px" src="image2.jfif"></td>
+	<td width="25%"><img width="50px" height="50px" src="image3.png"></td>
+	<td width="25%"><img width="50px" height="50px" src="image4.jfif"></td>
 </tr></table></div>
 
