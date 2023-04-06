@@ -14,5 +14,5 @@
 
 [![trophy](https://github-profile-trophy.vercel.app/?username=Andiquis&theme=onedark)](https://github.com/ryo-ma/github-profile-trophy)
 	
-<img src="https://img.shields.io/badge/Consultas escribeme a+mi WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=white" />
+<img src="https://img.shields.io/badge/Consultas escribeme a mi WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=white" />
 
