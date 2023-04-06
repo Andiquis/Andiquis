@@ -9,7 +9,7 @@
 		<table width="80%" align="center">
 			<tr>
 				<td>
-					<p align="center"><img class="img1" src="image1.gif"></p>
+					<p align="center"><img style="width: 90%; margin: 0 auto; border-top-left-radius: 60px; border-bottom-right-radius: 60px; border-color: #C2C2C2; border-style: outset; border-width: 10px; height: auto;" src="image1.gif"></p>
 				</td>
 			</tr>
 		</table>
