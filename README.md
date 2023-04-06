@@ -6,6 +6,5 @@
 	<td width="25%"><img width="20px" height="20px" src="image2.jfif"></td>
 	<td width="25%"><img width="20px" height="20px" src="image3.png"></td>
 	<td width="25%"><img width="20px" height="20px" src="image4.jfif"></td>
-	</tr></div>
-</table>
+</tr></table></div>
 
