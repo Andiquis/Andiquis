@@ -3,10 +3,10 @@
 <table width="80%" align="center"><tr><td width="25%"><img width="70%" src="image1.webp"></td><td colspan="3" width="75%"></td></tr></table>
 <table width="80%" align="center>
 	<tr>
-		<td align="center" width="25%"><img class="style4" src="image1.png"></td>
-		<td align="center" width="25%"><img class="style4" src="image2.jfif"></td>
-		<td align="center" width="25%"><img class="style4" src="image3.png"></td>
-		<td align="center" width="25%"><img class="style4" src="image4.jfif"></td>
+		<td align="center" width="20%"><img class="style4" src="image1.png"></td>
+		<td align="center" width="20%"><img class="style4" src="image2.jfif"></td>
+		<td align="center" width="20%"><img class="style4" src="image3.png"></td>
+		<td align="center" width="20%"><img class="style4" src="image4.jfif"></td>
 	</tr>
 </table>
 
