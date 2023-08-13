@@ -2,7 +2,10 @@
   <img style="width: 900px; margin: 0 auto; height: 700px;" src="imge.gif">
 </p>
 
-<img src="http://readme-typing-svg.herokuapp.com?font=Delicious+Handrawn&pause=1000&color=F70000&width=300&lines=Loading...............;Hola+👋👋;soy+asistente+de+Andi;que+opinas+de+tu+experiencia+x+aqui;comentanos+aqui+en+nuestras+redes+sociales+👇👇👇;no+te+pierdas+de+nuestros+nuevos+contenidos😁;aunque+no+subo+mucho+contenido+jeje;visitanos+en+WhatsApp+para+socializar😉" alt="Typing SVG" />
+<div style="background-color: black; padding: 20px; border: 2px solid yellow;">
+  <img src="http://readme-typing-svg.herokuapp.com?font=Delicious+Handrawn&pause=1000&color=F70000&width=300&lines=Loading...............;Hola+👋👋;soy+asistente+de+Andi;que+opinas+de+tu+experiencia+x+aqui;comentanos+aqui+en+nuestras+redes+sociales+👇👇👇;no+te+pierdas+de+nuestros+nuevos+contenidos😁;aunque+no+subo+mucho+contenido+jeje;visitanos+en+WhatsApp+para+socializar😉" alt="Typing SVG" />
+</div>
+
 
 <table width="80%" align="center">
   <tr>
