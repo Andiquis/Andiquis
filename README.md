@@ -22,4 +22,7 @@
     
 <a href="https://wa.me/51942287756"><img src="https://img.shields.io/badge/Consultas%20escribeme%20a%20mi%20WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=white" /></a>
 
-https://github-profile-trophy.vercel.app/?username=Andiquis&theme=monokai
+
+
+
+![github toplang](https://github-profile-trophy.vercel.app/?username=Andiquis&theme=monokai)
