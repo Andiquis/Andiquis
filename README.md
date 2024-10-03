@@ -43,4 +43,6 @@ Soy Anderson, un apasionado del desarrollo de software con experiencia en múlti
 
     
 <a href="https://wa.me/51942287756"><img src="https://img.shields.io/badge/Consultas%20escribeme%20a%20mi%20WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=white" /></a>
+### `DESCARGA EL TERMINAL DE LINUX-DEBIAN (TERMUX)`
+<a href="https://github.com/termux/termux-app/releases/download/v0.118.0/termux-app_v0.118.0+github-debug_universal.apk"><img src="https://img.shields.io/badge/DOWNLOAD_APK-25D366?style=for-the-badge&logo=github&logoColor=black" />
 
