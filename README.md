@@ -19,9 +19,14 @@ Soy Anderson, un apasionado del desarrollo de software con experiencia en múlti
 
 ¡No dudes en echar un vistazo a mis proyectos y contactarme si quieres colaborar en algo interesante!
 
+<table border="0px" width="80%" align="center">
+    <tr>
+        <td border="0px" width="25%"><img width="40%" src="image1.webp"></td>
+        <td border="0px" colspan="3" width="75%"><img src="http://readme-typing-svg.herokuapp.com?font=Delicious+Handrawn&pause=1000&color=F70000&width=1000&lines=Loading...............;Hola+👋👋;soy+asistente+de+Andi;que+opinas+de+tu+experiencia+x+aqui;comentanos+aqui+en+nuestras+redes+sociales+👇👇👇;no+te+pierdas+de+nuestros+nuevos+contenidos😁;aunque+no+subo+mucho+contenido+jeje;visitanos+en+WhatsApp+para+socializar😉" alt="Typing SVG" /></td>
+    </tr>
+</table>
 
 
-<img src="http://readme-typing-svg.herokuapp.com?font=Delicious+Handrawn&pause=1000&color=F70000&width=1000&lines=Loading...............;Hola+👋👋;soy+asistente+de+Andi;que+opinas+de+tu+experiencia+x+aqui;comentanos+aqui+en+nuestras+redes+sociales+👇👇👇;no+te+pierdas+de+nuestros+nuevos+contenidos😁;aunque+no+subo+mucho+contenido+jeje;visitanos+en+WhatsApp+para+socializar😉" alt="Typing SVG" />
 
 <!--table border="0px" width="80%" align="center">
     <tr>
