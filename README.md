@@ -10,23 +10,25 @@
 
 Soy Anderson, un apasionado del desarrollo de software con experiencia en múltiples lenguajes y tecnologías. Algunas de mis áreas de interés incluyen:
 
-- Desarrollo web (HTML, CSS, JavaScript)
-- Desarrollo de modulos de hadware con IA
-- Bases de datos (SQL, JSON)
+- Desarrollo web (HTML, CSS, JavaScript, PHP)
+- Desarrollo de aplicaciones de escritorio (C#)
+- Desarrollo de aplicaciones móviles (MAUI)
+- Bases de datos (SQL, SQLite, JSON)
 - Machine Learning y Data Science
-- Desarrollo de 
+- Desarrollo de módulos de hardware con IA
 
 ¡No dudes en echar un vistazo a mis proyectos y contactarme si quieres colaborar en algo interesante!
 
 
+
 <img src="http://readme-typing-svg.herokuapp.com?font=Delicious+Handrawn&pause=1000&color=F70000&width=1000&lines=Loading...............;Hola+👋👋;soy+asistente+de+Andi;que+opinas+de+tu+experiencia+x+aqui;comentanos+aqui+en+nuestras+redes+sociales+👇👇👇;no+te+pierdas+de+nuestros+nuevos+contenidos😁;aunque+no+subo+mucho+contenido+jeje;visitanos+en+WhatsApp+para+socializar😉" alt="Typing SVG" />
 
-<table border="0px" width="80%" align="center">
+<!--table border="0px" width="80%" align="center">
     <tr>
-        <td width="25%"><img width="70%" src="image1.webp"></td>
-        <td colspan="3" width="75%"></td>
+        <td border="0px" width="25%"><img width="70%" src="image1.webp"></td>
+        <td border="0px" colspan="3" width="75%"></td>
     </tr>
-</table>
+</table-->
 <!--div><table width="80%" align="center><tr>
 	<td width="25%"></td>
 	<td width="25%"><a href="https://wa.me/51914115990?text=*Hola%20estoy%20interesado%20en%20tu%20pagina%20web*" target="blanck"><img width="80px" height="80px" src="image1.png"></td>
