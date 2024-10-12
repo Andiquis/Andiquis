@@ -43,7 +43,7 @@ Soy Andi, un apasionado del desarrollo de software con experiencia en múltiples
   
 ![github toplang](https://github-profile-trophy.vercel.app/?username=Andiquis&theme=monokai)
   <br><br>
-        <img src="https://github-readme-stats.vercel.app/api/pin/?username=Andiquis&repo=Virus-X">
+        <img src="https://github-readme-stats.vercel.app/api/pin/?username=Andiquis&repo=VBS-TK">
         <img src="https://github-readme-stats.vercel.app/api/pin/?username=Andiquis&repo=cingles">
         <br>
 </div>
