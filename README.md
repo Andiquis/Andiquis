@@ -1,7 +1,7 @@
 
 <div align="center">
 	<!--img src"![Descripción de la imagen](imge.gif)"-->
-	<img src="https://github.com/Andiquis/Andiquis/blob/main/face1.gif">
+	<img src="https://github.com/Andiquis/Andiquis/face1.gif">
 	<hr>
 <h2>Biografia</h2>
 </div>
