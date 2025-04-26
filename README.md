@@ -12,7 +12,7 @@
 Soy Andi, un apasionado del desarrollo de software con experiencia en múltiples lenguajes y tecnologías. Algunas de mis áreas de interés incluyen:
 
 - Desarrollo web (HTML, CSS, JavaScript, PHP)
-- Desarrollo de aplicaciones de escritorio (C#)
+- Desarrollo de aplicaciones de escritorio (C# .NET y Electron)
 - Desarrollo de aplicaciones con Nodejs y Angular
 - Desarrollo de aplicaciones móviles (MAUI)
 - Bases de datos (SQL, SQLite, JSON)
