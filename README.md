@@ -18,6 +18,10 @@ Soy Andi, un apasionado del desarrollo de software con experiencia en múltiples
 - Bases de datos (SQL, SQLite, JSON)
 - Machine Learning y Data Science
 - Desarrollo de módulos de hardware con IA
+- Desarrollo de aplicaciones con Python
+- Entrenamiento de modelos de Inteligencia Artificial
+- Desarrollo de aplicaciones de vision por computadora
+- Ciberseguridad
 
 ¡No dudes en echar un vistazo a mis proyectos y contactarme si quieres colaborar en algo interesante!
 
