@@ -1,4 +1,3 @@
-
 <div align="center">
 	<!--img src"![Descripción de la imagen](imge.gif)"-->
 	<img src="https://github.com/Andiquis/Andiquis/blob/main/face2.gif">
@@ -6,11 +5,8 @@
 <h2>Biografia</h2>
 </div>
 
-
 ### ¡Hola! 👋
-
 Soy Andi, un apasionado del desarrollo de software con experiencia en múltiples lenguajes y tecnologías. Algunas de mis áreas de interés incluyen:
-
 - Desarrollo web (HTML, CSS, JavaScript, PHP, TypeScript)
 - Desarrollo de aplicaciones de escritorio (C# .NET y Electron)
 - Desarrollo de aplicaciones con Nodejs y Angular
@@ -36,7 +32,6 @@ Soy Andi, un apasionado del desarrollo de software con experiencia en múltiples
 <hr>	
   <h2>Github Stats : </h2>
   
-
   <br>
     <img src="https://github-readme-stats.vercel.app/api?username=Andiquis&show_icons=true&theme=radical" alt="">
       <img height="195px" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Andiquis&text_color=FFFFFF&bg_color=000000&title_color=94b4a4&langs_count=15&layout=compact&border_color=FF0000" />
@@ -52,6 +47,7 @@ Soy Andi, un apasionado del desarrollo de software con experiencia en múltiples
         <img src="https://github-readme-stats.vercel.app/api/pin/?username=Andiquis&repo=cingles">
         <br>
 </div>
+
 <hr>
 
 <div align="center">
@@ -59,7 +55,3 @@ Soy Andi, un apasionado del desarrollo de software con experiencia en múltiples
 	<a href="https://wa.me/51942287756"><img src="https://img.shields.io/badge/Consultas%20escribeme%20a%20mi%20WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=white" /></a>
 <a href="https://github.com/termux/termux-app/releases/download/v0.118.0/termux-app_v0.118.0+github-debug_universal.apk"><img src="https://img.shields.io/badge/DOWNLOAD_TERMUX_APK-25D366?style=for-the-badge&logo=github&logoColor=black" />
 </div>
-
-
-
-
