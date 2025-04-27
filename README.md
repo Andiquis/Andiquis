@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://github.com/Andiquis/Andiquis/blob/main/face2.gif" width="200px">
+  <img src="https://github.com/Andiquis/Andiquis/blob/main/face2.gif">
   <h1>👨‍💻 Andi Quis | Desarrollador Multidisciplinario 👨‍💻</h1>
   
   [![GitHub followers](https://img.shields.io/github/followers/Andiquis?style=social)](https://github.com/Andiquis)
