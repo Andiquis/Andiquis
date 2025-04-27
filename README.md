@@ -1,6 +1,8 @@
 <div align="center">
   <img src="https://github.com/Andiquis/Andiquis/blob/main/face2.gif">
-  <h1>👨‍💻 Andi Quis | Desarrollador Multidisciplinario 👨‍💻</h1>
+  <!--h1>👨‍💻 Andi Quis | Desarrollador Multidisciplinario 👨‍💻</h1-->
+
+  
   
   [![GitHub followers](https://img.shields.io/github/followers/Andiquis?style=social)](https://github.com/Andiquis)
   [![Visits Badge](https://badges.pufler.dev/visits/Andiquis/Andiquis)](https://github.com/Andiquis)
@@ -9,21 +11,24 @@
   <hr style="border: 2px solid #FF5733; border-radius: 5px;">
 </div>
 
-## 🚀 Sobre Mí
+> 💡 *"El código es poesía escrita con lógica"*
+<br clear="right"/>
 
-<img align="right" src="https://media.giphy.com/media/SWoSkN6DxTszqIKEqv/giphy.gif" alt="Coding" width="270" />
+<!--img align="right" src="https://media.giphy.com/media/SWoSkN6DxTszqIKEqv/giphy.gif" alt="Coding" width="270" /-->
 
 ### ¡Hola Mundo! 👋
 
-Soy **Andi**, un apasionado desarrollador de software con una curiosidad insaciable por la tecnología y la innovación. Me encanta crear soluciones elegantes para problemas complejos y explorar nuevas tecnologías que amplíen mis horizontes.
+Soy **Andi**, un apasionado del desarrollo de software con experiencia en múltiples lenguajes y tecnologías. Algunas de mis áreas de interés incluyen:
 
-> 💡 *"El código es poesía escrita con lógica"*
+- 💻 **Desarrollo Web Full-Stack** - Creación de aplicaciones web responsivas y dinámicas
+- 🖥️ **Aplicaciones de Escritorio** - Soluciones robustas con C# .NET y Electron
+- 📱 **Desarrollo Móvil** - Experiencias fluidas con MAUI y tecnologías híbridas
+- 🧠 **Inteligencia Artificial & ML** - Entrenamiento de modelos y análisis de datos
+- 👁️ **Visión por Computadora** - Reconocimiento de imágenes y procesamiento visual
+- 🔐 **Ciberseguridad** - Protección de sistemas y análisis de vulnerabilidades
+- 🤖 **Hardware con IA** - Integración de algoritmos inteligentes en dispositivos físicos
 
-<br clear="right"/>
-
-## 🛠️ Habilidades Técnicas
-
-<div align="center">
+<div align="left">
   
 | Categoría | Tecnologías |
 |-----------|-------------|
@@ -36,71 +41,29 @@ Soy **Andi**, un apasionado desarrollador de software con una curiosidad insacia
 | **Cyberseguridad** | ![Kali Linux](https://img.shields.io/badge/-Kali_Linux-557C94?style=flat-square&logo=kali-linux&logoColor=white) ![Wireshark](https://img.shields.io/badge/-Wireshark-1679A7?style=flat-square&logo=wireshark&logoColor=white) |
 
 </div>
+<hr style="border: 2px solid #FF5733; border-radius: 5px;">
 
-## 🔍 Áreas de Especialización
 
-- 💻 **Desarrollo Web Full-Stack** - Creación de aplicaciones web responsivas y dinámicas
-- 🖥️ **Aplicaciones de Escritorio** - Soluciones robustas con C# .NET y Electron
-- 📱 **Desarrollo Móvil** - Experiencias fluidas con MAUI y tecnologías híbridas
-- 🧠 **Inteligencia Artificial & ML** - Entrenamiento de modelos y análisis de datos
-- 👁️ **Visión por Computadora** - Reconocimiento de imágenes y procesamiento visual
-- 🔐 **Ciberseguridad** - Protección de sistemas y análisis de vulnerabilidades
-- 🤖 **Hardware con IA** - Integración de algoritmos inteligentes en dispositivos físicos
+<h2>Github Stats : </h2>
 
-## 📊 Estadísticas de GitHub
-
-<div align="center">
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=Andiquis&theme=radical" alt="Estadísticas de racha">
-  <br><br>
-  <img src="https://github-readme-stats.vercel.app/api?username=Andiquis&show_icons=true&theme=radical" alt="Estadísticas de GitHub">
-  <img height="195px" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Andiquis&text_color=FFFFFF&bg_color=000000&title_color=94b4a4&langs_count=8&layout=compact&border_color=FF0000" />
-</div>
-
-<div align="center">
+<div align="left">
   <br>
   <img src="https://github-profile-trophy.vercel.app/?username=Andiquis&theme=monokai&row=1&column=7" width="100%">
 </div>
 
-## 🌟 Proyectos Destacados
+## Proyectos Destacados
 
-<div align="center">
+<div align="left">
   <a href="https://github.com/Andiquis/VBS-TK">
     <img src="https://github-readme-stats.vercel.app/api/pin/?username=Andiquis&repo=VBS-TK&theme=radical">
   </a>
-  <a href="https://github.com/Andiquis/cingles">
-    <img src="https://github-readme-stats.vercel.app/api/pin/?username=Andiquis&repo=cingles&theme=radical">
+  <a href="https://github.com/Andiquis/xQore">
+    <img src="https://github-readme-stats.vercel.app/api/pin/?username=Andiquis&repo=xQore&theme=radical">
   </a>
 </div>
 
-## 💼 Experiencia Profesional
-
-```mermaid
-gantt
-    title Mi Trayectoria Profesional
-    dateFormat  YYYY
-    section Carrera
-    Formación Académica       :a1, 2018, 3y
-    Desarrollo Web            :a2, 2019, 5y
-    Desarrollo Desktop        :a3, 2020, 4y
-    IA y ML                   :a4, 2021, 3y
-    Ciberseguridad            :a5, 2022, 2y
-```
-
-## 🎯 Objetivos Actuales
-
-- 📚 Profundizar en arquitecturas avanzadas de Deep Learning
-- 🔄 Contribuir a proyectos open source
-- 🌐 Explorar Web3 y tecnologías blockchain
-- 📝 Compartir conocimientos a través de tutoriales y artículos
-
-<table border="4px" width="100%" align="center">
-    <tr>
-        <td border="0px" width="25%"><img width="100%" src="image1.webp"></td>
-        <td border="0px" colspan="3" width="75%"><img src="http://readme-typing-svg.herokuapp.com?font=Delicious+Handrawn&pause=1000&color=F70000&width=1000&lines=Loading...............;Hola+👋👋;soy+asistente+de+Andi;que+opinas+de+tu+experiencia+x+aqui;comentanos+aqui+en+nuestras+redes+sociales+👇👇👇;no+te+pierdas+de+nuestros+nuevos+contenidos😁;aunque+no+subo+mucho+contenido+jeje;visitanos+en+WhatsApp+para+socializar😉" alt="Typing SVG" /></td>
-    </tr>
-</table>
-
 ## 🔗 Conéctate Conmigo
+
 
 <div align="center">
   <a href="https://wa.me/51942287756">
@@ -119,17 +82,28 @@ gantt
 
 <hr style="border: 2px solid #FF5733; border-radius: 5px;">
 
+<table border="4px" width="80%" align="center">
+    <tr>
+        <td border="0px" width="25%"><img width="40%" src="image1.webp"></td>
+        <td border="0px" colspan="3" width="75%"><img src="http://readme-typing-svg.herokuapp.com?font=Delicious+Handrawn&pause=1000&color=F70000&width=1000&lines=Loading...............;Hola+👋👋;soy+asistente+de+Andi;que+opinas+de+tu+experiencia+x+aqui;comentanos+aqui+en+nuestras+redes+sociales+👇👇👇;no+te+pierdas+de+nuestros+nuevos+contenidos😁;aunque+no+subo+mucho+contenido+jeje;visitanos+en+WhatsApp+para+socializar😉" alt="Typing SVG" /></td>
+    </tr>
+</table>
+
+
+
 <div align="center">
-  <h2>⚙️ Recursos y Herramientas</h2>
-  <a href="https://github.com/termux/termux-app/releases/download/v0.118.0/termux-app_v0.118.0+github-debug_universal.apk">
-    <img src="https://img.shields.io/badge/DOWNLOAD_TERMUX_APK-25D366?style=for-the-badge&logo=github&logoColor=black" />
-  </a>
-  
-  <br><br>
+
+  <br>
   
   <img src="https://media.giphy.com/media/LmNwrBhejkK9EFP504/giphy.gif" width="200px">
   
   <p>✨ <i>Gracias por visitar mi perfil. ¡Espero que podamos colaborar pronto!</i> ✨</p>
   
   ![Contador de Visitas](https://profile-counter.glitch.me/Andiquis/count.svg)
+<br>
+  <a href="https://github.com/termux/termux-app/releases/download/v0.118.0/termux-app_v0.118.0+github-debug_universal.apk">
+    <img src="https://img.shields.io/badge/DOWNLOAD_TERMUX_APK-25D366?style=for-the-badge&logo=github&logoColor=black" />
+  </a>
 </div>
+
+
