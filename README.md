@@ -26,18 +26,113 @@ Soy **Andi**, un apasionado del desarrollo de software con experiencia en múlti
 - 🔐 **Ciberseguridad** - Protección de sistemas y análisis de vulnerabilidades
 - 🤖 **Hardware con IA** - Integración de algoritmos inteligentes en dispositivos físicos
 
-<div align="left">
+<div align="center">
 
-| Categoría                   | Tecnologías                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| --------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Frontend**                | ![HTML5](https://img.shields.io/badge/-HTML5-E34F26?style=flat-square&logo=html5&logoColor=white) ![CSS3](https://img.shields.io/badge/-CSS3-1572B6?style=flat-square&logo=css3) ![JavaScript](https://img.shields.io/badge/-JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black) ![TypeScript](https://img.shields.io/badge/-TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white) ![Angular](https://img.shields.io/badge/-Angular-DD0031?style=flat-square&logo=angular) ![React](https://img.shields.io/badge/-React-61DAFB?style=flat-square&logo=react&logoColor=black)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
-| **Backend**                 | ![NodeJS](https://img.shields.io/badge/-NodeJS-339933?style=flat-square&logo=node.js&logoColor=white) ![NestJS](https://img.shields.io/badge/-NestJS-E0234E?style=flat-square&logo=nestjs&logoColor=white) ![Express](https://img.shields.io/badge/-Express-000000?style=flat-square&logo=express&logoColor=white) ![PHP](https://img.shields.io/badge/-PHP-777BB4?style=flat-square&logo=php&logoColor=white) ![FastAPI](https://img.shields.io/badge/-FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white) ![C#](https://img.shields.io/badge/-C%23-239120?style=flat-square&logo=c-sharp&logoColor=white) ![.NET](https://img.shields.io/badge/-.NET-512BD4?style=flat-square&logo=dotnet&logoColor=white) ![Java](https://img.shields.io/badge/-Java-007396?style=flat-square&logo=java&logoColor=white)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| **Bases de Datos**          | ![MySQL](https://img.shields.io/badge/-MySQL-4479A1?style=flat-square&logo=mysql&logoColor=white) ![SQLite](https://img.shields.io/badge/-SQLite-003B57?style=flat-square&logo=sqlite&logoColor=white)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| **DevOps & Tools**          | ![Git](https://img.shields.io/badge/-Git-F05032?style=flat-square&logo=git&logoColor=white) ![GitHub](https://img.shields.io/badge/-GitHub-181717?style=flat-square&logo=github) ![GitLab](https://img.shields.io/badge/-GitLab-FC6D26?style=flat-square&logo=gitlab&logoColor=white) ![Docker](https://img.shields.io/badge/-Docker-2496ED?style=flat-square&logo=docker&logoColor=white)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| **Inteligencia Artificial** | ![TensorFlow](https://img.shields.io/badge/-TensorFlow-FF6F00?style=flat-square&logo=tensorflow&logoColor=white) ![PyTorch](https://img.shields.io/badge/-PyTorch-EE4C2C?style=flat-square&logo=pytorch&logoColor=white) ![OpenCV](https://img.shields.io/badge/-OpenCV-5C3EE8?style=flat-square&logo=opencv&logoColor=white) ![Scikit-learn](https://img.shields.io/badge/-Scikit--learn-F7931E?style=flat-square&logo=scikit-learn&logoColor=white) ![Keras](https://img.shields.io/badge/-Keras-D00000?style=flat-square&logo=keras&logoColor=white) ![YOLO](https://img.shields.io/badge/-YOLO-00FFFF?style=flat-square&logo=yolo&logoColor=black) ![Detectron2](https://img.shields.io/badge/-Detectron2-1877F2?style=flat-square&logo=facebook&logoColor=white) ![Mediapipe](https://img.shields.io/badge/-MediaPipe-0097A7?style=flat-square&logo=google&logoColor=white) ![Roboflow](https://img.shields.io/badge/-Roboflow-6737EE?style=flat-square&logo=roboflow&logoColor=white) ![Ultralytics](https://img.shields.io/badge/-Ultralytics-0052CC?style=flat-square&logo=ultralytics&logoColor=white) ![Hugging Face](https://img.shields.io/badge/-Hugging%20Face-FFD21E?style=flat-square&logo=huggingface&logoColor=black) ![LangChain](https://img.shields.io/badge/-LangChain-1C3C3C?style=flat-square&logo=langchain&logoColor=white) |
-| **Desarrollo Móvil**        | ![Flutter](https://img.shields.io/badge/-Flutter-02569B?style=flat-square&logo=flutter&logoColor=white) ![Dart](https://img.shields.io/badge/-Dart-0175C2?style=flat-square&logo=dart&logoColor=white) ![Android Studio](https://img.shields.io/badge/-Android%20Studio-3DDC84?style=flat-square&logo=android-studio&logoColor=white) ![Kotlin](https://img.shields.io/badge/-Kotlin-0095D5?style=flat-square&logo=kotlin&logoColor=white) ![MAUI](https://img.shields.io/badge/-MAUI-512BD4?style=flat-square&logo=dotnet&logoColor=white) ![React Native](https://img.shields.io/badge/-React_Native-61DAFB?style=flat-square&logo=react&logoColor=black) ![Xamarin](https://img.shields.io/badge/-Xamarin-3498DB?style=flat-square&logo=xamarin&logoColor=white)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   | **Cyberseguridad** | ![Kali Linux](https://img.shields.io/badge/-Kali_Linux-557C94?style=flat-square&logo=kali-linux&logoColor=white) ![Wireshark](https://img.shields.io/badge/-Wireshark-1679A7?style=flat-square&logo=wireshark&logoColor=white) ![Metasploit](https://img.shields.io/badge/-Metasploit-2596CD?style=flat-square&logo=metasploit&logoColor=white) ![Nmap](https://img.shields.io/badge/-Nmap-4682B4?style=flat-square&logo=nmap&logoColor=white) |
-| **Testing & QA**            | ![Swagger](https://img.shields.io/badge/-Swagger-85EA2D?style=flat-square&logo=swagger&logoColor=black) ![Postman](https://img.shields.io/badge/-Postman-FF6C37?style=flat-square&logo=postman&logoColor=white)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| **Análisis de Datos**       | ![Pandas](https://img.shields.io/badge/-Pandas-150458?style=flat-square&logo=pandas&logoColor=white) ![NumPy](https://img.shields.io/badge/-NumPy-013243?style=flat-square&logo=numpy&logoColor=white) ![Matplotlib](https://img.shields.io/badge/-Matplotlib-11557C?style=flat-square&logo=matplotlib&logoColor=white) ![Jupyter](https://img.shields.io/badge/-Jupyter-F37626?style=flat-square&logo=jupyter&logoColor=white) ![Power BI](https://img.shields.io/badge/-Power_BI-F2C811?style=flat-square&logo=power-bi&logoColor=black)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+<table width="90%" cellpadding="15" cellspacing="0" style="border-collapse: collapse;">
+  <thead>
+    <tr>
+      <th align="center" style="background: linear-gradient(135deg, #2C3E50, #34495E); padding: 20px; border-radius: 10px 0 0 10px; color: white; font-size: 18px;">Categoría</th>
+      <th align="center" style="background: linear-gradient(135deg, #2C3E50, #34495E); padding: 20px; border-radius: 0 10px 10px 0; color: white; font-size: 18px;">Tecnologías</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td align="center" style="background: rgba(255,87,51,0.1); padding: 15px; border: 2px solid rgba(255,87,51,0.3); font-weight: bold; color: #FF5733;"><strong>Frontend</strong></td>
+      <td align="left" style="background: rgba(255,87,51,0.05); padding: 15px; border: 2px solid rgba(255,87,51,0.3);">
+        <img src="https://img.shields.io/badge/-HTML5-E34F26?style=flat-square&logo=html5&logoColor=white" alt="HTML5"> 
+        <img src="https://img.shields.io/badge/-CSS3-1572B6?style=flat-square&logo=css3" alt="CSS3"> 
+        <img src="https://img.shields.io/badge/-JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black" alt="JavaScript"> 
+        <img src="https://img.shields.io/badge/-TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white" alt="TypeScript"> 
+        <img src="https://img.shields.io/badge/-Angular-DD0031?style=flat-square&logo=angular" alt="Angular"> 
+        <img src="https://img.shields.io/badge/-React-61DAFB?style=flat-square&logo=react&logoColor=black" alt="React">
+      </td>
+    </tr>
+    <tr>
+      <td align="center" style="background: rgba(59,199,187,0.1); padding: 15px; border: 2px solid rgba(59,199,187,0.3); font-weight: bold; color: #3bc7bb;"><strong>Backend</strong></td>
+      <td align="left" style="background: rgba(59,199,187,0.05); padding: 15px; border: 2px solid rgba(59,199,187,0.3);">
+        <img src="https://img.shields.io/badge/-NodeJS-339933?style=flat-square&logo=node.js&logoColor=white" alt="NodeJS"> 
+        <img src="https://img.shields.io/badge/-NestJS-E0234E?style=flat-square&logo=nestjs&logoColor=white" alt="NestJS"> 
+        <img src="https://img.shields.io/badge/-Express-000000?style=flat-square&logo=express&logoColor=white" alt="Express"> 
+        <img src="https://img.shields.io/badge/-PHP-777BB4?style=flat-square&logo=php&logoColor=white" alt="PHP"> 
+        <img src="https://img.shields.io/badge/-FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white" alt="FastAPI"> 
+        <img src="https://img.shields.io/badge/-C%23-239120?style=flat-square&logo=c-sharp&logoColor=white" alt="C#"> 
+        <img src="https://img.shields.io/badge/-.NET-512BD4?style=flat-square&logo=dotnet&logoColor=white" alt=".NET"> 
+        <img src="https://img.shields.io/badge/-Java-007396?style=flat-square&logo=java&logoColor=white" alt="Java">
+      </td>
+    </tr>
+    <tr>
+      <td align="center" style="background: rgba(255,193,7,0.1); padding: 15px; border: 2px solid rgba(255,193,7,0.3); font-weight: bold; color: #FFC107;"><strong>Bases de Datos</strong></td>
+      <td align="left" style="background: rgba(255,193,7,0.05); padding: 15px; border: 2px solid rgba(255,193,7,0.3);">
+        <img src="https://img.shields.io/badge/-MySQL-4479A1?style=flat-square&logo=mysql&logoColor=white" alt="MySQL"> 
+        <img src="https://img.shields.io/badge/-SQLite-003B57?style=flat-square&logo=sqlite&logoColor=white" alt="SQLite">
+      </td>
+    </tr>
+    <tr>
+      <td align="center" style="background: rgba(156,39,176,0.1); padding: 15px; border: 2px solid rgba(156,39,176,0.3); font-weight: bold; color: #9C27B0;"><strong>DevOps & Tools</strong></td>
+      <td align="left" style="background: rgba(156,39,176,0.05); padding: 15px; border: 2px solid rgba(156,39,176,0.3);">
+        <img src="https://img.shields.io/badge/-Git-F05032?style=flat-square&logo=git&logoColor=white" alt="Git"> 
+        <img src="https://img.shields.io/badge/-GitHub-181717?style=flat-square&logo=github" alt="GitHub"> 
+        <img src="https://img.shields.io/badge/-GitLab-FC6D26?style=flat-square&logo=gitlab&logoColor=white" alt="GitLab"> 
+        <img src="https://img.shields.io/badge/-Docker-2496ED?style=flat-square&logo=docker&logoColor=white" alt="Docker">
+      </td>
+    </tr>
+    <tr>
+      <td align="center" style="background: rgba(33,150,243,0.1); padding: 15px; border: 2px solid rgba(33,150,243,0.3); font-weight: bold; color: #2196F3;"><strong>Inteligencia Artificial</strong></td>
+      <td align="left" style="background: rgba(33,150,243,0.05); padding: 15px; border: 2px solid rgba(33,150,243,0.3);">
+        <img src="https://img.shields.io/badge/-TensorFlow-FF6F00?style=flat-square&logo=tensorflow&logoColor=white" alt="TensorFlow"> 
+        <img src="https://img.shields.io/badge/-PyTorch-EE4C2C?style=flat-square&logo=pytorch&logoColor=white" alt="PyTorch"> 
+        <img src="https://img.shields.io/badge/-OpenCV-5C3EE8?style=flat-square&logo=opencv&logoColor=white" alt="OpenCV"> 
+        <img src="https://img.shields.io/badge/-Scikit--learn-F7931E?style=flat-square&logo=scikit-learn&logoColor=white" alt="Scikit-learn"> 
+        <img src="https://img.shields.io/badge/-Keras-D00000?style=flat-square&logo=keras&logoColor=white" alt="Keras"> 
+        <img src="https://img.shields.io/badge/-YOLO-00FFFF?style=flat-square&logo=yolo&logoColor=black" alt="YOLO"> 
+        <img src="https://img.shields.io/badge/-Detectron2-1877F2?style=flat-square&logo=facebook&logoColor=white" alt="Detectron2"> 
+        <img src="https://img.shields.io/badge/-MediaPipe-0097A7?style=flat-square&logo=google&logoColor=white" alt="MediaPipe"> 
+        <img src="https://img.shields.io/badge/-Roboflow-6737EE?style=flat-square&logo=roboflow&logoColor=white" alt="Roboflow"> 
+        <img src="https://img.shields.io/badge/-Ultralytics-0052CC?style=flat-square&logo=ultralytics&logoColor=white" alt="Ultralytics"> 
+        <img src="https://img.shields.io/badge/-Hugging%20Face-FFD21E?style=flat-square&logo=huggingface&logoColor=black" alt="Hugging Face"> 
+        <img src="https://img.shields.io/badge/-LangChain-1C3C3C?style=flat-square&logo=langchain&logoColor=white" alt="LangChain">
+      </td>
+    </tr>
+    <tr>
+      <td align="center" style="background: rgba(76,175,80,0.1); padding: 15px; border: 2px solid rgba(76,175,80,0.3); font-weight: bold; color: #4CAF50;"><strong>Desarrollo Móvil</strong></td>
+      <td align="left" style="background: rgba(76,175,80,0.05); padding: 15px; border: 2px solid rgba(76,175,80,0.3);">
+        <img src="https://img.shields.io/badge/-Flutter-02569B?style=flat-square&logo=flutter&logoColor=white" alt="Flutter"> 
+        <img src="https://img.shields.io/badge/-Dart-0175C2?style=flat-square&logo=dart&logoColor=white" alt="Dart"> 
+        <img src="https://img.shields.io/badge/-Android%20Studio-3DDC84?style=flat-square&logo=android-studio&logoColor=white" alt="Android Studio"> 
+        <img src="https://img.shields.io/badge/-Kotlin-0095D5?style=flat-square&logo=kotlin&logoColor=white" alt="Kotlin"> 
+        <img src="https://img.shields.io/badge/-MAUI-512BD4?style=flat-square&logo=dotnet&logoColor=white" alt="MAUI"> 
+        <img src="https://img.shields.io/badge/-React_Native-61DAFB?style=flat-square&logo=react&logoColor=black" alt="React Native"> 
+        <img src="https://img.shields.io/badge/-Xamarin-3498DB?style=flat-square&logo=xamarin&logoColor=white" alt="Xamarin">
+      </td>
+    </tr>
+    <tr>
+      <td align="center" style="background: rgba(244,67,54,0.1); padding: 15px; border: 2px solid rgba(244,67,54,0.3); font-weight: bold; color: #F44336;"><strong>Ciberseguridad</strong></td>
+      <td align="left" style="background: rgba(244,67,54,0.05); padding: 15px; border: 2px solid rgba(244,67,54,0.3);">
+        <img src="https://img.shields.io/badge/-Kali_Linux-557C94?style=flat-square&logo=kali-linux&logoColor=white" alt="Kali Linux"> 
+        <img src="https://img.shields.io/badge/-Wireshark-1679A7?style=flat-square&logo=wireshark&logoColor=white" alt="Wireshark"> 
+        <img src="https://img.shields.io/badge/-Metasploit-2596CD?style=flat-square&logo=metasploit&logoColor=white" alt="Metasploit"> 
+        <img src="https://img.shields.io/badge/-Nmap-4682B4?style=flat-square&logo=nmap&logoColor=white" alt="Nmap">
+      </td>
+    </tr>
+    <tr>
+      <td align="center" style="background: rgba(103,58,183,0.1); padding: 15px; border: 2px solid rgba(103,58,183,0.3); font-weight: bold; color: #673AB7;"><strong>Testing & QA</strong></td>
+      <td align="left" style="background: rgba(103,58,183,0.05); padding: 15px; border: 2px solid rgba(103,58,183,0.3);">
+        <img src="https://img.shields.io/badge/-Swagger-85EA2D?style=flat-square&logo=swagger&logoColor=black" alt="Swagger"> 
+        <img src="https://img.shields.io/badge/-Postman-FF6C37?style=flat-square&logo=postman&logoColor=white" alt="Postman">
+      </td>
+    </tr>
+    <tr>
+      <td align="center" style="background: rgba(255,152,0,0.1); padding: 15px; border: 2px solid rgba(255,152,0,0.3); font-weight: bold; color: #FF9800;"><strong>Análisis de Datos</strong></td>
+      <td align="left" style="background: rgba(255,152,0,0.05); padding: 15px; border: 2px solid rgba(255,152,0,0.3);">
+        <img src="https://img.shields.io/badge/-Pandas-150458?style=flat-square&logo=pandas&logoColor=white" alt="Pandas"> 
+        <img src="https://img.shields.io/badge/-NumPy-013243?style=flat-square&logo=numpy&logoColor=white" alt="NumPy"> 
+        <img src="https://img.shields.io/badge/-Matplotlib-11557C?style=flat-square&logo=matplotlib&logoColor=white" alt="Matplotlib"> 
+        <img src="https://img.shields.io/badge/-Jupyter-F37626?style=flat-square&logo=jupyter&logoColor=white" alt="Jupyter"> 
+        <img src="https://img.shields.io/badge/-Power_BI-F2C811?style=flat-square&logo=power-bi&logoColor=black" alt="Power BI">
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 </div>
 
