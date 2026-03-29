@@ -44,7 +44,7 @@ Soy **Andi**, un apasionado del desarrollo de software con experiencia en múlti
         <img src="https://img.shields.io/badge/-JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black" alt="JavaScript"> 
         <img src="https://img.shields.io/badge/-TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white" alt="TypeScript"> 
         <img src="https://img.shields.io/badge/-Angular-DD0031?style=flat-square&logo=angular" alt="Angular"> 
-        <img src="https://img.shields.io/badge/-React-61DAFB?style=flat-square&logo=react&logoColor=black" alt="React">
+        <!--img src="https://img.shields.io/badge/-React-61DAFB?style=flat-square&logo=react&logoColor=black" alt="React"-->
       </td>
     </tr>
     <tr>
@@ -54,10 +54,10 @@ Soy **Andi**, un apasionado del desarrollo de software con experiencia en múlti
         <img src="https://img.shields.io/badge/-NestJS-E0234E?style=flat-square&logo=nestjs&logoColor=white" alt="NestJS"> 
         <img src="https://img.shields.io/badge/-Express-000000?style=flat-square&logo=express&logoColor=white" alt="Express"> 
         <img src="https://img.shields.io/badge/-PHP-777BB4?style=flat-square&logo=php&logoColor=white" alt="PHP"> 
-        <img src="https://img.shields.io/badge/-FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white" alt="FastAPI"> 
-        <img src="https://img.shields.io/badge/-C%23-239120?style=flat-square&logo=c-sharp&logoColor=white" alt="C#"> 
+        <!--img src="https://img.shields.io/badge/-FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white" alt="FastAPI"--> 
+        <!--img src="https://img.shields.io/badge/-C%23-239120?style=flat-square&logo=c-sharp&logoColor=white" alt="C#"> 
         <img src="https://img.shields.io/badge/-.NET-512BD4?style=flat-square&logo=dotnet&logoColor=white" alt=".NET"> 
-        <img src="https://img.shields.io/badge/-Java-007396?style=flat-square&logo=java&logoColor=white" alt="Java">
+        <img src="https://img.shields.io/badge/-Java-007396?style=flat-square&logo=java&logoColor=white" alt="Java"-->
       </td>
     </tr>
     <tr>
@@ -73,7 +73,7 @@ Soy **Andi**, un apasionado del desarrollo de software con experiencia en múlti
         <img src="https://img.shields.io/badge/-Git-F05032?style=flat-square&logo=git&logoColor=white" alt="Git"> 
         <img src="https://img.shields.io/badge/-GitHub-181717?style=flat-square&logo=github" alt="GitHub"> 
         <img src="https://img.shields.io/badge/-GitLab-FC6D26?style=flat-square&logo=gitlab&logoColor=white" alt="GitLab"> 
-        <img src="https://img.shields.io/badge/-Docker-2496ED?style=flat-square&logo=docker&logoColor=white" alt="Docker">
+        <!--img src="https://img.shields.io/badge/-Docker-2496ED?style=flat-square&logo=docker&logoColor=white" alt="Docker"-->
       </td>
     </tr>
     <tr>
@@ -99,10 +99,12 @@ Soy **Andi**, un apasionado del desarrollo de software con experiencia en múlti
         <img src="https://img.shields.io/badge/-Flutter-02569B?style=flat-square&logo=flutter&logoColor=white" alt="Flutter"> 
         <img src="https://img.shields.io/badge/-Dart-0175C2?style=flat-square&logo=dart&logoColor=white" alt="Dart"> 
         <img src="https://img.shields.io/badge/-Android%20Studio-3DDC84?style=flat-square&logo=android-studio&logoColor=white" alt="Android Studio"> 
-        <img src="https://img.shields.io/badge/-Kotlin-0095D5?style=flat-square&logo=kotlin&logoColor=white" alt="Kotlin"> 
+        <!--img src="https://img.shields.io/badge/-Kotlin-0095D5?style=flat-square&logo=kotlin&logoColor=white" alt="Kotlin"> 
         <img src="https://img.shields.io/badge/-MAUI-512BD4?style=flat-square&logo=dotnet&logoColor=white" alt="MAUI"> 
         <img src="https://img.shields.io/badge/-React_Native-61DAFB?style=flat-square&logo=react&logoColor=black" alt="React Native"> 
-        <img src="https://img.shields.io/badge/-Xamarin-3498DB?style=flat-square&logo=xamarin&logoColor=white" alt="Xamarin">
+        <img src="https://img.shields.io/badge/-Xamarin-3498DB?style=flat-square&logo=xamarin&logoColor=white" alt="Xamarin"-->
+        <img src="https://img.shields.io/badge/-Capacitor-119EFF?style=flat-square&logo=capacitor&logoColor=white" alt="Capacitor">
+        <img src="https://img.shields.io/badge/-Cordova-E8E8E8?style=flat-square&logo=apache-cordova&logoColor=black" alt="Cordova">
       </td>
     </tr>
     <tr>
@@ -140,10 +142,7 @@ Soy **Andi**, un apasionado del desarrollo de software con experiencia en múlti
 
 <h2>Github Stats : </h2>
 
-<div align="left">
-  <br>
-  <img src="https://github-profile-trophy.vercel.app/?username=Andiquis&theme=monokai&row=1&column=7" width="100%">
-</div>
+
 
 ## Proyectos Destacados
 
@@ -199,7 +198,6 @@ Soy **Andi**, un apasionado del desarrollo de software con experiencia en múlti
   
   <p>✨ <i>Gracias por visitar mi perfil. ¡Espero que podamos colaborar pronto!</i> ✨</p>
   
-  ![Contador de Visitas](https://profile-counter.glitch.me/Andiquis/count.svg)
 <br>
   <a href="https://github.com/termux/termux-app/releases/download/v0.118.0/termux-app_v0.118.0+github-debug_universal.apk">
     <img src="https://img.shields.io/badge/DOWNLOAD_TERMUX_APK-25D366?style=for-the-badge&logo=github&logoColor=black" />
