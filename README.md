@@ -175,9 +175,29 @@ Soy **Andi**, un apasionado del desarrollo de software con experiencia en múlti
 
 <hr style="border: 2px solid #FF5733; border-radius: 5px;">
 
-## 🌐 Vista de la Página Web
+<div align="center">
 
 <p align="center">
-  <img src="https://andiquis.github.io/Present/index.html" alt="Vista de la Página Web" width="100%" height="500px" style="border: none;">
+  <img src="https://capsule-render.vercel.app/api?type=waving&height=300&color=0:1e90ff,100:00bfff&text=Andiquis%20Web%20Preview&fontColor=ffffff&desc=Visita%20mi%20p%C3%A1gina%20web%20en%20el%20enlace%20de%20abajo&descAlign=50&fontAlign=50&fontAlignY=45" width="100%" alt="Vista de la Página Web"/>
+</p>
+<p align="center">
+  <a href="https://andiquis.github.io/Present/" target="_blank">Haz clic aquí para visitar mi página web</a>
 </p>
 
+</div>
+<br>
+
+<div align="center">
+
+  <br>
+  
+  <img src="https://media.giphy.com/media/LmNwrBhejkK9EFP504/giphy.gif" width="200px">
+  
+  <p>✨ <i>Gracias por visitar mi perfil. ¡Espero que podamos colaborar pronto!</i> ✨</p>
+  
+  ![Contador de Visitas](https://profile-counter.glitch.me/Andiquis/count.svg)
+<br>
+  <a href="https://github.com/termux/termux-app/releases/download/v0.118.0/termux-app_v0.118.0+github-debug_universal.apk">
+    <img src="https://img.shields.io/badge/DOWNLOAD_TERMUX_APK-25D366?style=for-the-badge&logo=github&logoColor=black" />
+  </a>
+</div>
