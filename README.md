@@ -141,6 +141,21 @@ Soy **Andi**, un apasionado del desarrollo de software con experiencia en múlti
 <hr style="border: 2px solid #FF5733; border-radius: 5px;">
 
 <h2>Github Stats : </h2>
+<div align="center" style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats-six-seven.vercel.app/api?username=Andiquis&show_icons=true&count_private=true&theme=transparent&title_color=00bfff&icon_color=00bfff&text_color=ffffff">
+    <source media="(prefers-color-scheme: light)" srcset="https://github-readme-stats-six-seven.vercel.app/api?username=Andiquis&show_icons=true&count_private=true&theme=default">
+    <img alt="GitHub Stats" src="https://github-readme-stats-six-seven.vercel.app/api?username=Andiquis&show_icons=true&count_private=true&theme=default" height="200px">
+  </picture>
+
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats-six-seven.vercel.app/api/top-langs/?username=Andiquis&layout=compact&langs_count=8&theme=transparent&title_color=00bfff&text_color=ffffff">
+    <source media="(prefers-color-scheme: light)" srcset="https://github-readme-stats-six-seven.vercel.app/api/top-langs/?username=Andiquis&layout=compact&langs_count=8&theme=default">
+    <img alt="Top Languages" src="https://github-readme-stats-six-seven.vercel.app/api/top-langs/?username=Andiquis&layout=compact&langs_count=8&theme=default" height="200px">
+  </picture>
+
+</div>
 
 
 
