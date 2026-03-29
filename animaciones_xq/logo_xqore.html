@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logo Hexágono Hacker</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* Asegura que el body ocupe al menos la altura de la ventana */
+            background-color: #000; /* Fondo negro para un estilo hacker más inmersivo */
+            margin: 0; /* Elimina el margen predeterminado del body */
+        }
+
+        .hexagon-container {
+            width: 150px;
+            height: 173.2px;
+        }
+
+        .hexagon {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background-color: #00ff00;
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 20px #00ff00, 0 0 50px rgba(0, 255, 0, 0.8); /* Glow más intenso */
+            z-index: 10;
+            transition: box-shadow 0.5s ease-in-out; /* Transición suave para el efecto hover */
+        }
+
+        .hexagon:hover {
+            box-shadow: 0 0 30px #00ff00, 0 0 70px rgba(0, 255, 0, 0.9); /* Glow más fuerte al pasar el ratón */
+        }
+
+        .hexagon-inner {
+            color: #00ff15;
+            font-family: 'Courier New', monospace;
+            font-size: 35px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 3px rgb(255, 0, 0); /* Sombra sutil al texto */
+            z-index: 20;
+        }
+
+        .hexagon::before {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            right: 2px;
+            bottom: 2px;
+            background-color: rgba(0, 255, 0, 0.2); /* Brillo interior más notable */
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            z-index: 15;
+            /* Animación sutil de pulso */
+            animation: pulse 2s infinite alternate;
+        }
+
+        .hexagon::after {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            right: 8px;
+            bottom: 8px;
+            background-color: #050505;
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            z-index: 5;
+        }
+
+        /* Animación de pulso */
+        @keyframes pulse {
+            0% {
+                opacity: 0.8;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hexagon-container">
+        <div class="hexagon">
+            <span class="hexagon-inner">&lt;x_Q&gt;</span
+            >
+        </div>
+    </div>
+</body>
+</html>

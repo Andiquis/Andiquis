@@ -1,0 +1,1336 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bingsu Lounge El Páramo - Noches Estelares</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 25%, #0f3027 50%, #064e3b 75%, #047857 100%);
+            color: white;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Stars Animation */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(34, 197, 94, 0.8);
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem 2rem;
+            backdrop-filter: blur(15px);
+            background: rgba(15, 23, 42, 0.9);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(34, 197, 94, 0.2);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #10b981;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 400;
+        }
+
+        .nav-links a:hover {
+            color: #10b981;
+            text-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 0.9rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.5);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(34, 197, 94, 0.1);
+            border-color: #10b981;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 2rem;
+            position: relative;
+            background: radial-gradient(ellipse at center bottom, rgba(16, 185, 129, 0.1) 0%, transparent 70%);
+        }
+
+        .hero-content {
+            max-width: 700px;
+            z-index: 2;
+        }
+
+        .hero-subtitle {
+            color: #10b981;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            line-height: 1.1;
+            background: linear-gradient(135deg, #ffffff, #10b981, #059669);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 3rem;
+        }
+
+        /* Landscape Scene */
+        .landscape {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40%;
+            background: linear-gradient(to top, #0f172a 0%, rgba(15, 23, 42, 0.8) 50%, transparent 100%);
+            z-index: 1;
+        }
+
+        .mountain-range {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 60%;
+            background: linear-gradient(45deg, #065f46 0%, #047857 100%);
+            clip-path: polygon(0 100%, 15% 60%, 35% 80%, 50% 40%, 70% 65%, 85% 45%, 100% 70%, 100% 100%);
+        }
+
+        .moon {
+            position: absolute;
+            right: 20%;
+            top: 20%;
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle at 30% 30%, #fbbf24, #f59e0b);
+            border-radius: 50%;
+            box-shadow: 0 0 50px rgba(251, 191, 36, 0.3);
+            z-index: 1;
+        }
+
+        .shooting-star {
+            position: absolute;
+            right: 10%;
+            top: 15%;
+            width: 3px;
+            height: 3px;
+            background: #22c55e;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #22c55e;
+            animation: shootingStar 3s infinite;
+        }
+
+        .shooting-star::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 60px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #22c55e, transparent);
+            transform: translate(-50%, -50%) rotate(45deg);
+        }
+
+        @keyframes shootingStar {
+            0% { transform: translateX(0) translateY(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateX(-300px) translateY(200px); opacity: 0; }
+        }
+
+        /* Tree Silhouette */
+        .tree {
+            position: absolute;
+            left: 15%;
+            bottom: 15%;
+            width: 80px;
+            height: 200px;
+            z-index: 2;
+        }
+
+        .tree-trunk {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 8px;
+            height: 60px;
+            background: #064e3b;
+            transform: translateX(-50%);
+        }
+
+        .tree-branches {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            width: 80px;
+            height: 120px;
+            background: radial-gradient(ellipse, transparent 30%, #064e3b 35%, #064e3b 65%, transparent 70%);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            transform: translateX(-50%);
+        }
+
+        /* Brands Section */
+        .brands {
+            padding: 4rem 2rem;
+            text-align: center;
+            background: rgba(15, 23, 42, 0.5);
+            backdrop-filter: blur(10px);
+        }
+
+        .brands-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .brands h3 {
+            color: rgba(34, 197, 94, 0.7);
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 300;
+        }
+
+        .brands-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .brand-item {
+            color: rgba(255, 255, 255, 0.4);
+            font-weight: 400;
+            transition: all 0.3s ease;
+            padding: 1rem;
+            border-radius: 10px;
+            border: 1px solid rgba(34, 197, 94, 0.1);
+        }
+
+        .brand-item:hover {
+            color: #10b981;
+            border-color: rgba(16, 185, 129, 0.3);
+            background: rgba(16, 185, 129, 0.05);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.8), rgba(6, 78, 59, 0.3));
+        }
+
+        .services-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 4rem;
+        }
+
+        .services-subtitle {
+            color: #10b981;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+            font-weight: 300;
+        }
+
+        .services-title {
+            font-size: 3rem;
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .services-description {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .services-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+        }
+
+        .service-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(34, 197, 94, 0.2);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #10b981, transparent);
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(16, 185, 129, 0.4);
+            box-shadow: 0 20px 40px rgba(16, 185, 129, 0.1);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #10b981, #059669);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.3);
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .service-card p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+        }
+
+        /* Astronomy Section */
+        .astronomy {
+            padding: 6rem 2rem;
+            background: radial-gradient(ellipse at center, rgba(16, 185, 129, 0.1) 0%, transparent 70%);
+            position: relative;
+        }
+
+        .astronomy-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .astronomy-content h4 {
+            color: #10b981;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+            font-weight: 300;
+        }
+
+        .astronomy-content h2 {
+            font-size: 3rem;
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .astronomy-content p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .astronomy-visual {
+            position: relative;
+            height: 400px;
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.6), rgba(16, 185, 129, 0.1));
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(34, 197, 94, 0.2);
+        }
+
+        .cave-opening {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 300px;
+            height: 200px;
+            background: radial-gradient(ellipse at center bottom, rgba(16, 185, 129, 0.2) 0%, transparent 70%);
+            border-radius: 50% 50% 0 0;
+            transform: translateX(-50%);
+        }
+
+        .figure-silhouette {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            width: 40px;
+            height: 100px;
+            background: linear-gradient(to top, #064e3b, #0f172a);
+            border-radius: 20px 20px 5px 5px;
+            transform: translateX(-50%);
+        }
+
+        .figure-silhouette::before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            background: #064e3b;
+            border-radius: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* Mobile Section */
+        .mobile-section {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.8), rgba(6, 78, 59, 0.3));
+        }
+
+        .mobile-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .mobile-device {
+    position: relative;
+    width: 280px;
+    height: 550px;
+    background: linear-gradient(135deg, #1e293b, #0f172a);
+    border-radius: 40px;
+    padding: 20px 15px;
+    border: 3px solid rgba(34, 197, 94, 0.3);
+    margin: 0 auto;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+}
+
+.mobile-screen {
+    width: 100%;
+    height: 100%;
+    background-image: url('image1.jpg'); /* Tu imagen real */
+    background-size: cover;
+    background-position: center;
+    border-radius: 30px;
+    overflow: hidden;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.front-camera {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 12px;
+    height: 12px;
+    background: #222;
+    border-radius: 50%;
+    box-shadow: 0 0 3px rgba(0,0,0,0.7);
+    z-index: 10;
+}
+
+.front-speaker {
+    position: absolute;
+    top: 10px;
+    left: calc(50% + 20px);
+    width: 40px;
+    height: 4px;
+    background: #444;
+    border-radius: 2px;
+    box-shadow: inset 0 0 2px rgba(255,255,255,0.3);
+    z-index: 10;
+}
+
+.home-button {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 40px;
+    background: radial-gradient(circle at center, #333 30%, #111 70%);
+    border-radius: 50%;
+    box-shadow: 0 0 5px rgba(0,0,0,0.7);
+}
+
+
+        
+
+        .mobile-content h4 {
+            color: #10b981;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+            font-weight: 300;
+        }
+
+        .mobile-content h2 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .mobile-content p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        .footer {
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(34, 197, 94, 0.2);
+            padding: 3rem 2rem 1rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h3 {
+            color: #10b981;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section ul li a {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: #10b981;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(34, 197, 94, 0.2);
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .astronomy-container,
+            .mobile-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .services-title,
+            .astronomy-content h2 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Stars Animation -->
+    <div class="stars" id="stars"></div>
+
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">Bingsu Lounge</div>
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#menu">Menú</a></li>
+                <li><a href="#experiencia">Experiencia</a></li>
+                <li><a href="#eventos">Eventos</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+            <div class="nav-buttons">
+                <a href="#reservar" class="btn btn-secondary">Reservar Mesa</a>
+                <a href="#menu" class="btn btn-primary">Ver Menú</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <p class="hero-subtitle">El Páramo te espera</p>
+            <h1>Noches Estelares<br>Sabores Únicos</h1>
+            <p style="color: rgba(255, 255, 255, 0.8); font-size: 1.2rem; margin: 2rem 0; max-width: 600px;">
+                Descubre la magia de nuestros bingsus artesanales bajo un cielo estrellado. 
+                Una experiencia gastronómica que despierta todos tus sentidos en el corazón del páramo.
+            </p>
+            <div class="hero-buttons">
+                <a href="#menu" class="btn btn-primary">Explorar Menú</a>
+                <a href="#reservar" class="btn btn-secondary">Reservar Ahora</a>
+            </div>
+        </div>
+
+        <!-- Landscape Scene -->
+        <div class="landscape">
+            <div class="mountain-range"></div>
+            <div class="tree">
+                <div class="tree-trunk"></div>
+                <div class="tree-branches"></div>
+            </div>
+        </div>
+
+        <!-- Moon and Shooting Star -->
+        <div class="moon"></div>
+        <div class="shooting-star"></div>
+    </section>
+
+    <!-- Brands/Recognition Section -->
+    <section class="brands">
+        <div class="brands-container">
+            <h3>Reconocido por</h3>
+            <div class="brands-grid">
+                <div class="brand-item">⭐ TripAdvisor Excellence</div>
+                <div class="brand-item">🏆 Mejor Bingsu 2024</div>
+                <div class="brand-item">📱 5 estrellas Google</div>
+                <div class="brand-item">🌟 Certificado Gastronómico</div>
+                <div class="brand-item">❄️ Especialistas en Hielo</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services/Menu Section -->
+    <section class="services" id="menu">
+        <div class="services-header">
+            <p class="services-subtitle">Nuestra Especialidad</p>
+            <h2>Bingsus Artesanales</h2>
+            <p class="services-description">
+                Cada bingsu es una obra de arte helada, preparada con ingredientes premium 
+                y técnicas tradicionales coreanas, adaptadas al clima único del páramo.
+            </p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🍓</div>
+                <h3>Bingsu de Fresa Silvestre</h3>
+                <p>Hielo artesanal con fresas frescas del páramo, leche condensada casera, mochi suave y un toque de menta local. Una explosión de sabores naturales.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🍫</div>
+                <h3>Bingsu Chocolate Estelar</h3>
+                <p>Nuestro bingsu insignia con chocolate belga, helado de vainilla bourbon, brownies caseros y estrellas de azúcar comestibles.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🥭</div>
+                <h3>Bingsu Mango Tropical</h3>
+                <p>Contraste perfecto entre el frío del páramo y el calor tropical. Mango fresco, coco rallado, tapioca y salsa de maracuyá.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🌙</div>
+                <h3>Bingsu Luna del Páramo</h3>
+                <p>Creación especial de la casa con café premium colombiano, helado de café, galletas de avena y un toque de caramelo salado.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🍵</div>
+                <h3>Bingsu Matcha Místico</h3>
+                <p>Té matcha ceremonial, helado de té verde, mochi de diferentes sabores, azuki dulce y polvo de matcha premium.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🥥</div>
+                <h3>Bingsu Coco Nevado</h3>
+                <p>Inspirado en las cumbres nevadas del páramo. Coco fresco, leche de coco, gelatina de lychee y copos de coco tostado.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="astronomy" id="experiencia">
+        <div class="astronomy-container">
+            <div class="astronomy-content">
+                <h4>Experiencia Única</h4>
+                <h2>Bajo las Estrellas del Páramo</h2>
+                <p>
+                    En Bingsu Lounge El Páramo, cada visita es un viaje sensorial. 
+                    Nuestro ambiente acogedor y la vista panorámica del cielo estrellado 
+                    crean la atmósfera perfecta para disfrutar de nuestras creaciones heladas.
+                </p>
+                <p>
+                    Diseñado como un refugio moderno en el páramo, nuestro lounge combina 
+                    la calidez de un hogar con la sofisticación de un restobar premium.
+                </p>
+                <a href="#reservar" class="btn btn-primary">Vive la Experiencia</a>
+            </div>
+            <div class="astronomy-visual">
+                <div class="cave-opening"></div>
+                <div class="figure-silhouette"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mobile App Section -->
+    <section class="mobile-section" id="eventos">
+        <div class="mobile-container">
+            <div class="mobile-device">
+    <div class="front-camera"></div>
+    <div class="front-speaker"></div>
+    <div class="mobile-screen">
+        <!-- Contenido de la pantalla si quieres -->
+    </div>
+    <div class="home-button"></div>
+</div>
+
+            <div class="mobile-content">
+                <h4>Eventos Especiales</h4>
+                <h2>Noches Temáticas</h2>
+                <p>
+                    Únete a nuestras noches especiales: lluvia de estrellas, 
+                    degustaciones de bingsu, música en vivo y experiencias gastronómicas únicas. 
+                    Cada evento es una oportunidad para crear recuerdos inolvidables.
+                </p>
+                <ul style="color: rgba(255, 255, 255, 0.7); margin: 2rem 0;">
+                    <li style="margin: 0.5rem 0;">🌙 Viernes de Luna Llena - Cena especial</li>
+                    <li style="margin: 0.5rem 0;">⭐ Sábados Estelares - Música en vivo</li>
+                    <li style="margin: 0.5rem 0;">❄️ Domingos de Bingsu - Clases magistrales</li>
+                </ul>
+                <a href="#contacto" class="btn btn-primary">Más Información</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contacto">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Bingsu Lounge El Páramo</h3>
+                <p style="color: rgba(255, 255, 255, 0.6); margin: 1rem 0;">
+                    El destino perfecto para los amantes de los sabores únicos 
+                    y las experiencias memorables bajo las estrellas.
+                </p>
+                <div style="margin-top: 1rem;">
+                    <span style="color: #10b981;">📍</span>
+                    <span style="color: rgba(255, 255, 255, 0.6); margin-left: 0.5rem;">
+                        Km 15 Vía al Páramo, El Páramo
+                    </span>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Horarios</h3>
+                <ul>
+                    <li><a href="#">Lunes - Jueves: 6:00 PM - 11:00 PM</a></li>
+                    <li><a href="#">Viernes - Sábado: 6:00 PM - 1:00 AM</a></li>
+                    <li><a href="#">Domingo: 4:00 PM - 10:00 PM</a></li>
+                    <li><a href="#">Reservas recomendadas</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contacto</h3>
+                <ul>
+                    <li><a href="tel:+573001234567">📞 +57 300 123 4567</a></li>
+                    <li><a href="mailto:info@bingsulounge.com">✉️ info@bingsulounge.com</a></li>
+                    <li><a href="#">📱 @BingsuLoungeParamo</a></li>
+                    <li><a href="#">🌐 www.bingsulounge.com</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Servicios</h3>
+                <ul>
+                    <li><a href="#">Bingsus Artesanales</a></li>
+                    <li><a href="#">Bebidas Especiales</a></li>
+                    <li><a href="#">Eventos Privados</a></li>
+                    <li><a href="#">Delivery Zona Páramo</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Bingsu Lounge El Páramo. Todos los derechos reservados. | Diseño inspirado en las estrellas del páramo.</p>
+        </div>
+    </footer>
+
+    <script>
+// ===============================================
+// SISTEMA DE ESTRELLAS AVANZADO
+// ===============================================
+
+function createAdvancedStars() {
+    const starsContainer = document.getElementById('stars');
+    const numberOfStars = 150;
+    const shootingStars = 0;
+
+    // Crear estrellas normales con diferentes tamaños y brillos
+    for (let i = 0; i < numberOfStars; i++) {
+        const star = document.createElement('div');
+        star.className = 'star';
+        
+        // Posición aleatoria
+        star.style.left = Math.random() * 100 + '%';
+        star.style.top = Math.random() * 100 + '%';
+        
+        // Tamaños variables (estrellas más grandes y pequeñas)
+        const size = Math.random() * 3 + 1; // 1px a 4px
+        star.style.width = size + 'px';
+        star.style.height = size + 'px';
+        
+        // Diferentes intensidades de brillo
+        const opacity = Math.random() * 0.8 + 0.2; // 0.2 a 1.0
+        star.style.background = `rgba(34, 197, 94, ${opacity})`;
+        
+        // Animaciones con delays y duraciones variadas
+        star.style.animationDelay = Math.random() * 5 + 's';
+        star.style.animationDuration = (Math.random() * 3 + 2) + 's';
+        
+        // Diferentes tipos de parpadeo
+        if (Math.random() > 0.7) {
+            star.style.animationName = 'twinkle, pulse';
+            star.style.animationDuration = '3s, 6s';
+        }
+        
+        starsContainer.appendChild(star);
+    }
+
+    // Crear estrellas fugaces dinámicas
+    for (let i = 0; i < shootingStars; i++) {
+        createShootingStar(i);
+    }
+}
+
+// Crear estrella fugaz dinámica con JavaScript
+function createShootingStar(index) {
+    const shootingStar = document.createElement('div');
+    shootingStar.className = 'shooting-star-js';
+    
+    // Posicionar cerca de la luna (asumo que la luna está aproximadamente en la parte superior central)
+    const moonApproxX = 50; // Centro aproximado de la luna en %
+    const moonApproxY = 10; // Cerca de la parte superior en %
+    const offsetX = Math.random() * 10 - 5; // Variación leve alrededor de la luna
+    const offsetY = Math.random() * 5; // Mantener cerca de la luna
+    const size = 3.5; // Tamaño fijo para consistencia
+    
+    shootingStar.style.cssText = `
+        position: absolute;
+        width: ${size}px;
+        height: ${size}px;
+        background: #22c55e;
+        border-radius: 50%;
+        box-shadow: 0 0 10px #22c55e, 0 0 20px #22c55e;
+        top: ${moonApproxY + offsetY}%;
+        left: ${moonApproxX + offsetX}%;
+        z-index: 100;
+    `;
+
+    // Crear la cola de la estrella
+    const tailLength = 80; // Longitud fija para consistencia
+    const tail = document.createElement('div');
+    tail.style.cssText = `
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: ${tailLength}px;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, #22c55e 40%, rgba(34, 197, 94, 0.9), transparent);
+        transform: translate(-50%, -50%) rotate(45deg);
+        transform-origin: left center;
+    `;
+    
+    shootingStar.appendChild(tail);
+    document.body.appendChild(shootingStar);
+
+    // Animar la estrella fugaz
+    animateShootingStar(shootingStar, index);
+}
+
+function animateShootingStar(star, index) {
+    const duration = 2000; // Duración fija para consistencia
+    const delay = index * 3000; // Secuencia más predecible
+    const distanceX = -300; // Trayectoria consistente hacia la izquierda
+    const distanceY = 200; // Trayectoria descendente suave
+
+    setTimeout(() => {
+        star.style.transition = `transform ${duration}ms cubic-bezier(0.33, 1, 0.68, 1), opacity ${duration}ms ease-out`;
+        star.style.transform = `translateX(${distanceX}px) translateY(${distanceY}px)`;
+        star.style.opacity = '0';
+
+        setTimeout(() => {
+            star.remove();
+            // Recrear después de un tiempo
+            setTimeout(() => createShootingStar(index), 4000);
+        }, duration);
+    }, delay);
+}
+
+// ===============================================
+// CONSTELACIONES DINÁMICAS
+// ===============================================
+
+function createConstellations() {
+    const constellations = [
+        { name: 'bingsu', points: [[20, 30], [25, 25], [30, 35], [35, 30]] },
+        { name: 'paramo', points: [[60, 20], [65, 15], [70, 25], [75, 20], [80, 30]] },
+        { name: 'lounge', points: [[10, 60], [15, 55], [20, 65], [25, 60]] }
+    ];
+
+    constellations.forEach(constellation => {
+        drawConstellation(constellation);
+    });
+}
+
+function drawConstellation(constellation) {
+    const container = document.getElementById('stars');
+    
+    // Crear estrellas de la constelación
+    constellation.points.forEach((point, index) => {
+        const star = document.createElement('div');
+        star.className = 'constellation-star';
+        star.style.cssText = `
+            position: absolute;
+            left: ${point[0]}%;
+            top: ${point[1]}%;
+            width: 6px;
+            height: 6px;
+            background: #fbbf24;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #fbbf24;
+            z-index: 50;
+            animation: constellationTwinkle 4s infinite;
+            animation-delay: ${index * 0.5}s;
+        `;
+        container.appendChild(star);
+    });
+
+    // Conectar estrellas con líneas
+    for (let i = 0; i < constellation.points.length - 1; i++) {
+        createConstellationLine(constellation.points[i], constellation.points[i + 1]);
+    }
+}
+
+function createConstellationLine(point1, point2) {
+    const line = document.createElement('div');
+    const distance = Math.sqrt(Math.pow(point2[0] - point1[0], 2) + Math.pow(point2[1] - point1[1], 2));
+    const angle = Math.atan2(point2[1] - point1[1], point2[0] - point1[0]) * 180 / Math.PI;
+    
+    line.style.cssText = `
+        position: absolute;
+        left: ${point1[0]}%;
+        top: ${point1[1]}%;
+        width: ${distance}%;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(251, 191, 36, 0.3), transparent);
+        transform-origin: left center;
+        transform: rotate(${angle}deg);
+        z-index: 40;
+        opacity: 0;
+        animation: fadeInLine 2s ease-in-out 3s forwards;
+    `;
+    
+    document.getElementById('stars').appendChild(line);
+}
+
+// ===============================================
+// EFECTOS DE PAISAJE DINÁMICO
+// ===============================================
+
+function createDynamicLandscape() {
+    // Crear nubes en movimiento
+    createMovingClouds();
+    
+    // Animar las montañas con parallax
+    //createMountainParallax();
+    
+    // Crear efecto de niebla
+    createMistEffect();
+}
+
+function createMovingClouds() {
+    const numberOfClouds = 4;
+    
+    for (let i = 0; i < numberOfClouds; i++) {
+        const cloud = document.createElement('div');
+        cloud.className = 'moving-cloud';
+        cloud.style.cssText = `
+            position: absolute;
+            top: ${Math.random() * 40 + 10}%;
+            left: -200px;
+            width: ${Math.random() * 150 + 100}px;
+            height: ${Math.random() * 60 + 40}px;
+            background: radial-gradient(ellipse, rgba(255, 255, 255, 0.1), transparent);
+            border-radius: 50px;
+            z-index: 30;
+            animation: cloudFloat ${20 + Math.random() * 20}s linear infinite;
+            animation-delay: ${i * 5}s;
+        `;
+        
+        document.querySelector('.hero').appendChild(cloud);
+    }
+}
+
+function createMountainParallax() {
+    const mountains = document.querySelector('.mountain-range');
+    
+    window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const parallax = scrolled * 0.3;
+        mountains.style.transform = `translateY(${parallax}px)`;
+    });
+}
+
+function createMistEffect() {
+    const mist = document.createElement('div');
+    mist.style.cssText = `
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 200px;
+        background: linear-gradient(to top, 
+            rgba(255, 255, 255, 0.1) 0%, 
+            rgba(255, 255, 255, 0.05) 50%, 
+            transparent 100%);
+        z-index: 25;
+        animation: mistFlow 15s ease-in-out infinite;
+    `;
+    
+    document.querySelector('.landscape').appendChild(mist);
+}
+
+// ===============================================
+// EFECTOS INTERACTIVOS AVANZADOS
+// ===============================================
+
+function createInteractiveEffects() {
+    // Cursor con estela de estrellas
+    createStarTrail();
+    
+    // Efecto de hover en el hero
+    createHeroInteraction();
+    
+    // Animaciones de entrada para las secciones
+    createScrollAnimations();
+}
+
+function createStarTrail() {
+    let mouseX = 0, mouseY = 0;
+    const trail = [];
+    
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        
+        if (Math.random() > 0.8) { // Solo crear ocasionalmente
+            createTrailStar(mouseX, mouseY);
+        }
+    });
+}
+
+function createTrailStar(x, y) {
+    const star = document.createElement('div');
+    star.style.cssText = `
+        position: fixed;
+        left: ${x}px;
+        top: ${y}px;
+        width: 3px;
+        height: 3px;
+        background: #22c55e;
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9999;
+        animation: trailStar 1s ease-out forwards;
+    `;
+    
+    document.body.appendChild(star);
+    
+    setTimeout(() => star.remove(), 1000);
+}
+
+function createHeroInteraction() {
+    const hero = document.querySelector('.hero');
+    
+    hero.addEventListener('mousemove', (e) => {
+        const rect = hero.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width - 0.5) * 20;
+        const y = ((e.clientY - rect.top) / rect.height - 0.5) * 20;
+        
+        const moon = document.querySelector('.moon');
+        if (moon) {
+            moon.style.transform = `translate(${x}px, ${y}px)`;
+        }
+    });
+}
+
+function createScrollAnimations() {
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -100px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.animation = 'fadeInUp 1s ease-out forwards';
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+    
+    // Observar elementos para animar
+    document.querySelectorAll('.service-card, .astronomy-content, .mobile-content').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(50px)';
+        observer.observe(el);
+    });
+}
+
+// ===============================================
+// NAVEGACIÓN MEJORADA
+// ===============================================
+
+function enhancedNavigation() {
+    // Navegación suave mejorada
+    const links = document.querySelectorAll('a[href^="#"]');
+    links.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = link.getAttribute('href').substring(1);
+            const targetElement = document.getElementById(targetId);
+            if (targetElement) {
+                const headerHeight = document.querySelector('.header').offsetHeight;
+                const elementPosition = targetElement.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
+    // Header con efecto glassmorphism dinámico
+    const header = document.querySelector('.header');
+    window.addEventListener('scroll', () => {
+        const scrolled = window.scrollY;
+        if (scrolled > 100) {
+            header.style.background = 'rgba(15, 23, 42, 0.95)';
+            header.style.backdropFilter = 'blur(20px)';
+            header.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.3)';
+        } else {
+            header.style.background = 'rgba(15, 23, 42, 0.9)';
+            header.style.backdropFilter = 'blur(15px)';
+            header.style.boxShadow = 'none';
+        }
+    });
+}
+
+// ===============================================
+// ANIMACIONES CSS DINÁMICAS
+// ===============================================
+
+function addDynamicStyles() {
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes constellationTwinkle {
+            0%, 100% { opacity: 0.6; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.3); }
+        }
+        
+        @keyframes fadeInLine {
+            to { opacity: 0.6; }
+        }
+        
+        @keyframes cloudFloat {
+            from { transform: translateX(-200px); }
+            to { transform: translateX(calc(100vw + 200px)); }
+        }
+        
+        @keyframes mistFlow {
+            0%, 100% { opacity: 0.1; transform: translateX(0); }
+            50% { opacity: 0.3; transform: translateX(50px); }
+        }
+        
+        @keyframes trailStar {
+            0% { opacity: 1; transform: scale(1); }
+            100% { opacity: 0; transform: scale(0) translateY(-20px); }
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 5px currentColor; }
+            50% { box-shadow: 0 0 20px currentColor, 0 0 30px currentColor; }
+        }
+    `;
+    document.head.appendChild(style);
+}
+
+// ===============================================
+// INICIALIZACIÓN PRINCIPAL
+// ===============================================
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Agregar estilos dinámicos
+    addDynamicStyles();
+    
+    // Crear efectos visuales
+    createAdvancedStars();
+    createConstellations();
+    createDynamicLandscape();
+    createInteractiveEffects();
+    
+    // Configurar navegación
+    enhancedNavigation();
+    
+    // Efectos de hover en tarjetas mejorados
+    const cards = document.querySelectorAll('.service-card');
+    cards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            card.style.background = 'rgba(16, 185, 129, 0.15)';
+            card.style.transform = 'translateY(-8px) scale(1.02)';
+            card.style.boxShadow = '0 25px 50px rgba(16, 185, 129, 0.2)';
+        });
+        card.addEventListener('mouseleave', () => {
+            card.style.background = 'rgba(15, 23, 42, 0.6)';
+            card.style.transform = 'translateY(0) scale(1)';
+            card.style.boxShadow = 'none';
+        });
+    });
+    
+    console.log('🌟 Bingsu Lounge El Páramo - Sistema gráfico inicializado');
+});
+    </script>
+</body>
+</html>

@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyberpunk Glitch Terminal</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            height: 100vh;
+            background: radial-gradient(ellipse at center, #0f0f23 0%, #050510 100%);
+            overflow: hidden;
+            font-family: 'Courier New', Courier, monospace;
+
+            position: relative;
+        }
+        
+        /* Animated grid background */
+        .grid-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+            z-index: 1;
+        }
+        
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+        
+        /* Floating particles */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #00ffff;
+            border-radius: 50%;
+            animation: float 8s linear infinite;
+            box-shadow: 0 0 10px #00ffff;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) translateX(100px);
+                opacity: 0;
+            }
+        }
+        
+        /* Main container */
+        .container {
+            position: relative;
+            z-index: 10;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        /* Terminal window - minimalist */
+        .terminal {
+            background: transparent;
+            padding: 0;
+            position: relative;
+        }
+        
+        /* Main text - enhanced neon effect */
+        #main-text {
+            color: #00ffcc;
+            font-size: clamp(2.5em, 8vw, 5em);
+           
+            position: relative;
+            text-shadow: 
+                0 0 10px #00ffcc,
+                0 0 20px #00ffcc,
+                0 0 30px #ff00ff,
+                0 0 40px #ff00ff;
+            animation: neon-pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes neon-pulse {
+            0% { text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc, 0 0 30px #ff00ff, 0 0 40px #ff00ff; }
+            50% { text-shadow: 0 0 5px #00ffcc, 0 0 15px #00ffcc, 0 0 25px #ff00ff, 0 0 35px #ff00ff; }
+            100% { text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc, 0 0 30px #ff00ff, 0 0 40px #ff00ff; }
+        }
+        
+        /* Typing cursor */
+        .typing::after {
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 1em;
+            background: #00ffcc;
+            vertical-align: middle;
+            margin-left: 2px;
+            animation: blink-caret 0.75s step-end infinite;
+        }
+        
+        @keyframes blink-caret {
+            from, to { opacity: 0; }
+            50% { opacity: 1; }
+        }
+        
+
+        
+        /* Glitch effects */
+        .glitch-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 15;
+        }
+        
+        .glitch-line {
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #ff00ff, transparent);
+            animation: glitchScan 3s linear infinite;
+        }
+        
+        @keyframes glitchScan {
+            0% { 
+                top: -10px; 
+                opacity: 1;
+            }
+            100% { 
+                top: 100vh; 
+                opacity: 0;
+            }
+        }
+        
+        /* Matrix rain effect */
+        .matrix-rain {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 3;
+            opacity: 0.1;
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .terminal {
+                margin: 20px;
+                padding: 20px 25px;
+            }
+            
+            #main-text {
+                font-size: clamp(2em, 12vw, 4em);
+            }
+            
+            .subtitle {
+                font-size: 1em;
+            }
+        }
+        
+
+    </style>
+</head>
+<body>
+    <!-- Animated grid background -->
+    <div class="grid-bg"></div>
+    
+    <!-- Floating particles -->
+    <div class="particles" id="particles"></div>
+    
+    <!-- Matrix rain canvas -->
+    <canvas class="matrix-rain" id="matrix"></canvas>
+    
+    <!-- Glitch overlay -->
+    <div class="glitch-overlay">
+        <div class="glitch-line"></div>
+    </div>
+    
+    <!-- Main container -->
+    <div class="container">
+        <div class="terminal">
+            <div id="main-text"></div>
+        </div>
+    </div>
+    
+    <!-- Advanced glitch canvas -->
+    <canvas id="glitch" style="position: absolute; top: 0; left: 0; z-index: 5; pointer-events: none; opacity: 0.3;"></canvas>
+    
+    <script>
+        // Initialize canvases
+        const glitchCanvas = document.getElementById('glitch');
+        const matrixCanvas = document.getElementById('matrix');
+        const glitchCtx = glitchCanvas.getContext('2d');
+        const matrixCtx = matrixCanvas.getContext('2d');
+        
+        // Set canvas sizes
+        function resizeCanvases() {
+            glitchCanvas.width = window.innerWidth;
+            glitchCanvas.height = window.innerHeight;
+            matrixCanvas.width = window.innerWidth;
+            matrixCanvas.height = window.innerHeight;
+        }
+        resizeCanvases();
+        
+        // Create floating particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 8 + 's';
+                particle.style.animationDuration = (8 + Math.random() * 4) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        // Advanced glitch effect
+        function createGlitch() {
+            glitchCtx.clearRect(0, 0, glitchCanvas.width, glitchCanvas.height);
+            
+            // Random glitch blocks
+            for (let i = 0; i < 15; i++) {
+                const x = Math.random() * glitchCanvas.width;
+                const y = Math.random() * glitchCanvas.height;
+                const width = Math.random() * 200 + 50;
+                const height = Math.random() * 30 + 5;
+                
+                // Colorful glitch rectangles
+                const colors = ['#ff00ff', '#00ffff', '#ffff00', '#ff0040'];
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                glitchCtx.fillStyle = color + '40';
+                glitchCtx.fillRect(x, y, width, height);
+                
+                // Horizontal lines
+                if (Math.random() > 0.7) {
+                    glitchCtx.fillStyle = '#ffffff60';
+                    glitchCtx.fillRect(0, y, glitchCanvas.width, 2);
+                }
+                
+                // Vertical displacement lines
+                if (Math.random() > 0.9) {
+                    glitchCtx.fillStyle = color + '80';
+                    glitchCtx.fillRect(x - 10, y, 5, height * 2);
+                    glitchCtx.fillRect(x + width + 5, y, 5, height * 2);
+                }
+            }
+            
+            // RGB split effect
+            if (Math.random() > 0.95) {
+                const imageData = glitchCtx.getImageData(0, 0, glitchCanvas.width, glitchCanvas.height);
+                const data = imageData.data;
+                
+                for (let i = 0; i < data.length; i += 4) {
+                    if (Math.random() > 0.98) {
+                        data[i] = 255;     // Red
+                        data[i + 1] = 0;   // Green
+                        data[i + 2] = 255; // Blue
+                    }
+                }
+                
+                glitchCtx.putImageData(imageData, Math.random() * 10 - 5, Math.random() * 10 - 5);
+            }
+        }
+        
+        // Matrix rain effect
+        const matrixChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()_+-=[]{}|;:,.<>?';
+        const matrixColumns = Math.floor(matrixCanvas.width / 20);
+        const matrixDrops = Array(matrixColumns).fill(1);
+        
+        function drawMatrix() {
+            matrixCtx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            matrixCtx.fillRect(0, 0, matrixCanvas.width, matrixCanvas.height);
+            
+            matrixCtx.fillStyle = '#00ffff';
+            matrixCtx.font = '15px JetBrains Mono';
+            
+            for (let i = 0; i < matrixDrops.length; i++) {
+                const text = matrixChars[Math.floor(Math.random() * matrixChars.length)];
+                matrixCtx.fillText(text, i * 20, matrixDrops[i] * 20);
+                
+                if (matrixDrops[i] * 20 > matrixCanvas.height && Math.random() > 0.975) {
+                    matrixDrops[i] = 0;
+                }
+                matrixDrops[i]++;
+            }
+        }
+        
+        // Animation loops
+        function animate() {
+            createGlitch();
+            setTimeout(animate, 50 + Math.random() * 100);
+        }
+        
+        function matrixAnimate() {
+            drawMatrix();
+            setTimeout(matrixAnimate, 100);
+        }
+        
+        // Typing effect from the second code
+        const textElement = document.getElementById('main-text');
+        const textToType = "Más que una lluvia de códigos, la Matrix es la manifestación visual de un lenguaje universal.";
+        let index = 0;
+
+        function type() {
+            if (index < textToType.length) {
+                textElement.textContent = textToType.slice(0, index + 1);
+                // Add typing class for cursor effect
+                textElement.className = 'typing';
+                index++;
+                setTimeout(type, 100); // Matches the 128 BPM rhythm
+            } else {
+                // Keep cursor blinking after typing is complete
+                textElement.className = 'typing';
+            }
+        }
+
+        // Start typing after a short delay
+        setTimeout(type, 500);
+        
+        // Initialize everything
+        createParticles();
+        animate();
+        matrixAnimate();
+        
+        // Handle window resize
+        window.addEventListener('resize', resizeCanvases);
+        document.addEventListener('mousemove', (e) => {
+            const particles = document.querySelectorAll('.particle');
+            particles.forEach(particle => {
+                const rect = particle.getBoundingClientRect();
+                const dx = e.clientX - rect.left;
+                const dy = e.clientY - rect.top;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                
+                if (distance < 100) {
+                    particle.style.transform = `translate(${dx * 0.1}px, ${dy * 0.1}px)`;
+                } else {
+                    particle.style.transform = '';
+                }
+            });
+        });
+        
+        // Keyboard interactions
+        document.addEventListener('keydown', (e) => {
+            if (e.code === 'Space') {
+                // Trigger intense glitch effect
+                for (let i = 0; i < 5; i++) {
+                    setTimeout(createGlitch, i * 50);
+                }
+            }
+        });
+        
+        // Auto-intensity variation
+        setInterval(() => {
+            const glitchOverlay = document.querySelector('.glitch-overlay');
+            glitchOverlay.style.opacity = Math.random() * 0.3 + 0.1;
+        }, 2000);
+    </script>
+</body>
+</html>

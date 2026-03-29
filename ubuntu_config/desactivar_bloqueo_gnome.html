@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Desactivar bloqueo automático en GNOME (Ubuntu)</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #0b1020;
+      color: #e5e7eb;
+      max-width: 900px;
+      margin: auto;
+      padding: 2rem;
+      line-height: 1.7;
+    }
+    h1, h2 {
+      color: #60a5fa;
+    }
+    code, pre {
+      background: #1e293b;
+      color: #a7f3d0;
+      padding: 0.3rem 0.5rem;
+      border-radius: 6px;
+    }
+    pre {
+      padding: 1rem;
+      overflow-x: auto;
+    }
+    section {
+      margin-bottom: 2.5rem;
+    }
+    .warn {
+      color: #facc15;
+    }
+    .ok {
+      color: #4ade80;
+    }
+  </style>
+</head>
+<body>
+
+<h1>🔓 Desactivar bloqueo automático de pantalla en GNOME</h1>
+
+<p>
+Este tutorial explica cómo evitar que <strong>GNOME bloquee la sesión</strong>
+cuando el sistema entra en inactividad.
+Ideal para equipos que:
+</p>
+
+<ul>
+  <li>deben seguir ejecutando procesos</li>
+  <li>no deben suspenderse</li>
+  <li>solo necesitan apagar visualmente la pantalla</li>
+</ul>
+
+---
+
+<section>
+<h2>🧠 Concepto clave</h2>
+
+<p>
+GNOME separa dos comportamientos distintos:
+</p>
+
+<ul>
+  <li><strong>Inactividad</strong> → pantalla en negro / idle</li>
+  <li><strong>Bloqueo</strong> → pedir contraseña</li>
+</ul>
+
+<p>
+Aquí solo desactivamos el <strong>bloqueo</strong>, sin tocar:
+</p>
+
+<ul>
+  <li>suspensión</li>
+  <li>idle</li>
+  <li>ahorro de energía</li>
+</ul>
+</section>
+
+---
+
+<section>
+<h2>🚫 Desactivar bloqueo automático</h2>
+
+<pre><code>gsettings set org.gnome.desktop.screensaver lock-enabled false</code></pre>
+
+<p class="ok">
+✔ GNOME ya no bloqueará la sesión por inactividad.
+</p>
+</section>
+
+---
+
+<section>
+<h2>🚫 Evitar bloqueo al suspender (opcional)</h2>
+
+<p>
+Aunque la suspensión esté desactivada, este ajuste evita bloqueos indirectos:
+</p>
+
+<pre><code>gsettings set org.gnome.desktop.screensaver ubuntu-lock-on-suspend false</code></pre>
+</section>
+
+---
+
+<section>
+<h2>🔍 Verificar configuración</h2>
+
+<pre><code>gsettings get org.gnome.desktop.screensaver lock-enabled</code></pre>
+
+<p>
+Resultado esperado:
+</p>
+
+<pre><code>false</code></pre>
+</section>
+
+---
+
+<section>
+<h2>🧪 Comportamiento final</h2>
+
+<ul>
+  <li>Inactividad → pantalla se apaga o baja brillo</li>
+  <li>❌ No se bloquea</li>
+  <li>Movimiento → escritorio vuelve inmediato</li>
+  <li>Procesos siguen ejecutándose</li>
+  <li>Servidores siguen activos</li>
+</ul>
+</section>
+
+---
+
+<section>
+<h2>⚠️ Nota de seguridad</h2>
+
+<p class="warn">
+Al desactivar el bloqueo automático, cualquier persona con acceso físico
+puede ver tu sesión activa.
+</p>
+
+<p>
+Recomendado solo para:
+</p>
+
+<ul>
+  <li>equipos personales</li>
+  <li>entornos controlados</li>
+  <li>uso doméstico o laboratorio</li>
+</ul>
+</section>
+
+---
+
+<section>
+<h2>🧘 Cierre</h2>
+
+<p>
+La pantalla puede dormir.<br>
+La sesión permanece despierta.<br>
+La máquina sigue trabajando.
+</p>
+
+<p>
+Control consciente, sin sorpresas.
+</p>
+</section>
+
+</body>
+</html>

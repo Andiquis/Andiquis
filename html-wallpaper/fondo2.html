@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hacker Terminal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Fira+Code:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            background: radial-gradient(ellipse at center, #0a0a0a 0%, #000000 100%);
+            color: #00ff41;
+            font-family: 'Fira Code', monospace;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Borde neón de la página */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border: 3px solid #00ff41;
+            border-radius: 15px;
+            box-shadow: 
+                0 0 10px rgba(0, 255, 65, 0.3),
+                inset 0 0 10px rgba(0, 255, 65, 0.1);
+            animation: borderPulse 4s ease-in-out infinite alternate;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        @keyframes borderPulse {
+            0% { 
+                border-color: #00ff41;
+                box-shadow: 
+                    0 0 10px rgba(0, 255, 65, 0.3),
+                    inset 0 0 10px rgba(0, 255, 65, 0.1);
+            }
+            100% { 
+                border-color: #00cc33;
+                box-shadow: 
+                    0 0 15px rgba(0, 204, 51, 0.4),
+                    inset 0 0 15px rgba(0, 204, 51, 0.1);
+            }
+        }
+
+        /* Efectos de fondo */
+        .matrix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /*opacity: 0.8;*/
+            z-index: -1;
+        }
+
+        .matrix-char {
+            position: absolute;
+            color: #00ff41;
+            font-family: 'Fira Code', monospace;
+            font-size: 14px;
+            animation: matrixFall linear infinite;
+        }
+
+        @keyframes matrixFall {
+            0% { transform: translateY(-100px); opacity: 1; }
+            100% { transform: translateY(100vh); opacity: 0; }
+        }
+
+        /* Grid futurista */
+        .grid-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 255, 65, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 65, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        /* Contenedor principal */
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            position: relative;
+            z-index: 10;
+            padding: 2rem;
+        }
+
+        /* Título principal */
+        .title {
+            font-family: 'Orbitron', monospace;
+            font-size: 3rem;
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #00ff41;
+            text-shadow: 
+                0 0 5px rgba(0, 255, 65, 0.5),
+                0 0 10px rgba(0, 255, 65, 0.3);
+            animation: titleGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes titleGlow {
+            0% { 
+                color: #00ff41;
+                text-shadow: 
+                    0 0 5px rgba(0, 255, 65, 0.5),
+                    0 0 10px rgba(0, 255, 65, 0.3);
+            }
+            100% { 
+                color: #00cc33;
+                text-shadow: 
+                    0 0 8px rgba(0, 204, 51, 0.6),
+                    0 0 15px rgba(0, 204, 51, 0.4);
+            }
+        }
+
+        /* Panel de información */
+        .info-panel {
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid #00ff41;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 
+                0 0 15px rgba(0, 255, 65, 0.2),
+                inset 0 0 15px rgba(0, 255, 65, 0.05);
+            backdrop-filter: blur(10px);
+            animation: panelPulse 5s ease-in-out infinite;
+        }
+
+        @keyframes panelPulse {
+            0%, 100% { 
+                border-color: #00ff41;
+                box-shadow: 
+                    0 0 15px rgba(0, 255, 65, 0.2),
+                    inset 0 0 15px rgba(0, 255, 65, 0.05);
+            }
+            50% { 
+                border-color: #00cc33;
+                box-shadow: 
+                    0 0 20px rgba(0, 204, 51, 0.3),
+                    inset 0 0 20px rgba(0, 204, 51, 0.05);
+            }
+        }
+
+        /* Fecha y hora */
+        .datetime {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.5rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: #00ff41;
+            text-shadow: 0 0 5px rgba(0, 255, 65, 0.3);
+        }
+
+        .date {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .time {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+        }
+
+        /* Cronómetro */
+        .chronometer-section {
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+
+        .chrono-label {
+            font-family: 'Orbitron', monospace;
+            font-size: 1rem;
+            color: #00cc33;
+            text-shadow: 0 0 3px rgba(0, 204, 51, 0.3);
+            margin-bottom: 0.5rem;
+        }
+
+        .chronometer {
+            font-family: 'Orbitron', monospace;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #00ff66;
+            text-shadow: 
+                0 0 8px rgba(0, 255, 102, 0.4),
+                0 0 15px rgba(0, 255, 102, 0.2);
+            letter-spacing: 0.1em;
+            animation: chronoGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes chronoGlow {
+            0% { 
+                color: #00ff66;
+                text-shadow: 
+                    0 0 8px rgba(0, 255, 102, 0.4),
+                    0 0 15px rgba(0, 255, 102, 0.2);
+            }
+            100% { 
+                color: #00cc33;
+                text-shadow: 
+                    0 0 10px rgba(0, 204, 51, 0.5),
+                    0 0 20px rgba(0, 204, 51, 0.3);
+            }
+        }
+
+        /* Efectos de partículas */
+        .particle {
+            position: fixed;
+            width: 2px;
+            height: 2px;
+            background: #00ff41;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: particleFloat 3s linear infinite;
+        }
+
+        @keyframes particleFloat {
+            0% { 
+                transform: translateY(100vh) scale(0);
+                opacity: 0;
+            }
+            10% { 
+                opacity: 1;
+            }
+            90% { 
+                opacity: 1;
+            }
+            100% { 
+                transform: translateY(-100px) scale(1);
+                opacity: 0;
+            }
+        }
+
+/* Líneas de escaneo */
+.scan-line {
+   position: fixed;
+   width: 100%;
+   height: 2px;
+   background: linear-gradient(90deg, 
+       transparent 0%, 
+       rgba(0, 255, 65, 0.1) 20%, 
+       rgba(0, 255, 65, 0.6) 50%, 
+       rgba(0, 255, 65, 0.1) 80%, 
+       transparent 100%);
+   box-shadow: 0 0 10px rgba(0, 255, 65, 0.4);
+   animation: scanMove 4s ease-in-out infinite;
+   z-index: 100;
+}
+
+@keyframes scanMove {
+   0% { 
+       top: -2px; 
+       opacity: 0;
+   }
+   5% { 
+       opacity: 1;
+   }
+   95% { 
+       opacity: 1;
+   }
+   100% { 
+       top: 100vh; 
+       opacity: 0;
+   }
+}
+
+        /* Glitch effect - reducido */
+        .glitch {
+            position: relative;
+        }
+
+        .glitch::before,
+        .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+        }
+
+        .glitch::before {
+            animation: glitch1 2s infinite;
+            color: #00cc33;
+            z-index: -1;
+        }
+
+        .glitch::after {
+            animation: glitch2 2.5s infinite;
+            color: #009922;
+            z-index: -2;
+        }
+
+        @keyframes glitch1 {
+            0%, 95% { transform: translate(0); }
+            96% { transform: translate(-1px, 1px); }
+            97% { transform: translate(1px, -1px); }
+            98% { transform: translate(-1px, -1px); }
+            99% { transform: translate(1px, 1px); }
+        }
+
+        @keyframes glitch2 {
+            0%, 96% { transform: translate(0); }
+            97% { transform: translate(1px, 1px); }
+            98% { transform: translate(-1px, 1px); }
+            99% { transform: translate(1px, -1px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="matrix-bg" id="matrixBg"></div>
+    <div class="grid-overlay"></div>
+    <div class="scan-line"></div>
+
+    <div class="container">
+        <h1 class="title glitch" data-text="xQore">xQore</h1>
+        
+        <div class="info-panel">
+            <div class="datetime">
+                <div class="date" id="currentDate"></div>
+                <div class="time" id="currentTime"></div>
+            </div>
+            
+            <div class="chronometer-section">
+                <div class="chrono-label">SESIÓN</div>
+                <div class="chronometer" id="chronometer">00:00:00</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Variables globales
+        let startTime = Date.now();
+        let particles = [];
+
+        // Actualizar fecha y hora
+        function updateDateTime() {
+            const now = new Date();
+            
+            const dateOptions = { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            };
+            
+            const timeOptions = { 
+                hour: '2-digit', 
+                minute: '2-digit', 
+                second: '2-digit',
+                hour12: false
+            };
+            
+            document.getElementById('currentDate').textContent = now.toLocaleDateString('es-ES', dateOptions).toUpperCase();
+            document.getElementById('currentTime').textContent = now.toLocaleTimeString('es-ES', timeOptions);
+        }
+
+        // Actualizar cronómetro
+        function updateChronometer() {
+            const elapsed = Date.now() - startTime;
+            const hours = Math.floor(elapsed / 3600000);
+            const minutes = Math.floor((elapsed % 3600000) / 60000);
+            const seconds = Math.floor((elapsed % 60000) / 1000);
+            
+            const timeString = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            document.getElementById('chronometer').textContent = timeString;
+        }
+
+        // Crear efecto matrix
+        function createMatrixEffect() {
+   const matrixChars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
+   const matrixBg = document.getElementById('matrixBg');
+   
+   function createMatrixChar() {
+       const span = document.createElement('span');
+       span.className = 'matrix-char';
+       span.textContent = matrixChars[Math.floor(Math.random() * matrixChars.length)];
+       span.style.left = Math.random() * 100 + '%';
+       span.style.animationDuration = (Math.random() * 3 + 2) + 's';
+       matrixBg.appendChild(span);
+       
+       // Eliminar el carácter cuando termine la animación
+       setTimeout(() => {
+           if (span.parentNode) {
+               span.parentNode.removeChild(span);
+           }
+       }, parseFloat(span.style.animationDuration) * 1000);
+   }
+   
+   // Crear caracteres iniciales
+   for (let i = 0; i < 50; i++) {
+       setTimeout(() => createMatrixChar(), Math.random() * 2000);
+   }
+   
+   // Crear nuevos caracteres continuamente
+   setInterval(createMatrixChar, 200);
+}
+        // Crear partículas flotantes
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            
+            const colors = ['#00ff41', '#00cc33', '#009922'];
+            particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+            particle.style.boxShadow = `0 0 5px ${particle.style.background}`;
+            
+            document.body.appendChild(particle);
+            
+            setTimeout(() => {
+                if (particle.parentNode) {
+                    particle.parentNode.removeChild(particle);
+                }
+            }, 5000);
+        }
+
+        // Inicialización
+        // Inicialización
+function init() {
+    updateDateTime();
+    updateChronometer();
+    createMatrixEffect();
+    
+    // Actualizar cada segundo
+    setInterval(() => {
+        updateDateTime();
+        updateChronometer();
+    }, 1000);
+    
+    // Crear partículas periódicamente
+    setInterval(createParticle, 500);
+}
+
+        // Iniciar cuando la página cargue
+        window.addEventListener('load', init);
+    </script>
+</body>
+</html>

@@ -1,0 +1,2137 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cyber Interface - Clean Design</title>
+    <!-- Three.js library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&display=swap');
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Orbitron', sans-serif;
+        background: #000000;
+        color: #00d9ff;
+        overflow: hidden;
+        height: 100vh;
+        position: relative;
+      }
+
+      /* Fondo removido - ahora usamos el canvas del planeta */
+      .background {
+        display: none;
+      }
+
+      .background::before {
+        display: none;
+      }
+
+      .background::after {
+        display: none;
+      }
+
+      @keyframes stars-move {
+        0% {
+          transform: translateY(0) translateX(0);
+        }
+        100% {
+          transform: translateY(-100%) translateX(-50%);
+        }
+      }
+
+      /* Puntos de fondo removidos */
+      .dots-pattern {
+        display: none;
+      }
+
+      /* Contenedor principal con mayor z-index */
+      .container {
+        position: relative;
+        z-index: 10;
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+        flex-direction: column;
+        padding: 20px 20px 0 20px;
+        gap: 20px;
+        overflow: hidden;
+        box-sizing: border-box;
+      }
+
+      /* Header minimalista */
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 20px;
+        border-bottom: 1px solid rgba(0, 217, 255, 0.2);
+        flex-shrink: 0;
+      }
+
+      .logo {
+        font-size: 32px;
+        font-weight: 900;
+        letter-spacing: 4px;
+        background: linear-gradient(135deg, #00d9ff 0%, #7000ff 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .time {
+        font-size: 24px;
+        font-weight: 300;
+        letter-spacing: 2px;
+      }
+
+      /* Contenido principal - 3 columnas con el centro vacío */
+      .main-content {
+        flex: 1;
+        display: grid;
+        grid-template-columns: 300px 1fr 350px;
+        grid-template-rows: 2fr 1fr;
+        gap: 20px;
+        min-height: 0;
+        overflow: hidden;
+      }
+
+      /* Panel central grande - oculto pero mantiene espacio */
+      .card-large {
+        grid-column: 2;
+        grid-row: 1 / 3;
+        display: none;
+      }
+
+      /* Terminal lateral */
+      .card-terminal {
+        grid-column: 1;
+        grid-row: 1 / 3;
+      }
+
+      /* Cards de estadísticas en la columna derecha (3) */
+      .card:not(.card-terminal):not(.card-large) {
+        grid-column: 3;
+      }
+
+      /* Cards con diseño elegante */
+      .card {
+        background: rgba(10, 10, 15, 0.7);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: 12px;
+        padding: 18px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        overflow-y: hidden;
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none; /* IE y Edge */
+        min-height: 0;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+      }
+
+      .card::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, Opera */
+      }
+
+      .card-title {
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: #888888;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        padding-bottom: 12px;
+        margin-bottom: 5px;
+      }
+
+      /* Planet widget - oculto para que solo se vea el canvas de fondo */
+      #planetWidget {
+        display: none !important;
+      }
+
+      /* Stats cards minimalistas */
+      .stat-value {
+        font-size: 48px;
+        font-weight: 900;
+        color: #ffffff;
+        line-height: 1;
+      }
+
+      .stat-label {
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 1.5px;
+        color: #666666;
+        text-transform: uppercase;
+        margin-top: 10px;
+      }
+
+      /* Lista de elementos */
+      .list-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px;
+        background: rgba(0, 217, 255, 0.05);
+        border-left: 3px solid #00d9ff;
+        border-radius: 5px;
+        font-size: 14px;
+      }
+
+      .list-item:hover {
+        background: rgba(0, 217, 255, 0.1);
+      }
+
+      .list-label {
+        font-weight: 500;
+      }
+
+      .list-value {
+        color: #7000ff;
+        font-weight: 700;
+      }
+
+      /* Barra de progreso con estilo circular moderno */
+      .progress-container {
+        margin: 12px 0;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .progress-label {
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+        min-width: 80px;
+      }
+
+      .progress-label span:first-child {
+        color: #999999;
+        font-size: 10px;
+        font-weight: 500;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+
+      .progress-label span:last-child {
+        color: #ffffff;
+        font-size: 18px;
+        font-weight: 700;
+      }
+
+      .progress-bar {
+        flex: 1;
+        height: 2px;
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 10px;
+        overflow: visible;
+        position: relative;
+      }
+
+      .progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, #3b82f6 0%, #8b5cf6 100%);
+        border-radius: 10px;
+        position: relative;
+        transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 0 10px rgba(139, 92, 246, 0.4);
+      }
+
+      .progress-fill::before {
+        content: '';
+        position: absolute;
+        right: -6px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 12px;
+        height: 12px;
+        background: radial-gradient(circle, #ffffff 0%, #8b5cf6 100%);
+        border-radius: 50%;
+        box-shadow: 0 0 12px rgba(139, 92, 246, 0.8);
+      }
+
+      /* Terminal widget - sin márgenes */
+      #terminalWidget {
+        background: transparent !important;
+        backdrop-filter: none !important;
+        border: none !important;
+        padding: 0 !important;
+        border-radius: 0 !important;
+      }
+
+      /* Terminal lateral rediseñado - estilo hacker colorido */
+      .terminal-sidebar {
+        background: #000000;
+        border: 1px solid rgba(128, 128, 128, 0.2);
+        border-radius: 0;
+        padding: 0;
+        font-family: 'Courier New', monospace;
+        font-size: 11px;
+        line-height: 1.6;
+        overflow-y: hidden;
+        overflow-x: hidden;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        position: relative;
+      }
+
+      /* Ocultar scrollbar completamente */
+      .terminal-sidebar::-webkit-scrollbar {
+        display: none;
+      }
+
+      .terminal-sidebar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+
+      .terminal-sidebar > .term-line:first-of-type {
+        margin-top: 0;
+      }
+
+      .term-line {
+        margin: 3px 0;
+        padding: 2px 15px;
+        word-wrap: break-word;
+        transition: background 0.2s;
+      }
+
+      .term-banner {
+        margin: 0 !important;
+        padding: 0 !important;
+        line-height: 0.9 !important;
+      }
+
+      .term-line:hover {
+        background: rgba(0, 255, 0, 0.1);
+      }
+
+      .term-section-title {
+        color: #ff0066;
+        font-weight: bold;
+        text-shadow: 0 0 5px rgba(255, 0, 102, 0.8);
+        border-top: 1px solid #333;
+        border-bottom: 1px solid #333;
+        padding: 5px 15px;
+        margin: 8px 0;
+        background: rgba(255, 0, 102, 0.05);
+      }
+
+      .term-menu-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 3px 15px;
+        transition: all 0.2s;
+      }
+
+      .term-menu-item:hover {
+        background: rgba(0, 255, 0, 0.1);
+        padding-left: 20px;
+      }
+
+      .term-menu-number {
+        color: #00ff00;
+        font-weight: bold;
+        min-width: 35px;
+      }
+
+      .term-menu-name {
+        color: #ffffff;
+        flex: 1;
+      }
+
+      .term-menu-status {
+        color: #00ff00;
+        font-weight: bold;
+      }
+
+      .term-menu-error {
+        color: #ff0066;
+        font-weight: bold;
+      }
+
+      .term-loading {
+        color: #ff0066;
+        animation: blink 1s infinite;
+      }
+
+      .term-divider {
+        border-top: 1px solid #00ff00;
+        margin: 8px 15px;
+        opacity: 0.3;
+      }
+
+      /* Scanline effect */
+      .terminal-sidebar::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          to bottom,
+          rgba(0, 255, 0, 0.05) 0%,
+          transparent 2%,
+          transparent 98%,
+          rgba(0, 255, 0, 0.05) 100%
+        );
+        background-size: 100% 4px;
+        animation: scanline 8s linear infinite;
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      @keyframes scanline {
+        0% {
+          background-position: 0 0;
+        }
+        100% {
+          background-position: 0 100%;
+        }
+      }
+
+      /* Glitch effect on header */
+      @keyframes glitch {
+        0%,
+        100% {
+          text-shadow: 0 0 10px rgba(255, 0, 102, 0.8), 2px 2px 0 rgba(0, 255, 0, 0.3),
+            -2px -2px 0 rgba(0, 255, 255, 0.3);
+        }
+        25% {
+          text-shadow: 0 0 10px rgba(255, 0, 102, 0.8), -2px 2px 0 rgba(0, 255, 0, 0.3),
+            2px -2px 0 rgba(0, 255, 255, 0.3);
+        }
+        50% {
+          text-shadow: 0 0 10px rgba(255, 0, 102, 0.8);
+        }
+        75% {
+          text-shadow: 0 0 10px rgba(255, 0, 102, 0.8), 2px -2px 0 rgba(0, 255, 0, 0.3),
+            -2px 2px 0 rgba(0, 255, 255, 0.3);
+        }
+      }
+
+      .term-prompt {
+        color: #00ff88;
+        font-weight: 700;
+      }
+
+      .term-path {
+        color: #00d9ff;
+      }
+
+      .term-command {
+        color: #ffaa00;
+      }
+
+      .term-output {
+        color: rgba(0, 217, 255, 0.7);
+        font-size: 11px;
+      }
+
+      .term-cursor {
+        color: #00d9ff;
+        animation: blink 1s step-start infinite;
+      }
+
+      @keyframes blink {
+        50% {
+          opacity: 0;
+        }
+      }
+
+      /* Contenedor de planeta expandido a toda la página */
+      .planet-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        background: transparent;
+        z-index: 1;
+        pointer-events: none;
+      }
+
+      #planetCanvas {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+      } /* Terminal limpio */
+      .terminal {
+        background: rgba(0, 0, 0, 0.4);
+        border-radius: 10px;
+        padding: 20px;
+        font-family: 'Courier New', monospace;
+        font-size: 13px;
+        line-height: 1.8;
+        flex: 1;
+        overflow-y: auto;
+      }
+
+      .terminal-line {
+        margin: 5px 0;
+      }
+
+      .prompt {
+        color: #00d9ff;
+      }
+
+      .command {
+        color: #7000ff;
+      }
+
+      .output {
+        color: rgba(0, 217, 255, 0.6);
+      }
+
+      .success {
+        color: #00ff88;
+      }
+
+      /* Grid de métricas */
+      .metrics-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+      }
+
+      .metric-box {
+        background: rgba(0, 0, 0, 0.3);
+        padding: 20px;
+        border-radius: 10px;
+        border-left: 3px solid #00d9ff;
+      }
+
+      .metric-value {
+        font-size: 28px;
+        font-weight: 700;
+        color: #00d9ff;
+        margin-bottom: 5px;
+      }
+
+      .metric-label {
+        font-size: 11px;
+        opacity: 0.6;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      /* Sistema de información */
+      .info-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .info-item {
+        display: flex;
+        justify-content: space-between;
+        font-size: 13px;
+        padding: 12px;
+        background: rgba(0, 0, 0, 0.2);
+        border-radius: 8px;
+      }
+
+      .info-label {
+        opacity: 0.6;
+      }
+
+      .info-value {
+        font-weight: 700;
+        color: #00d9ff;
+      }
+
+      /* Footer con animación completa */
+      .footer {
+        position: relative;
+        height: 80px;
+        width: 100%;
+        border-top: 1px solid rgba(0, 217, 255, 0.3);
+        flex-shrink: 0;
+        overflow: hidden;
+        background: linear-gradient(
+          90deg,
+          rgba(0, 217, 255, 0.05) 0%,
+          rgba(112, 0, 255, 0.05) 50%,
+          rgba(0, 217, 255, 0.05) 100%
+        );
+        background-size: 200% 100%;
+        animation: gradient-shift 8s ease infinite;
+      }
+
+      .footer-wave {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent 0%,
+          rgba(0, 217, 255, 0.2) 25%,
+          rgba(112, 0, 255, 0.2) 50%,
+          rgba(0, 217, 255, 0.2) 75%,
+          transparent 100%
+        );
+        background-size: 400% 100%;
+        animation: wave-slide 6s linear infinite;
+      }
+
+      .footer-wave::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 200%;
+        height: 100%;
+        background: repeating-linear-gradient(
+          90deg,
+          transparent,
+          transparent 40px,
+          rgba(0, 217, 255, 0.1) 40px,
+          rgba(0, 217, 255, 0.1) 41px
+        );
+        animation: scan-lines 15s linear infinite;
+      }
+
+      .footer-wave::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(
+          90deg,
+          transparent 0%,
+          rgba(0, 255, 136, 0.8) 50%,
+          transparent 100%
+        );
+        box-shadow: 0 0 10px rgba(0, 255, 136, 0.8);
+        animation: pulse-line 3s ease-in-out infinite;
+      }
+
+      @keyframes gradient-shift {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      @keyframes wave-slide {
+        0% {
+          background-position: 0% 0%;
+        }
+        100% {
+          background-position: 400% 0%;
+        }
+      }
+
+      @keyframes scan-lines {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(50%);
+        }
+      }
+
+      @keyframes pulse-line {
+        0%,
+        100% {
+          opacity: 0.3;
+          transform: translateY(-50%) scaleX(0.5);
+        }
+        50% {
+          opacity: 1;
+          transform: translateY(-50%) scaleX(1);
+        }
+      }
+
+      /* Elementos antiguos ocultos */
+      .status-indicators,
+      .indicator,
+      .indicator-dot,
+      .status-tag {
+        display: none;
+      }
+
+      /* Scrollbar limpio */
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: rgba(0, 0, 0, 0.2);
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: #00d9ff;
+        border-radius: 10px;
+      }
+
+      /* Círculos decorativos removidos */
+      .circle-decoration {
+        display: none;
+      }
+
+      .circle-1 {
+        display: none;
+      }
+
+      .circle-2 {
+        display: none;
+      }
+
+      @keyframes floatCircle {
+        0%,
+        100% {
+          transform: translate(0, 0) scale(1);
+        }
+        33% {
+          transform: translate(30px, -30px) scale(1.1);
+        }
+        66% {
+          transform: translate(-30px, 30px) scale(0.9);
+        }
+      }
+
+      /* Animaciones para el reloj */
+      @keyframes rotateGradient {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      @keyframes fadeInOut {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.7;
+        }
+      }
+
+      @keyframes scaleUp {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.05);
+        }
+      }
+
+      @keyframes glow {
+        0%,
+        100% {
+          box-shadow: 0 0 15px rgba(0, 255, 136, 0.8);
+        }
+        50% {
+          box-shadow: 0 0 25px rgba(0, 255, 136, 1), 0 0 35px rgba(0, 255, 136, 0.6);
+        }
+      }
+
+      /* Popup de batería crítica */
+      .battery-popup {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0);
+        background: #000000;
+        border: 2px solid #dc2626;
+        border-radius: 0;
+        padding: 0;
+        box-shadow: 0 0 0 4px rgba(220, 38, 38, 0.1), 0 0 0 8px rgba(220, 38, 38, 0.05),
+          0 30px 80px rgba(220, 38, 38, 0.3);
+        z-index: 10000;
+        opacity: 0;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        width: 400px;
+        overflow: hidden;
+      }
+
+      .battery-popup.show {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+      }
+
+      .battery-popup-header {
+        background: #dc2626;
+        padding: 20px 30px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+      }
+
+      .battery-popup-icon {
+        font-size: 32px;
+        line-height: 1;
+        animation: alert-pulse 1s ease-in-out infinite;
+      }
+
+      .battery-popup-title {
+        font-size: 16px;
+        font-weight: 700;
+        color: #ffffff;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        flex: 1;
+      }
+
+      .battery-popup-body {
+        padding: 30px;
+        background: #000000;
+      }
+
+      .battery-popup-percentage {
+        font-size: 80px;
+        font-weight: 700;
+        color: #dc2626;
+        letter-spacing: -4px;
+        line-height: 1;
+        text-align: center;
+        margin-bottom: 20px;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      }
+
+      .battery-popup-message {
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.7);
+        text-align: center;
+        line-height: 1.6;
+        margin-bottom: 25px;
+      }
+
+      .battery-popup-action {
+        background: rgba(220, 38, 38, 0.1);
+        border: 1px solid #dc2626;
+        padding: 12px 20px;
+        text-align: center;
+        color: #dc2626;
+        font-size: 13px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+
+      .battery-popup-action:hover {
+        background: #dc2626;
+        color: #ffffff;
+      }
+
+      .battery-popup-strip {
+        height: 3px;
+        background: #dc2626;
+        animation: strip-pulse 1.5s ease-in-out infinite;
+      }
+
+      @keyframes alert-pulse {
+        0%,
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 0.7;
+          transform: scale(0.95);
+        }
+      }
+
+      @keyframes strip-pulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.3;
+        }
+      }
+
+      @keyframes shake {
+        0%,
+        100% {
+          transform: translate(-50%, -50%) translateX(0);
+        }
+        10%,
+        30%,
+        50%,
+        70%,
+        90% {
+          transform: translate(-50%, -50%) translateX(-8px);
+        }
+        20%,
+        40%,
+        60%,
+        80% {
+          transform: translate(-50%, -50%) translateX(8px);
+        }
+      }
+
+      .time-container {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        position: relative;
+      }
+
+      .clock-display {
+        display: flex;
+        gap: 5px;
+        align-items: baseline;
+      }
+
+      .time-segment {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+      }
+
+      .time-number {
+        font-size: 42px;
+        font-weight: 900;
+        background: linear-gradient(135deg, #00d9ff, #00bfff, #0099ff);
+        background-size: 200% 200%;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: rotateGradient 8s ease-in-out infinite;
+        line-height: 1;
+        min-width: 50px;
+        text-align: center;
+      }
+      .time-label {
+        font-size: 9px;
+        font-weight: 600;
+        letter-spacing: 2px;
+        color: #00d9ff;
+        opacity: 0.5;
+        text-transform: uppercase;
+      }
+
+      .time-divider {
+        font-size: 42px;
+        font-weight: 900;
+        color: #00d9ff;
+        animation: fadeInOut 2s ease-in-out infinite;
+        margin: 0 -2px;
+        padding-bottom: 15px;
+      }
+
+      .day-display {
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+        padding-left: 20px;
+        border-left: 2px solid rgba(0, 217, 255, 0.3);
+      }
+
+      .day-name {
+        font-size: 18px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        color: #00d9ff;
+        text-transform: uppercase;
+        animation: scaleUp 3s ease-in-out infinite;
+      }
+
+      .day-date {
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 1px;
+        color: #7000ff;
+        opacity: 0.7;
+      }
+
+      .indicator-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: #00ff88;
+        animation: glow 2s ease-in-out infinite;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Background -->
+    <div class="background"></div>
+    <div class="dots-pattern"></div>
+
+    <!-- Canvas del planeta como fondo de toda la página -->
+    <div class="planet-container">
+      <canvas id="planetCanvas"></canvas>
+    </div>
+
+    <!-- Decorative circles -->
+    <div class="circle-decoration circle-1"></div>
+    <div class="circle-decoration circle-2"></div>
+
+    <div class="container">
+      <!-- Header -->
+      <header class="header">
+        <div class="logo">xQore</div>
+        <div class="time-container">
+          <div class="clock-display" id="clockDisplay"></div>
+          <div class="day-display">
+            <div class="day-name" id="dayName"></div>
+            <div class="day-date" id="dayDate"></div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Main Content -->
+      <div class="main-content">
+        <!-- Terminal Sidebar (Termux style) -->
+        <div id="terminalWidget" class="card card-terminal">
+          <div class="terminal-sidebar">
+            <!-- ASCII Art Banner -->
+            <div class="term-line term-banner" style="text-align: center; margin-top: 15px">
+              <span style="color: #00ff00; font-size: 8px; line-height: 0.85; font-weight: bold"
+                >⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠋⠁⠀⠀⠈⠉⠙⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿</span
+              >
+            </div>
+            <div class="term-line term-banner" style="text-align: center">
+              <span style="color: #00ff00; font-size: 8px; line-height: 0.85; font-weight: bold"
+                >⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿</span
+              >
+            </div>
+            <div class="term-line term-banner" style="text-align: center">
+              <span style="color: #00ff00; font-size: 8px; line-height: 0.85; font-weight: bold"
+                >⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿</span
+              >
+            </div>
+            <div class="term-line term-banner" style="text-align: center">
+              <span style="color: #00ff00; font-size: 8px; line-height: 0.85; font-weight: bold"
+                >⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⠀⠀⠀⠀⠀⢀⣠⣤⣤⣤⣤⣄⠀⠀⠀⠹⣿⣿⣿⣿⣿⣿⣿⣿</span
+              >
+            </div>
+            <div class="term-line term-banner" style="text-align: center">
+              <span style="color: #00ff00; font-size: 8px; line-height: 0.85; font-weight: bold"
+                >⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠁⠀⠀⠀⠀⠾⣿⣿⣿⣿⠿⠛⠉⠀⠀⠀⠀⠘⣿⣿⣿⣿⣿⣿⣿</span
+              >
+            </div>
+            <div class="term-line term-banner" style="text-align: center">
+              <span style="color: #00ff00; font-size: 8px; line-height: 0.85; font-weight: bold"
+                >⣿⣿⣿⣿⣿⣿⣿⣿⣿⡏⠀⠀⠀⣤⣶⣤⣉⣿⣿⡯⣀⣴⣿⡗⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿</span
+              >
+            </div>
+            <div class="term-line term-banner" style="text-align: center">
+              <span style="color: #00ff00; font-size: 8px; line-height: 0.85; font-weight: bold"
+                >⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⡈⠀⠀⠉⣿⣿⣶⡉⠀⠀⣀⡀⠀⠀⠀⢻⣿⣿⣿⣿⣿⣿</span
+              >
+            </div>
+            <div class="term-line term-banner" style="text-align: center">
+              <span style="color: #00ff00; font-size: 8px; line-height: 0.85; font-weight: bold"
+                >⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀⠸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠇⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿</span
+              >
+            </div>
+            <div class="term-line term-banner" style="text-align: center">
+              <span style="color: #00ff00; font-size: 8px; line-height: 0.85; font-weight: bold"
+                >⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠉⢉⣽⣿⠿⣿⡿⢻⣯⡍⢁⠄⠀⠀⠀⣸⣿⣿⣿⣿⣿⣿</span
+              >
+            </div>
+            <div class="term-line term-banner" style="text-align: center">
+              <span style="color: #00ff00; font-size: 8px; line-height: 0.85; font-weight: bold"
+                >⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡄⠀⠀⠐⡀⢉⠉⠀⠠⠀⢉⣉⠀⡜⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿</span
+              >
+            </div>
+            <div class="term-line term-banner" style="text-align: center">
+              <span style="color: #00ff00; font-size: 8px; line-height: 0.85; font-weight: bold"
+                >⣿⣿⣿⣿⣿⣿⣿⣿⠿⠁⠀　⠀⠀⠘⣤⣭⣟⠛⠛⣉⣁⡜⠀⠀⠀⠀⠀⠛⠿⣿⣿⣿⣿⣿⣿</span
+              >
+            </div>
+            <div class="term-line term-banner" style="text-align: center">
+              <span style="color: #00ff00; font-size: 8px; line-height: 0.85; font-weight: bold"
+                >⡿⠟⠛⠉⠉⠀⠀⠀⠀⠀⠀⠀ 　　⠀⠈⢻⣿⡀⠀⣿⠏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠛⠻⢿</span
+              >
+            </div>
+            <div class="term-line term-banner" style="text-align: center; margin-bottom: 15px">
+              <span style="color: #00ff00; font-size: 8px; line-height: 0.85; font-weight: bold"
+                >⠀⠀⠀⠀⠀⠀⠀⠀⠀　　　　⠀⠀⠀⠀⠀⠉⠁⠀⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀</span
+              >
+            </div>
+
+            <!-- Header -->
+            <div class="term-line" style="text-align: center; margin-bottom: 15px">
+              <span
+                style="
+                  color: #ff0066;
+                  font-weight: bold;
+                  font-size: 13px;
+                  text-shadow: 0 0 10px rgba(255, 0, 102, 0.8);
+                "
+                >TOOLS</span
+              >
+              <span
+                style="
+                  color: #00ffff;
+                  font-weight: bold;
+                  font-size: 13px;
+                  text-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+                "
+              >
+                INSTALLER</span
+              >
+            </div>
+
+            <div class="term-divider"></div>
+
+            <!-- Menu Items -->
+            <div class="term-menu-item">
+              <span class="term-menu-number">[01]</span>
+              <span class="term-menu-name">OS</span>
+              <span class="term-menu-status" id="termOS">Loading...</span>
+            </div>
+
+            <div class="term-menu-item">
+              <span class="term-menu-number">[02]</span>
+              <span class="term-menu-name">CPU</span>
+              <span style="color: #ffff00" id="termCores">Loading...</span>
+            </div>
+
+            <div class="term-menu-item">
+              <span class="term-menu-number">[03]</span>
+              <span class="term-menu-name">Memory</span>
+              <span style="color: #00ffff" id="termMemory">Loading...</span>
+            </div>
+
+            <div class="term-menu-item">
+              <span class="term-menu-number">[04]</span>
+              <span class="term-menu-name">Screen</span>
+              <span style="color: #ffff00" id="termScreen">Loading...</span>
+            </div>
+
+            <div class="term-divider"></div>
+
+            <div class="term-menu-item">
+              <span class="term-menu-number">[05]</span>
+              <span class="term-menu-name">Browser</span>
+              <span style="color: #00ffff" id="termBrowser">Loading...</span>
+            </div>
+
+            <div class="term-menu-item">
+              <span class="term-menu-number">[06]</span>
+              <span class="term-menu-name">Online</span>
+              <span class="term-menu-status" id="termOnline">ON</span>
+            </div>
+
+            <div class="term-menu-item">
+              <span class="term-menu-number">[07]</span>
+              <span class="term-menu-name">Storage</span>
+              <span style="color: #ffff00" id="termStorage">Loading...</span>
+            </div>
+
+            <div class="term-divider"></div>
+
+            <div class="term-menu-item">
+              <span class="term-menu-number">[08]</span>
+              <span class="term-menu-name">CPU Usage</span>
+              <span style="color: #00ffff" id="termCPU">0.0%</span>
+            </div>
+
+            <div class="term-menu-item">
+              <span class="term-menu-number">[09]</span>
+              <span class="term-menu-name">RAM Usage</span>
+              <span style="color: #ffff00" id="termRAM">0.0%</span>
+            </div>
+
+            <div class="term-divider"></div>
+
+            <!-- Session Info -->
+            <div class="term-line" style="padding: 5px 15px">
+              <span style="color: #00ff00">[●]</span>
+              <span style="color: #ffffff"> Uptime: </span>
+              <span style="color: #00ffff; font-weight: bold" id="termUptime">00:00:00</span>
+            </div>
+
+            <div class="term-divider"></div>
+
+            <!-- Battery Installation Bar -->
+            <div class="term-line" style="padding: 8px 15px">
+              <span style="color: #00ffff"></span
+              ><span id="termBatteryBar" style="color: #00ff00">████████████████████</span
+              ><span style="color: #00ffff"></span> <span style="color: #ffffff"> </span
+              ><span id="termBatteryPercent" style="color: #00ff00; font-weight: bold">100%</span>
+            </div>
+            <div class="term-line" style="padding: 2px 15px; font-size: 10px">
+              <span style="color: #666">└─ Installing power_management.pkg...</span>
+            </div>
+
+            <div
+              class="term-line"
+              style="
+                padding: 10px 15px;
+                text-align: center;
+                color: #00ff00;
+                font-size: 9px;
+                margin-top: 5px;
+              "
+            >
+              ▼ CYBER ARMY ▼
+            </div>
+          </div>
+        </div>
+
+        <!-- Planet Animation Center (ahora solo un placeholder vacío) -->
+        <div id="planetWidget" class="card card-large">
+          <!-- El canvas ahora está en el fondo de toda la página -->
+        </div>
+
+        <!-- Performance Card -->
+        <div class="card">
+          <div class="card-title">Performance</div>
+
+          <div class="progress-container">
+            <div class="progress-label">
+              <span>CPU</span>
+              <span id="cpuPercent">0%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" id="cpuBar" style="width: 0%"></div>
+            </div>
+          </div>
+
+          <div class="progress-container">
+            <div class="progress-label">
+              <span>Network</span>
+              <span id="networkSpeed">0 Mbps</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" id="networkBar" style="width: 0%"></div>
+            </div>
+          </div>
+
+          <div class="progress-container">
+            <div class="progress-label">
+              <span>Storage</span>
+              <span id="storagePercent">0%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" id="storageBar" style="width: 0%"></div>
+            </div>
+          </div>
+
+          <div class="progress-container">
+            <div class="progress-label">
+              <span>Battery</span>
+              <span id="batteryPercent">N/A</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" id="batteryBar" style="width: 0%"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stats Card -->
+        <div class="card">
+          <div class="card-title">Quick Stats</div>
+
+          <div style="text-align: center; padding: 10px 0">
+            <div class="stat-value" id="sessionTime">00:00:00</div>
+            <div class="stat-label">Session Time</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <footer class="footer">
+        <div class="footer-wave"></div>
+      </footer>
+    </div>
+
+    <!-- Popup de batería crítica -->
+    <div id="batteryPopup" class="battery-popup">
+      <div class="battery-popup-strip"></div>
+      <div class="battery-popup-header">
+        <div class="battery-popup-icon">⚠</div>
+        <div class="battery-popup-title">Critical Alert</div>
+      </div>
+      <div class="battery-popup-body">
+        <div class="battery-popup-percentage" id="popupBatteryPercent">5%</div>
+        <div class="battery-popup-message">
+          Battery level critically low<br />
+          Connect power source immediately
+        </div>
+        <div class="battery-popup-action">CONNECT CHARGER NOW</div>
+      </div>
+      <div class="battery-popup-strip"></div>
+    </div>
+
+    <script>
+      // Three.js Hacker-style ASCII Planet
+      let scene, camera, renderer, earth, clouds, stars, earthGroup
+
+      function initPlanet() {
+        const container = document.getElementById('planetCanvas')
+        const width = container.clientWidth
+        const height = container.clientHeight
+
+        // Scene setup
+        scene = new THREE.Scene()
+
+        // Camera setup
+        camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000)
+        camera.position.z = 3.5
+
+        // Renderer setup
+        renderer = new THREE.WebGLRenderer({
+          canvas: container,
+          alpha: true,
+          antialias: true,
+        })
+        renderer.setSize(width, height)
+        renderer.setPixelRatio(window.devicePixelRatio)
+
+        // Group for earth
+        earthGroup = new THREE.Group()
+        scene.add(earthGroup)
+
+        // Lighting for 3D realism
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.4)
+        scene.add(ambientLight)
+
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 1.2)
+        directionalLight.position.set(5, 3, 5)
+        directionalLight.castShadow = true
+        scene.add(directionalLight)
+
+        // Add rim light for 3D depth
+        const rimLight = new THREE.DirectionalLight(0x00ffaa, 0.5)
+        rimLight.position.set(-5, 0, -5)
+        scene.add(rimLight)
+
+        // Create procedural ASCII texture
+        const canvas = document.createElement('canvas')
+        canvas.width = 2048
+        canvas.height = 1024
+        const ctx = canvas.getContext('2d')
+
+        // Background (ocean) with matrix characters
+        ctx.fillStyle = '#000000'
+        ctx.fillRect(0, 0, canvas.width, canvas.height)
+
+        // Add stars to ocean background for space effect
+        ctx.fillStyle = '#ffffff'
+        for (let i = 0; i < 3000; i++) {
+          const x = Math.random() * canvas.width
+          const y = Math.random() * canvas.height
+          const size = Math.random() * 2
+          ctx.globalAlpha = Math.random() * 0.8 + 0.2
+          ctx.fillRect(x, y, size, size)
+        }
+
+        // Add some colored nebula effects
+        const gradient1 = ctx.createRadialGradient(
+          canvas.width * 0.2,
+          canvas.height * 0.3,
+          0,
+          canvas.width * 0.2,
+          canvas.height * 0.3,
+          400
+        )
+        gradient1.addColorStop(0, 'rgba(138, 43, 226, 0.15)')
+        gradient1.addColorStop(1, 'transparent')
+        ctx.fillStyle = gradient1
+        ctx.fillRect(0, 0, canvas.width, canvas.height)
+
+        const gradient2 = ctx.createRadialGradient(
+          canvas.width * 0.7,
+          canvas.height * 0.6,
+          0,
+          canvas.width * 0.7,
+          canvas.height * 0.6,
+          350
+        )
+        gradient2.addColorStop(0, 'rgba(0, 100, 255, 0.12)')
+        gradient2.addColorStop(1, 'transparent')
+        ctx.fillStyle = gradient2
+        ctx.fillRect(0, 0, canvas.width, canvas.height)
+
+        // Add subtle matrix rain effect over space
+        ctx.font = '10px monospace'
+        ctx.fillStyle = '#00d9ff'
+        const chars =
+          '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン'
+        for (let i = 0; i < 2000; i++) {
+          const x = Math.random() * canvas.width
+          const y = Math.random() * canvas.height
+          const char = chars[Math.floor(Math.random() * chars.length)]
+          ctx.globalAlpha = Math.random() * 0.1 + 0.05
+          ctx.fillText(char, x, y)
+        }
+
+        // Load real world map image and convert to ASCII
+        const worldMapImg = new Image()
+        worldMapImg.crossOrigin = 'anonymous'
+        worldMapImg.onload = function () {
+          // Create temporary canvas to process image
+          const tempCanvas = document.createElement('canvas')
+          tempCanvas.width = canvas.width
+          tempCanvas.height = canvas.height
+          const tempCtx = tempCanvas.getContext('2d')
+
+          // Draw image scaled to canvas
+          tempCtx.drawImage(worldMapImg, 0, 0, canvas.width, canvas.height)
+
+          // Get pixel data
+          const imageData = tempCtx.getImageData(0, 0, canvas.width, canvas.height)
+          const pixels = imageData.data
+
+          // Draw ASCII continents based on image pixels (detecting cyan dots)
+          ctx.font = '5px monospace'
+          ctx.fillStyle = '#00ff88'
+          const charSize = 6
+
+          for (let y = 0; y < canvas.height; y += charSize) {
+            for (let x = 0; x < canvas.width; x += charSize) {
+              const i = (y * canvas.width + x) * 4
+              const r = pixels[i]
+              const g = pixels[i + 1]
+              const b = pixels[i + 2]
+
+              // Detect cyan/blue pixels (continents in dotted map)
+              const isCyan = (g > 100 || b > 100) && r < 150
+
+              if (isCyan) {
+                const char = chars[Math.floor(Math.random() * chars.length)]
+                // Vary opacity based on pixel brightness
+                const brightness = (r + g + b) / 3
+                ctx.globalAlpha = (brightness / 255) * 0.5 + 0.5
+                ctx.fillText(char, x, y)
+              }
+            }
+          }
+
+          // Create texture and apply to earth
+          const texture = new THREE.CanvasTexture(canvas)
+          texture.needsUpdate = true
+          earth.material.map = texture
+          earth.material.needsUpdate = true
+
+          // Start animation
+          animate()
+        }
+
+        // Use dotted world map image
+        // Option 1: Use uploaded image (save the image as world-map-dots.jpg in the same folder)
+        // worldMapImg.src = 'world-map-dots.jpg';
+
+        // Option 2: Use SVG with dots pattern to simulate the image
+        worldMapImg.src =
+          'data:image/svg+xml;base64,' +
+          btoa(`
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2000 1000" width="2000" height="1000">
+            <defs>
+              <pattern id="dotPattern" x="0" y="0" width="4" height="4" patternUnits="userSpaceOnUse">
+                <circle cx="2" cy="2" r="1.5" fill="#00d9ff"/>
+              </pattern>
+            </defs>
+            <rect width="2000" height="1000" fill="#000000"/>
+            <g fill="url(#dotPattern)">
+              <!-- North America -->
+              <path d="M150,200 C180,180 220,170 260,175 C300,180 340,200 370,230 C390,250 405,275 415,305 C420,330 420,355 415,380 C405,410 385,435 360,455 C330,475 295,485 260,485 C220,485 185,470 160,445 C140,425 130,395 130,365 C130,335 140,305 155,280 C165,260 180,240 200,225 L150,200 M160,170 C175,165 192,167 205,175 C215,185 220,200 217,215 C213,230 200,240 185,240 C170,238 160,225 160,210 L160,170 M440,300 C452,295 465,300 472,312 C478,325 475,340 463,348 C450,355 435,350 428,337 C422,325 427,310 440,300"/>
+              <!-- South America -->
+              <path d="M360,510 C390,500 425,505 450,525 C470,542 485,565 492,590 C498,620 500,650 495,680 C488,715 472,745 448,770 C420,795 385,805 350,800 C315,793 285,770 268,740 C255,715 250,685 252,655 C255,620 268,588 288,562 C308,538 332,520 360,510"/>
+              <!-- Europe -->
+              <path d="M900,240 C925,235 952,238 975,248 C1000,260 1020,280 1032,305 C1042,328 1045,355 1040,380 C1032,410 1015,435 990,452 C965,468 935,475 905,472 C875,468 850,452 832,430 C818,410 812,385 815,360 C820,330 835,305 855,285 C872,268 892,252 915,243 L900,240 M1050,215 C1065,210 1082,213 1093,225 C1103,237 1105,255 1095,270 C1085,283 1068,288 1053,283 C1038,277 1030,262 1032,247 L1050,215 M850,455 C862,450 877,453 887,463 C895,475 897,492 888,505 C878,517 862,520 848,514 C835,507 828,492 832,478 L850,455 M820,250 C832,245 847,248 857,258 C867,270 869,287 860,300 C850,312 834,315 820,309 C807,302 800,287 804,273 L820,250"/>
+              <!-- Africa -->
+              <path d="M920,385 C950,380 982,383 1010,395 C1040,408 1065,430 1082,458 C1095,482 1102,510 1103,540 C1103,575 1100,610 1090,643 C1078,680 1058,713 1030,738 C1000,765 963,782 925,788 C885,793 845,785 812,765 C782,747 760,720 748,688 C738,658 735,625 738,593 C743,555 758,520 780,490 C805,457 838,432 875,418 C895,410 915,405 935,402 L920,385 M1125,445 C1140,440 1157,443 1168,455 C1178,467 1180,485 1170,500 C1160,513 1143,518 1128,513 C1113,507 1105,492 1107,477 L1125,445"/>
+              <!-- Asia -->
+              <path d="M1050,190 C1090,182 1135,180 1180,185 C1230,192 1280,208 1325,232 C1375,258 1420,295 1455,340 C1485,380 1505,427 1515,475 C1523,525 1520,575 1505,623 C1488,675 1458,720 1418,755 C1375,792 1323,815 1268,825 C1210,835 1150,830 1095,810 C1045,792 1002,760 970,720 C943,685 927,643 922,600 C918,555 925,510 943,470 C963,425 993,385 1030,353 C1065,323 1105,300 1148,285 L1050,190 M1580,315 C1600,308 1623,312 1638,327 C1652,342 1657,365 1650,385 C1642,405 1623,418 1603,418 C1583,417 1567,403 1562,383 L1580,315 M1370,500 C1388,493 1410,497 1423,512 C1435,527 1438,548 1428,566 C1417,583 1397,593 1377,590 C1358,587 1343,572 1340,553 L1370,500"/>
+              <!-- Australia -->
+              <path d="M1450,640 C1485,632 1523,635 1558,648 C1595,662 1628,685 1653,715 C1675,742 1688,775 1692,810 C1695,845 1688,880 1672,910 C1653,945 1623,973 1588,990 C1550,1008 1507,1015 1465,1010 C1425,1005 1388,988 1358,963 C1330,940 1310,910 1300,875 C1292,845 1292,812 1300,780 C1310,745 1330,715 1358,692 C1388,667 1423,650 1460,642 L1450,640 M1730,665 C1748,660 1768,665 1780,678 C1792,692 1795,713 1785,730 C1775,747 1755,757 1735,755 C1717,752 1703,738 1700,720 L1730,665"/>
+              <!-- Greenland -->
+              <path d="M600,120 C635,112 672,115 705,128 C740,142 770,165 792,195 C812,222 825,255 830,290 C833,325 828,360 815,392 C800,428 775,458 743,478 C708,500 668,510 628,508 C590,505 555,488 528,463 C503,440 485,410 477,377 C470,345 472,310 483,278 C495,243 518,213 547,190 C575,168 608,152 643,145 L600,120"/>
+              <!-- Antarctica -->
+              <path d="M50,920 L200,915 L350,912 L500,910 L650,910 L800,910 L950,910 L1100,912 L1250,915 L1400,918 L1550,922 L1700,927 L1850,932 L1950,940 L1940,960 L1800,968 L1650,973 L1500,976 L1350,977 L1200,976 L1050,973 L900,968 L750,963 L600,960 L450,958 L300,958 L150,960 L50,965 L20,975 Z"/>
+            </g>
+          </svg>
+        `)
+
+        // Add grid lines for cyber effect
+        ctx.strokeStyle = '#00d9ff'
+        ctx.globalAlpha = 0.2
+        ctx.lineWidth = 1
+
+        // Latitude lines
+        for (let i = 0; i < canvas.height; i += 100) {
+          ctx.beginPath()
+          ctx.moveTo(0, i)
+          ctx.lineTo(canvas.width, i)
+          ctx.stroke()
+        }
+
+        // Longitude lines
+        for (let i = 0; i < canvas.width; i += 100) {
+          ctx.beginPath()
+          ctx.moveTo(i, 0)
+          ctx.lineTo(i, canvas.height)
+          ctx.stroke()
+        }
+
+        // Create texture from canvas
+        const texture = new THREE.CanvasTexture(canvas)
+        texture.needsUpdate = true
+
+        // Earth with flat ASCII texture
+        const earthGeometry = new THREE.SphereGeometry(1, 64, 64)
+        const earthMaterial = new THREE.MeshPhongMaterial({
+          map: texture,
+          shininess: 5,
+          flatShading: false,
+          emissive: 0x001a33,
+          emissiveIntensity: 0.3,
+        })
+
+        earth = new THREE.Mesh(earthGeometry, earthMaterial)
+        earthGroup.add(earth)
+
+        // Wireframe overlay for cyber effect
+        const wireframeGeometry = new THREE.SphereGeometry(1.002, 32, 32)
+        const wireframeMaterial = new THREE.MeshBasicMaterial({
+          color: 0x00d9ff,
+          wireframe: true,
+          transparent: true,
+          opacity: 0.15,
+        })
+        const wireframe = new THREE.Mesh(wireframeGeometry, wireframeMaterial)
+        earthGroup.add(wireframe)
+
+        // Atmosphere glow (green hacker style with more depth)
+        const atmosphereGeometry = new THREE.SphereGeometry(1.15, 64, 64)
+        const atmosphereMaterial = new THREE.ShaderMaterial({
+          vertexShader: `
+            varying vec3 vNormal;
+            void main() {
+              vNormal = normalize(normalMatrix * normal);
+              gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+            }
+          `,
+          fragmentShader: `
+            varying vec3 vNormal;
+            void main() {
+              float intensity = pow(0.7 - dot(vNormal, vec3(0.0, 0.0, 1.0)), 2.0);
+              gl_FragColor = vec4(0.0, 0.9, 0.5, 1.0) * intensity;
+            }
+          `,
+          blending: THREE.AdditiveBlending,
+          side: THREE.BackSide,
+          transparent: true,
+        })
+
+        const atmosphere = new THREE.Mesh(atmosphereGeometry, atmosphereMaterial)
+        earthGroup.add(atmosphere)
+
+        // Add outer glow for more 3D depth
+        const outerGlowGeometry = new THREE.SphereGeometry(1.25, 64, 64)
+        const outerGlowMaterial = new THREE.ShaderMaterial({
+          vertexShader: `
+            varying vec3 vNormal;
+            void main() {
+              vNormal = normalize(normalMatrix * normal);
+              gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+            }
+          `,
+          fragmentShader: `
+            varying vec3 vNormal;
+            void main() {
+              float intensity = pow(0.5 - dot(vNormal, vec3(0.0, 0.0, 1.0)), 3.0);
+              gl_FragColor = vec4(0.0, 0.7, 0.4, 1.0) * intensity * 0.5;
+            }
+          `,
+          blending: THREE.AdditiveBlending,
+          side: THREE.BackSide,
+          transparent: true,
+        })
+
+        const outerGlow = new THREE.Mesh(outerGlowGeometry, outerGlowMaterial)
+        earthGroup.add(outerGlow)
+
+        // Create stars with 3D depth effect
+        const starGeometry = new THREE.BufferGeometry()
+        const starMaterial = new THREE.PointsMaterial({
+          color: 0xffffff,
+          size: 0.05,
+          transparent: true,
+          opacity: 0.8,
+          sizeAttenuation: true,
+        })
+
+        const starVertices = []
+        const starColors = []
+        for (let i = 0; i < 5000; i++) {
+          // Create stars in a sphere around the planet
+          const radius = 15 + Math.random() * 10
+          const theta = Math.random() * Math.PI * 2
+          const phi = Math.acos(2 * Math.random() - 1)
+
+          const x = radius * Math.sin(phi) * Math.cos(theta)
+          const y = radius * Math.sin(phi) * Math.sin(theta)
+          const z = radius * Math.cos(phi)
+
+          starVertices.push(x, y, z)
+
+          // Add color variation to stars
+          const colorChoice = Math.random()
+          if (colorChoice > 0.95) {
+            starColors.push(0.5, 0.7, 1.0) // Blue stars
+          } else if (colorChoice > 0.9) {
+            starColors.push(1.0, 0.8, 0.6) // Yellow stars
+          } else {
+            starColors.push(1.0, 1.0, 1.0) // White stars
+          }
+        }
+
+        starGeometry.setAttribute('position', new THREE.Float32BufferAttribute(starVertices, 3))
+        starGeometry.setAttribute('color', new THREE.Float32BufferAttribute(starColors, 3))
+
+        starMaterial.vertexColors = true
+
+        stars = new THREE.Points(starGeometry, starMaterial)
+        scene.add(stars)
+
+        // Start animation
+        animate()
+
+        // Handle resize
+        window.addEventListener('resize', onWindowResize)
+      }
+
+      function drawContinentFromPath(ctx, pathString, chars) {
+        // Parse SVG path and create Path2D object
+        const path = new Path2D(pathString)
+
+        // Get bounding box of the path
+        ctx.save()
+        ctx.fillStyle = 'rgba(0,0,0,0)'
+        ctx.fill(path)
+
+        // Extract coordinates from path string to determine bounds
+        const coords = pathString.match(/(\d+\.?\d*)/g).map(Number)
+        const xCoords = coords.filter((_, i) => i % 2 === 0)
+        const yCoords = coords.filter((_, i) => i % 2 === 1)
+
+        const minX = Math.min(...xCoords)
+        const maxX = Math.max(...xCoords)
+        const minY = Math.min(...yCoords)
+        const maxY = Math.max(...yCoords)
+
+        // Fill the continent shape with ASCII characters
+        ctx.fillStyle = '#00ff88'
+        const charSize = 6
+
+        for (let x = minX; x < maxX; x += charSize) {
+          for (let y = minY; y < maxY; y += charSize) {
+            // Check if point is inside the path
+            if (ctx.isPointInPath(path, x, y)) {
+              const char = chars[Math.floor(Math.random() * chars.length)]
+              ctx.globalAlpha = Math.random() * 0.3 + 0.7
+              ctx.fillText(char, x, y)
+            }
+          }
+        }
+
+        ctx.restore()
+      }
+
+      function animate() {
+        requestAnimationFrame(animate)
+
+        // Rotate earth group slowly
+        earthGroup.rotation.y += 0.002
+
+        // Very slight star rotation
+        if (stars) {
+          stars.rotation.y += 0.0002
+        }
+
+        renderer.render(scene, camera)
+      }
+
+      function onWindowResize() {
+        const container = document.getElementById('planetCanvas')
+        const width = container.clientWidth
+        const height = container.clientHeight
+
+        camera.aspect = width / height
+        camera.updateProjectionMatrix()
+        renderer.setSize(width, height)
+      }
+
+      // Initialize planet when DOM is ready
+      window.addEventListener('DOMContentLoaded', initPlanet)
+
+      // Variable para el tiempo de sesión
+      let sessionStartTime = Date.now()
+
+      // Función para actualizar información real del sistema en el terminal
+      function updateTerminalInfo() {
+        // OS y Platform
+        const userAgent = navigator.userAgent
+
+        // Detectar OS del User Agent
+        let osName = 'Unknown OS'
+        if (userAgent.indexOf('Win') !== -1) osName = 'Windows'
+        else if (userAgent.indexOf('Mac') !== -1) osName = 'MacOS'
+        else if (userAgent.indexOf('Linux') !== -1) osName = 'Linux'
+        else if (userAgent.indexOf('Android') !== -1) osName = 'Android'
+        else if (userAgent.indexOf('iOS') !== -1) osName = 'iOS'
+
+        document.getElementById('termOS').textContent = osName
+        document.getElementById('termOS').style.color = '#00ff00'
+
+        // CPU Cores
+        const cores = navigator.hardwareConcurrency || 'N/A'
+        document.getElementById('termCores').textContent = cores + ' cores'
+        document.getElementById('termCores').style.color = '#ffff00'
+
+        // Memory (si está disponible)
+        if (performance.memory) {
+          const memUsed = (performance.memory.usedJSHeapSize / 1024 / 1024).toFixed(0)
+          const memLimit = (performance.memory.jsHeapSizeLimit / 1024 / 1024).toFixed(0)
+          document.getElementById('termMemory').textContent = `${memUsed}MB / ${memLimit}MB`
+          document.getElementById('termMemory').style.color = '#00ffff'
+        } else {
+          document.getElementById('termMemory').textContent = 'N/A'
+          document.getElementById('termMemory').style.color = '#666'
+        }
+
+        // Screen Resolution
+        const screen = `${window.screen.width}x${window.screen.height}`
+        document.getElementById('termScreen').textContent = screen
+        document.getElementById('termScreen').style.color = '#ffff00'
+
+        // Browser
+        let browserName = 'Unknown'
+        if (userAgent.indexOf('Firefox') > -1) browserName = 'Firefox'
+        else if (userAgent.indexOf('Chrome') > -1) browserName = 'Chrome'
+        else if (userAgent.indexOf('Safari') > -1) browserName = 'Safari'
+        else if (userAgent.indexOf('Edge') > -1) browserName = 'Edge'
+        else if (userAgent.indexOf('Opera') > -1) browserName = 'Opera'
+
+        document.getElementById('termBrowser').textContent = browserName
+        document.getElementById('termBrowser').style.color = '#00ffff'
+
+        // Online Status
+        const online = navigator.onLine ? 'ON' : 'OFF'
+        document.getElementById('termOnline').textContent = online
+        document.getElementById('termOnline').style.color = navigator.onLine ? '#00ff00' : '#ff0066'
+
+        // Storage Estimate
+        if (navigator.storage && navigator.storage.estimate) {
+          navigator.storage.estimate().then(estimate => {
+            const used = (estimate.usage / 1024 / 1024).toFixed(0)
+            const quota = (estimate.quota / 1024 / 1024).toFixed(0)
+            document.getElementById('termStorage').textContent = `${used}MB / ${quota}MB`
+            document.getElementById('termStorage').style.color = '#ffff00'
+          })
+        } else {
+          document.getElementById('termStorage').textContent = 'N/A'
+          document.getElementById('termStorage').style.color = '#666'
+        }
+      }
+
+      // Función para actualizar CPU y RAM en tiempo real
+      function updateTerminalStats() {
+        // CPU estimation (same as before)
+        const cpuUsage = estimateCPUUsage()
+        document.getElementById('termCPU').textContent = Math.round(cpuUsage) + '%'
+
+        // RAM from performance.memory
+        if (performance.memory) {
+          const ramPercent =
+            (performance.memory.usedJSHeapSize / performance.memory.jsHeapSizeLimit) * 100
+          document.getElementById('termRAM').textContent = Math.round(ramPercent) + '%'
+        }
+      }
+
+      // Función para actualizar el uptime de sesión
+      function updateTerminalUptime() {
+        const elapsed = Date.now() - sessionStartTime
+        const hours = Math.floor(elapsed / (1000 * 60 * 60))
+        const minutes = Math.floor((elapsed % (1000 * 60 * 60)) / (1000 * 60))
+        const seconds = Math.floor((elapsed % (1000 * 60)) / 1000)
+
+        const timeString = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(
+          2,
+          '0'
+        )}:${String(seconds).padStart(2, '0')}`
+        document.getElementById('termUptime').textContent = timeString
+      }
+
+      // Función para actualizar el contador de sesión
+      function updateSessionTime() {
+        const elapsed = Date.now() - sessionStartTime
+        const hours = Math.floor(elapsed / (1000 * 60 * 60))
+        const minutes = Math.floor((elapsed % (1000 * 60 * 60)) / (1000 * 60))
+        const seconds = Math.floor((elapsed % (1000 * 60)) / 1000)
+
+        const timeString = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(
+          2,
+          '0'
+        )}:${String(seconds).padStart(2, '0')}`
+        document.getElementById('sessionTime').textContent = timeString
+      }
+
+      // Función para actualizar la hora y el día
+      function updateDateTime() {
+        const now = new Date()
+
+        // Obtener el día de la semana en inglés
+        const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+        const months = [
+          'January',
+          'February',
+          'March',
+          'April',
+          'May',
+          'June',
+          'July',
+          'August',
+          'September',
+          'October',
+          'November',
+          'December',
+        ]
+        const dayName = days[now.getDay()]
+        const monthName = months[now.getMonth()]
+
+        // Obtener la hora
+        const hours = String(now.getHours()).padStart(2, '0')
+        const minutes = String(now.getMinutes()).padStart(2, '0')
+        const seconds = String(now.getSeconds()).padStart(2, '0')
+
+        // Obtener la fecha
+        const day = String(now.getDate()).padStart(2, '0')
+        const year = now.getFullYear()
+
+        // Crear el HTML para el reloj con segmentos separados
+        const clockHTML = `
+                <div class="time-segment">
+                    <div class="time-number">${hours}</div>
+                    <div class="time-label">Hours</div>
+                </div>
+                <div class="time-divider">:</div>
+                <div class="time-segment">
+                    <div class="time-number">${minutes}</div>
+                    <div class="time-label">Minutes</div>
+                </div>
+                <div class="time-divider">:</div>
+                <div class="time-segment">
+                    <div class="time-number">${seconds}</div>
+                    <div class="time-label">Seconds</div>
+                </div>
+            `
+
+        // Actualizar el DOM
+        document.getElementById('clockDisplay').innerHTML = clockHTML
+        document.getElementById('dayName').textContent = dayName
+        document.getElementById('dayDate').textContent = `${monthName} ${day}, ${year}`
+      }
+
+      // Actualizar cada segundo
+      updateDateTime()
+      setInterval(updateDateTime, 1000)
+
+      // Actualizar información del terminal
+      updateTerminalInfo()
+      updateTerminalUptime()
+      setInterval(updateTerminalUptime, 1000)
+      setInterval(updateTerminalStats, 2000)
+
+      // Actualizar tiempo de sesión cada segundo
+      updateSessionTime()
+      setInterval(updateSessionTime, 1000)
+
+      // Función para obtener datos de rendimiento del sistema
+      // Función para obtener color de batería según porcentaje
+      function getBatteryColor(percent) {
+        if (percent <= 20) {
+          return 'linear-gradient(90deg, #ef4444 0%, #dc2626 100%)' // Rojo
+        } else if (percent <= 50) {
+          return 'linear-gradient(90deg, #f59e0b 0%, #d97706 100%)' // Naranja
+        } else if (percent <= 80) {
+          return 'linear-gradient(90deg, #eab308 0%, #ca8a04 100%)' // Amarillo
+        } else {
+          return 'linear-gradient(90deg, #22c55e 0%, #16a34a 100%)' // Verde
+        }
+      }
+
+      // Función para actualizar el estilo de la batería
+      function updateBatteryStyle(percent, isCharging = false) {
+        const batteryBar = document.getElementById('batteryBar')
+        batteryBar.style.background = getBatteryColor(percent)
+
+        // Cambiar el color del glow según el porcentaje
+        if (percent <= 20) {
+          batteryBar.style.boxShadow = '0 0 10px rgba(239, 68, 68, 0.6)'
+        } else if (percent <= 50) {
+          batteryBar.style.boxShadow = '0 0 10px rgba(245, 158, 11, 0.6)'
+        } else if (percent <= 80) {
+          batteryBar.style.boxShadow = '0 0 10px rgba(234, 179, 8, 0.6)'
+        } else {
+          batteryBar.style.boxShadow = '0 0 10px rgba(34, 197, 94, 0.6)'
+        }
+
+        // Mostrar popup si la batería está en 5% o menos y NO está cargando
+        showBatteryCriticalPopup(percent, isCharging)
+      }
+
+      // Función para actualizar la barra de batería del terminal
+      function updateTerminalBattery(percent, isCharging = false) {
+        const termBatteryBar = document.getElementById('termBatteryBar')
+        const termBatteryPercent = document.getElementById('termBatteryPercent')
+
+        // Calcular cuántos bloques de █ mostrar (máximo 20 bloques para que quepa)
+        const maxBlocks = 20
+        const filledBlocks = Math.round((percent / 100) * maxBlocks)
+        const emptyBlocks = maxBlocks - filledBlocks
+
+        // Generar la barra con bloques
+        const filled = '█|'.repeat(filledBlocks)
+        const empty = '█|'.repeat(emptyBlocks)
+
+        // Determinar color según el nivel de batería
+        let color = '#00ff00' // Verde por defecto
+        if (percent <= 20) {
+          color = '#ff0066' // Rojo
+        } else if (percent <= 50) {
+          color = '#ff9900' // Naranja
+        } else if (percent <= 80) {
+          color = '#ffff00' // Amarillo
+        }
+
+        // Actualizar la barra
+        termBatteryBar.innerHTML = `<span style="color: ${color}">${filled}</span><span style="color: #333333">${empty}</span>`
+        termBatteryPercent.textContent = `${percent}%`
+        termBatteryPercent.style.color = color
+      }
+
+      // Variable para controlar si el popup ya fue mostrado
+      let batteryPopupShown = false
+
+      // Función para mostrar popup de batería crítica
+      function showBatteryCriticalPopup(percent, isCharging = false) {
+        const popup = document.getElementById('batteryPopup')
+        const popupPercent = document.getElementById('popupBatteryPercent')
+
+        // Mostrar popup solo si: batería <= 5% Y NO está cargando
+        if (percent <= 5 && !isCharging && !batteryPopupShown) {
+          popupPercent.textContent = `${percent}%`
+          popup.classList.add('show')
+          batteryPopupShown = true
+
+          // Agregar animación de shake
+          popup.style.animation = 'shake 0.8s ease-in-out'
+        } else if (percent > 5 || isCharging) {
+          // Ocultar si: batería sube de 5% O se conecta el cargador
+          popup.classList.remove('show')
+          batteryPopupShown = false
+        }
+      }
+
+      async function updatePerformance() {
+        try {
+          // Estimación de CPU usando performance API
+          const cpuUsage = await estimateCPUUsage()
+          document.getElementById('cpuPercent').textContent = `${Math.round(cpuUsage)}%`
+          document.getElementById('cpuBar').style.width = `${Math.round(cpuUsage)}%`
+
+          // Actualizar velocidad de red (ahora en lugar de Memory)
+          updateNetworkSpeed()
+
+          // Para Storage del PC, necesitamos usar File System Access API o estimación
+          // Nota: Los navegadores no tienen acceso directo al storage del PC por seguridad
+          // Esta es una simulación basada en datos típicos
+          try {
+            // Intentar obtener datos del sistema si hay permisos
+            if (navigator.storage && navigator.storage.estimate) {
+              const estimate = await navigator.storage.estimate()
+              // La cuota del navegador suele ser ~60% del espacio libre
+              // Estimamos el espacio total del disco basado en eso
+              const quotaGB = estimate.quota / 1024 ** 3
+              const estimatedTotalDisk = quotaGB / 0.6 // Estimación inversa
+              const estimatedUsedDisk = estimatedTotalDisk * 0.45 // Asumimos 45% usado
+              const storagePercent = Math.round((estimatedUsedDisk / estimatedTotalDisk) * 100)
+
+              console.log(
+                `Estimated disk: ${estimatedUsedDisk.toFixed(1)}GB / ${estimatedTotalDisk.toFixed(
+                  1
+                )}GB`
+              )
+
+              document.getElementById('storagePercent').textContent = `${storagePercent}%`
+              document.getElementById('storageBar').style.width = `${storagePercent}%`
+            } else {
+              // Valor simulado realista para disco
+              const storagePercent = Math.round(Math.random() * 20 + 40) // 40-60%
+              document.getElementById('storagePercent').textContent = `${storagePercent}%`
+              document.getElementById('storageBar').style.width = `${storagePercent}%`
+            }
+          } catch (err) {
+            console.log('Storage error:', err)
+            const storagePercent = Math.round(Math.random() * 20 + 40)
+            document.getElementById('storagePercent').textContent = `${storagePercent}%`
+            document.getElementById('storageBar').style.width = `${storagePercent}%`
+          }
+
+          // Obtener información de batería
+          if (navigator.getBattery) {
+            try {
+              const battery = await navigator.getBattery()
+              const batteryPercent = Math.round(battery.level * 100)
+              const isCharging = battery.charging
+
+              document.getElementById('batteryPercent').textContent = `${batteryPercent}%`
+              document.getElementById('batteryBar').style.width = `${batteryPercent}%`
+              updateBatteryStyle(batteryPercent, isCharging)
+              updateTerminalBattery(batteryPercent, isCharging)
+
+              // Actualizar cuando cambie el nivel de batería
+              battery.addEventListener('levelchange', () => {
+                const newPercent = Math.round(battery.level * 100)
+                const newCharging = battery.charging
+                document.getElementById('batteryPercent').textContent = `${newPercent}%`
+                document.getElementById('batteryBar').style.width = `${newPercent}%`
+                updateBatteryStyle(newPercent, newCharging)
+                updateTerminalBattery(newPercent, newCharging)
+              })
+
+              // Actualizar cuando cambie el estado de carga
+              battery.addEventListener('chargingchange', () => {
+                const newPercent = Math.round(battery.level * 100)
+                const newCharging = battery.charging
+                updateBatteryStyle(newPercent, newCharging)
+                updateTerminalBattery(newPercent, newCharging)
+              })
+            } catch (err) {
+              console.log('Battery API error:', err)
+              // Simular batería con valores realistas
+              const simulatedBattery = Math.round(Math.random() * 40 + 60) // 60-100%
+              document.getElementById('batteryPercent').textContent = `${simulatedBattery}%`
+              document.getElementById('batteryBar').style.width = `${simulatedBattery}%`
+              updateBatteryStyle(simulatedBattery, true)
+              updateTerminalBattery(simulatedBattery, true)
+            }
+          } else {
+            console.log('Battery API no disponible - usando valores simulados')
+            // Safari y otros navegadores sin Battery API
+            // Generar valor aleatorio cada vez para simular cambios
+            const simulatedBattery = Math.round(Math.random() * 40 + 60) // 60-100%
+            const simulatedCharging = Math.random() > 0.5 // 50% probabilidad de estar cargando
+            document.getElementById('batteryPercent').textContent = `${simulatedBattery}%`
+            document.getElementById('batteryBar').style.width = `${simulatedBattery}%`
+            updateBatteryStyle(simulatedBattery, simulatedCharging)
+            updateTerminalBattery(simulatedBattery, simulatedCharging)
+          }
+        } catch (error) {
+          console.log('Error getting performance data:', error)
+        }
+      }
+
+      // Función para medir velocidad de Internet
+      let networkSpeedSimulated = Math.random() * 90 + 10 // Valor inicial para simulación
+      let networkListenerAdded = false // Evitar duplicar listeners
+      
+      async function updateNetworkSpeed() {
+        try {
+          // Método 1: Usar Network Information API (si está disponible)
+          if (navigator.connection && navigator.connection.downlink) {
+            const currentSpeed = navigator.connection.downlink
+
+            document.getElementById('networkSpeed').textContent = `${currentSpeed.toFixed(1)} Mbps`
+            document.getElementById('networkBar').style.width = `${Math.min(currentSpeed, 100)}%`
+
+            // Actualizar cuando cambie la conexión (solo agregar listener una vez)
+            if (!networkListenerAdded) {
+              navigator.connection.addEventListener('change', () => {
+                const newSpeed = navigator.connection.downlink
+                document.getElementById('networkSpeed').textContent = `${newSpeed.toFixed(1)} Mbps`
+                document.getElementById('networkBar').style.width = `${Math.min(newSpeed, 100)}%`
+              })
+              networkListenerAdded = true
+            }
+          } else {
+            // Safari y otros navegadores sin Network Information API
+            // Generar pequeña variación cada vez que se actualiza
+            const variation = (Math.random() * 20 - 10) // ±10 Mbps
+            networkSpeedSimulated = Math.max(10, Math.min(100, networkSpeedSimulated + variation))
+            
+            document.getElementById('networkSpeed').textContent = `${networkSpeedSimulated.toFixed(1)} Mbps`
+            document.getElementById('networkBar').style.width = `${Math.min(networkSpeedSimulated, 100)}%`
+          }
+        } catch (error) {
+          console.log('Error measuring network speed:', error)
+          // En caso de error, mostrar valores simulados
+          const fallbackSpeed = (Math.random() * 50 + 30).toFixed(1)
+          document.getElementById('networkSpeed').textContent = `${fallbackSpeed} Mbps`
+          document.getElementById('networkBar').style.width = `${Math.min(
+            parseFloat(fallbackSpeed),
+            100
+          )}%`
+        }
+      }
+
+      // Función para estimar uso de CPU
+      async function estimateCPUUsage() {
+        const startTime = performance.now()
+        const startUsage = performance.now()
+
+        // Simular trabajo para medir
+        let result = 0
+        for (let i = 0; i < 100000; i++) {
+          result += Math.sqrt(i)
+        }
+
+        const endTime = performance.now()
+        const duration = endTime - startTime
+
+        // Estimar porcentaje basado en el tiempo de ejecución
+        // Valores típicos: < 5ms = bajo uso, > 20ms = alto uso
+        const cpuEstimate = Math.min(Math.round((duration / 20) * 100), 100)
+
+        return Math.max(Math.min(cpuEstimate + Math.random() * 20, 100), 10)
+      }
+
+      // Actualizar performance cada 2 segundos
+      updatePerformance()
+      setInterval(updatePerformance, 2000)
+
+      // Actualizar velocidad de red cada 30 segundos (para no saturar)
+      setInterval(updateNetworkSpeed, 30000)
+    </script>
+  </body>
+</html>

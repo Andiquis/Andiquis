@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bingsu Lounge El Páramo - Noches Estelares</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'slate-950': '#0f172a',
+                        'emerald-500': '#10b981',
+                        'emerald-600': '#059669',
+                        'emerald-400': '#34d399',
+                        'amber-400': '#fbbf24'
+                    },
+                    animation: {
+                        'twinkle': 'twinkle 3s infinite',
+                        'shooting-star': 'shootingStar 3s infinite',
+                        'float': 'float 20s linear infinite',
+                        'pulse-glow': 'pulseGlow 2s infinite'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+        @keyframes shootingStar {
+            0% { transform: translateX(0) translateY(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateX(-300px) translateY(200px); opacity: 0; }
+        }
+        @keyframes float {
+            from { transform: translateX(-200px); }
+            to { transform: translateX(calc(100vw + 200px)); }
+        }
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 5px currentColor; }
+            50% { box-shadow: 0 0 20px currentColor, 0 0 30px currentColor; }
+        }
+        .star {
+            animation: twinkle 3s infinite;
+        }
+        .shooting-star {
+            animation: shootingStar 3s infinite;
+        }
+        .moving-cloud {
+            animation: float 25s linear infinite;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-slate-950 via-slate-800 to-emerald-900 text-white overflow-x-hidden min-h-screen">
+    <!-- Stars Container -->
+    <div id="stars" class="fixed inset-0 pointer-events-none z-0"></div>
+
+    <!-- Header -->
+    <header class="fixed top-0 w-full p-4 backdrop-blur-lg bg-slate-950/90 z-50 border-b border-emerald-400/20">
+        <nav class="flex justify-between items-center max-w-6xl mx-auto">
+            <div class="text-2xl font-bold text-emerald-500 tracking-wider uppercase">Bingsu Lounge</div>
+            <ul class="hidden md:flex gap-8 text-white/80">
+                <li><a href="#inicio" class="hover:text-emerald-500 transition-colors">Inicio</a></li>
+                <li><a href="#menu" class="hover:text-emerald-500 transition-colors">Menú</a></li>
+                <li><a href="#experiencia" class="hover:text-emerald-500 transition-colors">Experiencia</a></li>
+                <li><a href="#eventos" class="hover:text-emerald-500 transition-colors">Eventos</a></li>
+                <li><a href="#contacto" class="hover:text-emerald-500 transition-colors">Contacto</a></li>
+            </ul>
+            <div class="flex gap-4">
+                <a href="#reservar" class="px-6 py-2 border border-emerald-400/30 rounded-full text-white hover:bg-emerald-400/10 transition-all">Reservar</a>
+                <a href="#menu" class="px-6 py-2 bg-gradient-to-r from-emerald-500 to-emerald-600 rounded-full text-white shadow-lg shadow-emerald-500/30 hover:transform hover:-translate-y-1 transition-all">Ver Menú</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="min-h-screen flex items-center justify-center text-center px-4 relative">
+        <div class="max-w-3xl z-10">
+            <p class="text-emerald-500 text-lg mb-4 font-light tracking-wider">El Páramo te espera</p>
+            <h1 class="text-6xl md:text-7xl font-light mb-8 leading-tight bg-gradient-to-r from-white via-emerald-400 to-emerald-600 bg-clip-text text-transparent">
+                Noches Estelares<br>Sabores Únicos
+            </h1>
+            <p class="text-white/80 text-xl mb-12 max-w-2xl mx-auto leading-relaxed">
+                Descubre la magia de nuestros bingsus artesanales bajo un cielo estrellado. 
+                Una experiencia gastronómica que despierta todos tus sentidos en el corazón del páramo.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-6 justify-center">
+                <a href="#menu" class="px-8 py-3 bg-gradient-to-r from-emerald-500 to-emerald-600 rounded-full text-white shadow-lg hover:transform hover:-translate-y-1 transition-all">Explorar Menú</a>
+                <a href="#reservar" class="px-8 py-3 border border-emerald-400/30 rounded-full text-white hover:bg-emerald-400/10 transition-all">Reservar Ahora</a>
+            </div>
+        </div>
+
+        <!-- Landscape Elements -->
+        <div class="absolute bottom-0 left-0 w-full h-2/5 bg-gradient-to-t from-slate-950 to-transparent z-1">
+            <!-- Mountain Range -->
+            <div class="absolute bottom-0 w-full h-3/5 bg-gradient-to-br from-emerald-800 to-emerald-900" style="clip-path: polygon(0 100%, 15% 60%, 35% 80%, 50% 40%, 70% 65%, 85% 45%, 100% 70%, 100% 100%)"></div>
+            
+            <!-- Tree -->
+            <div class="absolute left-1/4 bottom-1/4 w-20 h-48 z-10">
+                <div class="absolute bottom-0 left-1/2 w-2 h-16 bg-emerald-900 transform -translate-x-1/2"></div>
+                <div class="absolute bottom-10 left-1/2 w-20 h-28 bg-emerald-900 rounded-full transform -translate-x-1/2"></div>
+            </div>
+        </div>
+
+        <!-- Moon -->
+        <div class="absolute right-1/4 top-1/4 w-28 h-28 bg-gradient-radial from-amber-400 to-amber-500 rounded-full shadow-lg shadow-amber-400/30"></div>
+        
+        <!-- Shooting Star -->
+        <div class="absolute right-1/5 top-1/6 w-1 h-1 bg-emerald-400 rounded-full shooting-star">
+            <div class="absolute top-1/2 left-1/2 w-16 h-px bg-gradient-to-r from-transparent via-emerald-400 to-transparent transform -translate-y-1/2 rotate-45"></div>
+        </div>
+    </section>
+
+    <!-- Brands Section -->
+    <section class="py-16 px-4 bg-slate-950/50 backdrop-blur-sm">
+        <div class="max-w-6xl mx-auto text-center">
+            <h3 class="text-emerald-400/70 text-sm uppercase tracking-widest mb-8">Reconocido por</h3>
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-8 items-center">
+                <div class="text-white/40 p-4 border border-emerald-400/10 rounded-lg hover:text-emerald-500 hover:border-emerald-400/30 transition-all">⭐ TripAdvisor Excellence</div>
+                <div class="text-white/40 p-4 border border-emerald-400/10 rounded-lg hover:text-emerald-500 hover:border-emerald-400/30 transition-all">🏆 Mejor Bingsu 2024</div>
+                <div class="text-white/40 p-4 border border-emerald-400/10 rounded-lg hover:text-emerald-500 hover:border-emerald-400/30 transition-all">📱 5 estrellas Google</div>
+                <div class="text-white/40 p-4 border border-emerald-400/10 rounded-lg hover:text-emerald-500 hover:border-emerald-400/30 transition-all">🌟 Certificado Gastronómico</div>
+                <div class="text-white/40 p-4 border border-emerald-400/10 rounded-lg hover:text-emerald-500 hover:border-emerald-400/30 transition-all">❄️ Especialistas en Hielo</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="py-24 px-4 bg-gradient-to-br from-slate-950/80 to-emerald-900/30">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <p class="text-emerald-500 text-sm uppercase tracking-widest mb-4">Nuestra Especialidad</p>
+                <h2 class="text-5xl font-light mb-6">Bingsus Artesanales</h2>
+                <p class="text-white/70 text-xl max-w-3xl mx-auto leading-relaxed">
+                    Cada bingsu es una obra de arte helada, preparada con ingredientes premium 
+                    y técnicas tradicionales coreanas, adaptadas al clima único del páramo.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-slate-950/60 backdrop-blur-sm border border-emerald-400/20 rounded-2xl p-8 hover:transform hover:-translate-y-2 hover:border-emerald-400/40 hover:shadow-2xl hover:shadow-emerald-400/10 transition-all duration-300">
+                    <div class="w-16 h-16 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-xl flex items-center justify-center text-2xl mb-6 shadow-lg shadow-emerald-500/30">🍓</div>
+                    <h3 class="text-xl font-medium mb-4">Bingsu de Fresa Silvestre</h3>
+                    <p class="text-white/70 leading-relaxed">Hielo artesanal con fresas frescas del páramo, leche condensada casera, mochi suave y un toque de menta local.</p>
+                </div>
+
+                <div class="bg-slate-950/60 backdrop-blur-sm border border-emerald-400/20 rounded-2xl p-8 hover:transform hover:-translate-y-2 hover:border-emerald-400/40 hover:shadow-2xl hover:shadow-emerald-400/10 transition-all duration-300">
+                    <div class="w-16 h-16 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-xl flex items-center justify-center text-2xl mb-6 shadow-lg shadow-emerald-500/30">🍫</div>
+                    <h3 class="text-xl font-medium mb-4">Bingsu Chocolate Estelar</h3>
+                    <p class="text-white/70 leading-relaxed">Nuestro bingsu insignia con chocolate belga, helado de vainilla bourbon, brownies caseros y estrellas de azúcar comestibles.</p>
+                </div>
+
+                <div class="bg-slate-950/60 backdrop-blur-sm border border-emerald-400/20 rounded-2xl p-8 hover:transform hover:-translate-y-2 hover:border-emerald-400/40 hover:shadow-2xl hover:shadow-emerald-400/10 transition-all duration-300">
+                    <div class="w-16 h-16 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-xl flex items-center justify-center text-2xl mb-6 shadow-lg shadow-emerald-500/30">🥭</div>
+                    <h3 class="text-xl font-medium mb-4">Bingsu Mango Tropical</h3>
+                    <p class="text-white/70 leading-relaxed">Contraste perfecto entre el frío del páramo y el calor tropical. Mango fresco, coco rallado, tapioca y salsa de maracuyá.</p>
+                </div>
+
+                <div class="bg-slate-950/60 backdrop-blur-sm border border-emerald-400/20 rounded-2xl p-8 hover:transform hover:-translate-y-2 hover:border-emerald-400/40 hover:shadow-2xl hover:shadow-emerald-400/10 transition-all duration-300">
+                    <div class="w-16 h-16 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-xl flex items-center justify-center text-2xl mb-6 shadow-lg shadow-emerald-500/30">🌙</div>
+                    <h3 class="text-xl font-medium mb-4">Bingsu Luna del Páramo</h3>
+                    <p class="text-white/70 leading-relaxed">Creación especial de la casa con café premium colombiano, helado de café, galletas de avena y un toque de caramelo salado.</p>
+                </div>
+
+                <div class="bg-slate-950/60 backdrop-blur-sm border border-emerald-400/20 rounded-2xl p-8 hover:transform hover:-translate-y-2 hover:border-emerald-400/40 hover:shadow-2xl hover:shadow-emerald-400/10 transition-all duration-300">
+                    <div class="w-16 h-16 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-xl flex items-center justify-center text-2xl mb-6 shadow-lg shadow-emerald-500/30">🍵</div>
+                    <h3 class="text-xl font-medium mb-4">Bingsu Matcha Místico</h3>
+                    <p class="text-white/70 leading-relaxed">Té matcha ceremonial, helado de té verde, mochi de diferentes sabores, azuki dulce y polvo de matcha premium.</p>
+                </div>
+
+                <div class="bg-slate-950/60 backdrop-blur-sm border border-emerald-400/20 rounded-2xl p-8 hover:transform hover:-translate-y-2 hover:border-emerald-400/40 hover:shadow-2xl hover:shadow-emerald-400/10 transition-all duration-300">
+                    <div class="w-16 h-16 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-xl flex items-center justify-center text-2xl mb-6 shadow-lg shadow-emerald-500/30">🥥</div>
+                    <h3 class="text-xl font-medium mb-4">Bingsu Coco Nevado</h3>
+                    <p class="text-white/70 leading-relaxed">Inspirado en las cumbres nevadas del páramo. Coco fresco, leche de coco, gelatina de lychee y copos de coco tostado.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experiencia" class="py-24 px-4 relative">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div>
+                <h4 class="text-emerald-500 text-sm uppercase tracking-widest mb-4">Experiencia Única</h4>
+                <h2 class="text-5xl font-light mb-6">Bajo las Estrellas del Páramo</h2>
+                <p class="text-white/70 text-lg mb-6 leading-relaxed">
+                    En Bingsu Lounge El Páramo, cada visita es un viaje sensorial. 
+                    Nuestro ambiente acogedor y la vista panorámica del cielo estrellado 
+                    crean la atmósfera perfecta para disfrutar de nuestras creaciones heladas.
+                </p>
+                <p class="text-white/70 text-lg mb-8 leading-relaxed">
+                    Diseñado como un refugio moderno en el páramo, nuestro lounge combina 
+                    la calidez de un hogar con la sofisticación de un restobar premium.
+                </p>
+                <a href="#reservar" class="inline-block px-8 py-3 bg-gradient-to-r from-emerald-500 to-emerald-600 rounded-full text-white shadow-lg hover:transform hover:-translate-y-1 transition-all">Vive la Experiencia</a>
+            </div>
+            
+            <div class="relative h-96 bg-gradient-to-br from-slate-950/60 to-emerald-400/10 rounded-2xl border border-emerald-400/20 overflow-hidden">
+                <!-- Cave opening visual -->
+                <div class="absolute bottom-0 left-1/2 w-72 h-48 bg-gradient-radial from-emerald-400/20 to-transparent rounded-t-full transform -translate-x-1/2"></div>
+                <!-- Figure silhouette -->
+                <div class="absolute bottom-5 left-1/2 w-8 h-20 bg-gradient-to-t from-emerald-900 to-slate-950 rounded-t-lg transform -translate-x-1/2">
+                    <div class="absolute -top-4 left-1/2 w-5 h-5 bg-emerald-900 rounded-full transform -translate-x-1/2"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section id="eventos" class="py-24 px-4 bg-gradient-to-br from-slate-950/80 to-emerald-900/30">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <!-- Mobile Device -->
+            <div class="flex justify-center">
+                <div class="relative w-64 h-96 bg-gradient-to-b from-slate-800 to-slate-950 rounded-3xl p-4 border-2 border-emerald-400/30 shadow-2xl">
+                    <!-- Front camera -->
+                    <div class="absolute top-2 left-1/2 w-3 h-3 bg-gray-800 rounded-full transform -translate-x-1/2 z-10"></div>
+                    <!-- Speaker -->
+                    <div class="absolute top-2 left-1/2 ml-5 w-8 h-1 bg-gray-600 rounded transform -translate-x-1/2 z-10"></div>
+                    <!-- Screen -->
+                    <div class="w-full h-full bg-gradient-to-br from-emerald-900/50 to-slate-900 rounded-2xl overflow-hidden shadow-inner">
+                        <div class="p-6 text-center">
+                            <div class="text-4xl mb-4">🌟</div>
+                            <div class="text-emerald-400 text-sm mb-2">Próximo Evento</div>
+                            <div class="text-white text-xs">Noche de Luna Llena</div>
+                        </div>
+                    </div>
+                    <!-- Home button -->
+                    <div class="absolute bottom-2 left-1/2 w-8 h-8 bg-gradient-radial from-gray-700 to-gray-900 rounded-full transform -translate-x-1/2"></div>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="text-emerald-500 text-sm uppercase tracking-widest mb-4">Eventos Especiales</h4>
+                <h2 class="text-4xl font-light mb-6">Noches Temáticas</h2>
+                <p class="text-white/70 text-lg mb-8 leading-relaxed">
+                    Únete a nuestras noches especiales: lluvia de estrellas, 
+                    degustaciones de bingsu, música en vivo y experiencias gastronómicas únicas. 
+                    Cada evento es una oportunidad para crear recuerdos inolvidables.
+                </p>
+                <ul class="text-white/70 mb-8 space-y-2">
+                    <li class="flex items-center gap-3">🌙 <span>Viernes de Luna Llena - Cena especial</span></li>
+                    <li class="flex items-center gap-3">⭐ <span>Sábados Estelares - Música en vivo</span></li>
+                    <li class="flex items-center gap-3">❄️ <span>Domingos de Bingsu - Clases magistrales</span></li>
+                </ul>
+                <a href="#contacto" class="inline-block px-8 py-3 bg-gradient-to-r from-emerald-500 to-emerald-600 rounded-full text-white shadow-lg hover:transform hover:-translate-y-1 transition-all">Más Información</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contacto" class="bg-slate-950/90 backdrop-blur-sm border-t border-emerald-400/20 py-12 px-4">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div>
+                <h3 class="text-emerald-500 text-lg font-medium mb-4">Bingsu Lounge El Páramo</h3>
+                <p class="text-white/60 mb-4">El destino perfecto para los amantes de los sabores únicos y las experiencias memorables bajo las estrellas.</p>
+                <div class="flex items-center gap-2 text-white/60">
+                    <span class="text-emerald-500">📍</span>
+                    <span>Km 15 Vía al Páramo, El Páramo</span>
+                </div>
+            </div>
+            
+            <div>
+                <h3 class="text-emerald-500 text-lg font-medium mb-4">Horarios</h3>
+                <ul class="text-white/60 space-y-2">
+                    <li>Lunes - Jueves: 6:00 PM - 11:00 PM</li>
+                    <li>Viernes - Sábado: 6:00 PM - 1:00 AM</li>
+                    <li>Domingo: 4:00 PM - 10:00 PM</li>
+                    <li class="text-emerald-400">Reservas recomendadas</li>
+                </ul>
+            </div>
+            
+            <div>
+                <h3 class="text-emerald-500 text-lg font-medium mb-4">Contacto</h3>
+                <ul class="text-white/60 space-y-2">
+                    <li class="flex items-center gap-2">📞 <a href="tel:+573001234567" class="hover:text-emerald-400 transition-colors">+57 300 123 4567</a></li>
+                    <li class="flex items-center gap-2">✉️ <a href="mailto:info@bingsulounge.com" class="hover:text-emerald-400 transition-colors">info@bingsulounge.com</a></li>
+                    <li class="flex items-center gap-2">📱 <a href="#" class="hover:text-emerald-400 transition-colors">@BingsuLoungeParamo</a></li>
+                    <li class="flex items-center gap-2">🌐 <a href="#" class="hover:text-emerald-400 transition-colors">www.bingsulounge.com</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h3 class="text-emerald-500 text-lg font-medium mb-4">Servicios</h3>
+                <ul class="text-white/60 space-y-2">
+                    <li><a href="#" class="hover:text-emerald-400 transition-colors">Bingsus Artesanales</a></li>
+                    <li><a href="#" class="hover:text-emerald-400 transition-colors">Bebidas Especiales</a></li>
+                    <li><a href="#" class="hover:text-emerald-400 transition-colors">Eventos Privados</a></li>
+                    <li><a href="#" class="hover:text-emerald-400 transition-colors">Delivery Zona Páramo</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="border-t border-emerald-400/20 mt-12 pt-8 text-center text-white/50">
+            <p>&copy; 2024 Bingsu Lounge El Páramo. Todos los derechos reservados. | Diseño inspirado en las estrellas del páramo.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Crear estrellas dinámicas
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            const numberOfStars = 100;
+
+            for (let i = 0; i < numberOfStars; i++) {
+                const star = document.createElement('div');
+                star.className = 'absolute w-1 h-1 bg-emerald-400 rounded-full star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.opacity = Math.random() * 0.8 + 0.2;
+                star.style.animationDelay = Math.random() * 3 + 's';
+                star.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                
+                starsContainer.appendChild(star);
+            }
+        }
+
+        // Navegación suave
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerHeight = document.querySelector('header').offsetHeight;
+                    const elementPosition = target.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Header con efecto de scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.classList.add('bg-slate-950/95');
+                header.classList.remove('bg-slate-950/90');
+            } else {
+                header.classList.add('bg-slate-950/90');
+                header.classList.remove('bg-slate-950/95');
+            }
+        });
+
+        // Inicializar cuando el DOM esté listo
+        document.addEventListener('DOMContentLoaded', () => {
+            createStars();
+            console.log('🌟 Bingsu Lounge El Páramo - Tailwind version inicializada');
+        });
+    </script>
+</body>
+</html>
