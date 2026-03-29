@@ -1,10 +1,4 @@
 <div align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&height=300&color=0:1e90ff,100:00bfff&text=Bienvenido%20a%20Andiquis&fontColor=ffffff&fontSize=40&desc=Explora%20mis%20proyectos%20y%20creaciones&descAlign=50&fontAlign=50&fontAlignY=60" width="100%" alt="Encabezado atractivo"/>
-</div>
-
----
-
-<div align="center">
   <img src="https://github.com/Andiquis/Andiquis/blob/main/face2.gif">
   <!--h1>👨‍💻 Andi Quis | Desarrollador Multidisciplinario 👨‍💻</h1-->
 
@@ -183,12 +177,16 @@ Soy **Andi**, un apasionado del desarrollo de software con experiencia en múlti
 
 <div align="center">
 
-<p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&height=300&color=0:1e90ff,100:00bfff&text=Andiquis%20Web%20Preview&fontColor=ffffff&desc=Visita%20mi%20p%C3%A1gina%20web%20en%20el%20enlace%20de%20abajo&descAlign=50&fontAlign=50&fontAlignY=45" width="100%" alt="Vista de la Página Web"/>
-</p>
-<p align="center">
-  <a href="https://andiquis.github.io/Present/" target="_blank">Haz clic aquí para visitar mi página web</a>
-</p>
+<table width="85%" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="20%" align="center">
+      <img width="80" src="image1.webp" style="border-radius: 50%;">
+    </td>
+    <td width="80%">
+      <img src="http://readme-typing-svg.herokuapp.com?font=Delicious+Handrawn&pause=1000&color=F70000&size=32&width=1000&lines=Loading...............;Hola+👋👋;soy+asistente+de+Andi;que+opinas+de+tu+experiencia+x+aqui;comentanos+aqui+en+nuestras+redes+sociales+👇👇👇;no+te+pierdas+de+nuestros+nuevos+contenidos😁;aunque+no+subo+mucho+contenido+jeje;visitanos+en+WhatsApp+para+socializar😉" alt="Typing SVG" />
+    </td>
+  </tr>
+</table>
 
 </div>
 <br>
