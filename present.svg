@@ -1,0 +1,59 @@
+
+
+<svg width="1000" height="200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Definición de la fuente y estilos -->
+  <style>
+    text {
+      font-family: Delicious Handrawn, sans-serif;
+      font-size: 24px;
+      fill: #F70000;
+    }
+  </style>
+  
+  <!-- Grupo para la animación -->
+  <g>
+    <!-- Texto inicialmente oculto -->
+    <text x="10" y="30" fill="black" opacity="0">
+      <!-- Línea 1 -->
+      <tspan dy="0">
+        <animate attributeName="opacity" from="0" to="1" dur="1s" begin="1s" fill="freeze" />
+        Loading...............
+      </tspan>
+      <!-- Línea 2 -->
+      <tspan dy="25">
+        <animate attributeName="opacity" from="0" to="1" dur="1s" begin="5s" fill="freeze" />
+        Hola 👋👋
+      </tspan>
+      <!-- Línea 3 -->
+      <tspan dy="25">
+        <animate attributeName="opacity" from="0" to="1" dur="1s" begin="9s" fill="freeze" />
+        soy asistente de Andi
+      </tspan>
+      <!-- Línea 4 -->
+      <tspan dy="25">
+        <animate attributeName="opacity" from="0" to="1" dur="1s" begin="13s" fill="freeze" />
+        que opinas de tu experiencia x aqui
+      </tspan>
+      <!-- Línea 5 -->
+      <tspan dy="25">
+        <animate attributeName="opacity" from="0" to="1" dur="1s" begin="17s" fill="freeze" />
+        comentanos aqui en nuestras redes sociales 👇👇👇
+      </tspan>
+      <!-- Línea 6 -->
+      <tspan dy="25">
+        <animate attributeName="opacity" from="0" to="1" dur="1s" begin="21s" fill="freeze" />
+        no te pierdas de nuestros nuevos contenidos 😁
+      </tspan>
+      <!-- Línea 7 -->
+      <tspan dy="25">
+        <animate attributeName="opacity" from="0" to="1" dur="1s" begin="25s" fill="freeze" />
+        aunque no subo mucho contenido jeje
+      </tspan>
+      <!-- Línea 8 -->
+      <tspan dy="25">
+        <animate attributeName="opacity" from="0" to="1" dur="1s" begin="29s" fill="freeze" />
+        visitanos en WhatsApp para socializar 😉
+      </tspan>
+    </text>
+  </g>
+</svg>
