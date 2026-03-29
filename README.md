@@ -178,6 +178,6 @@ Soy **Andi**, un apasionado del desarrollo de software con experiencia en múlti
 ## 🌐 Vista de la Página Web
 
 <p align="center">
-  <img src="https://andiquis.github.io/Present/" alt="Vista de la Página Web" width="100%" height="500px" style="border: none;">
+  <img src="https://andiquis.github.io/Present/index.html" alt="Vista de la Página Web" width="100%" height="500px" style="border: none;">
 </p>
 
