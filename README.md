@@ -1,4 +1,10 @@
 <div align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&height=300&color=0:1e90ff,100:00bfff&text=Bienvenido%20a%20Andiquis&fontColor=ffffff&fontSize=40&desc=Explora%20mis%20proyectos%20y%20creaciones&descAlign=50&fontAlign=50&fontAlignY=60" width="100%" alt="Encabezado atractivo"/>
+</div>
+
+---
+
+<div align="center">
   <img src="https://github.com/Andiquis/Andiquis/blob/main/face2.gif">
   <!--h1>👨‍💻 Andi Quis | Desarrollador Multidisciplinario 👨‍💻</h1-->
 
