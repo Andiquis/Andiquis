@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dev Wallpaper</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Playfair+Display:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:       #0a0c10;
+    --surface:  #0f1117;
+    --border:   #1e2330;
+    --accent1:  #e8c97a;
+    --accent2:  #5b8dee;
+    --accent3:  #7ed9a8;
+    --accent4:  #e87a7a;
+    --muted:    #3a3f52;
+    --text:     #c8cdd8;
+    --textdim:  #5a6070;
+  }
+
+  html, body {
+    width: 100%; height: 100%;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Mono', monospace;
+    overflow: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image:
+      linear-gradient(var(--border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 48px 48px;
+    opacity: .32;
+    pointer-events: none;
+  }
+
+  body::after {
+    content: '';
+    position: fixed; inset: 0;
+    border: 1px solid var(--border);
+    margin: 28px;
+    pointer-events: none;
+  }
+
+  .canvas {
+    position: relative;
+    width: 100vw; height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    grid-template-rows: auto 1fr auto;
+    padding: 52px 60px 44px;
+  }
+
+  /* TOP BAR */
+  .topbar {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 36px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 48px;
+  }
+
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: .25em;
+    text-transform: uppercase;
+    color: var(--accent1);
+  }
+
+  .status-dots { display: flex; gap: 10px; align-items: center; }
+  .dot { width: 9px; height: 9px; border-radius: 50%; }
+  .dot-r { background: var(--accent4); }
+  .dot-y { background: var(--accent1); }
+  .dot-g { background: var(--accent3); }
+
+  .tagline {
+    font-size: 11px;
+    letter-spacing: .18em;
+    color: var(--textdim);
+    text-transform: uppercase;
+  }
+
+  /* HERO */
+  .hero {
+    grid-column: 1;
+    grid-row: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-right: 60px;
+  }
+
+  .hero-label {
+    font-size: 10.5px;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    color: var(--accent2);
+    margin-bottom: 22px;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(40px, 5.5vw, 72px);
+    font-weight: 900;
+    line-height: .95;
+    color: #d0d4de;
+    margin-bottom: 32px;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--accent1);
+  }
+
+  .hero-desc {
+    font-size: 13px;
+    line-height: 1.85;
+    color: var(--textdim);
+    max-width: 480px;
+    border-left: 2px solid var(--accent2);
+    padding-left: 20px;
+    margin-bottom: 44px;
+  }
+
+  .metrics { display: flex; gap: 40px; align-items: flex-end; }
+
+  .metric-item { display: flex; flex-direction: column; gap: 6px; }
+
+  .metric-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--accent1);
+    line-height: 1;
+  }
+
+  .metric-label {
+    font-size: 9.5px;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .metric-divider {
+    width: 1px; height: 48px;
+    background: var(--border);
+    align-self: center;
+  }
+
+  /* SIDEBAR */
+  .sidebar {
+    grid-column: 2;
+    grid-row: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border-left: 1px solid var(--border);
+    padding-left: 36px;
+  }
+
+  .panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 20px 22px;
+  }
+
+  .panel-header {
+    font-size: 9px;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    color: var(--textdim);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .panel-header::after {
+    content: '';
+    flex: 1; height: 1px;
+    background: var(--border);
+  }
+
+  .code-block { font-size: 11.5px; line-height: 1.9; }
+
+  .c-kw  { color: var(--accent2); }
+  .c-fn  { color: var(--accent3); }
+  .c-str { color: var(--accent1); }
+  .c-cm  { color: var(--muted); font-style: italic; }
+  .c-num { color: var(--accent4); }
+
+  .skill-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+    gap: 12px;
+  }
+
+  .skill-name {
+    font-size: 10px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--text);
+    width: 72px;
+    flex-shrink: 0;
+  }
+
+  .skill-bar {
+    flex: 1;
+    height: 3px;
+    background: var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .skill-fill {
+    position: absolute; top: 0; left: 0; height: 100%;
+    border-radius: 2px;
+  }
+
+  .skill-pct {
+    font-size: 9px;
+    color: var(--textdim);
+    width: 28px;
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  .quote-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-style: italic;
+    line-height: 1.65;
+    color: var(--text);
+    margin-bottom: 12px;
+  }
+
+  .quote-author {
+    font-size: 9.5px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--accent1);
+  }
+
+  /* BOTTOM BAR */
+  .bottombar {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 28px;
+    border-top: 1px solid var(--border);
+    margin-top: 32px;
+  }
+
+  .bottom-tags { display: flex; gap: 12px; }
+
+  .tag {
+    font-size: 9px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    color: var(--muted);
+  }
+
+  .tag.active {
+    border-color: var(--accent3);
+    color: var(--accent3);
+  }
+
+  .bottom-right { display: flex; align-items: center; gap: 20px; }
+
+  .indicator {
+    display: flex; align-items: center; gap: 7px;
+    font-size: 9.5px;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: var(--textdim);
+  }
+
+  .indicator-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent3);
+    box-shadow: 0 0 6px var(--accent3);
+  }
+
+  .bg-digit {
+    position: fixed;
+    bottom: -60px; left: -20px;
+    font-family: 'Playfair Display', serif;
+    font-size: 360px;
+    font-weight: 900;
+    color: transparent;
+    -webkit-text-stroke: 1px #1a1e28;
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+  }
+
+  .canvas > * { position: relative; z-index: 1; }
+</style>
+</head>
+<body>
+
+<div class="bg-digit">01</div>
+
+<div class="canvas">
+
+  <div class="topbar">
+    <span class="logo">Developer Workspace</span>
+    <div class="status-dots">
+      <span class="dot dot-r"></span>
+      <span class="dot dot-y"></span>
+      <span class="dot dot-g"></span>
+    </div>
+    <span class="tagline">Build · Debug · Ship · Repeat</span>
+  </div>
+
+  <div class="hero">
+    <p class="hero-label">// motivación diaria</p>
+    <h1 class="hero-title">El código<br>que escribes<br><em>hoy</em></h1>
+    <p class="hero-desc">
+      No tienes que ver el camino completo.<br>
+      Solo da el siguiente paso, escribe la siguiente línea.<br>
+      Cada bug resuelto es una versión mejor de ti.
+    </p>
+    <div class="metrics">
+      <div class="metric-item">
+        <span class="metric-num">∞</span>
+        <span class="metric-label">Posibilidades</span>
+      </div>
+      <div class="metric-divider"></div>
+      <div class="metric-item">
+        <span class="metric-num">01</span>
+        <span class="metric-label">Día a la vez</span>
+      </div>
+      <div class="metric-divider"></div>
+      <div class="metric-item">
+        <span class="metric-num">++</span>
+        <span class="metric-label">Siempre mejora</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="sidebar">
+
+    <div class="panel">
+      <div class="panel-header">snippet</div>
+      <div class="code-block">
+        <div><span class="c-kw">function</span> <span class="c-fn">seguirAdelante</span>() {</div>
+        <div>&nbsp;&nbsp;<span class="c-kw">const</span> miedo = <span class="c-fn">parseInt</span>(<span class="c-str">"reto"</span>);</div>
+        <div>&nbsp;&nbsp;<span class="c-kw">if</span> (cansado) {</div>
+        <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-cm">// descansa, no te rindas</span></div>
+        <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-kw">return</span> <span class="c-fn">mañana</span>();</div>
+        <div>&nbsp;&nbsp;}</div>
+        <div>&nbsp;&nbsp;<span class="c-kw">return</span> <span class="c-num">++versión</span>;</div>
+        <div>}</div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-header">progreso</div>
+      <div class="skill-row">
+        <span class="skill-name">Paciencia</span>
+        <div class="skill-bar"><div class="skill-fill" style="width:88%;background:var(--accent3);"></div></div>
+        <span class="skill-pct">88%</span>
+      </div>
+      <div class="skill-row">
+        <span class="skill-name">Creatividad</span>
+        <div class="skill-bar"><div class="skill-fill" style="width:94%;background:var(--accent2);"></div></div>
+        <span class="skill-pct">94%</span>
+      </div>
+      <div class="skill-row">
+        <span class="skill-name">Resiliencia</span>
+        <div class="skill-bar"><div class="skill-fill" style="width:76%;background:var(--accent1);"></div></div>
+        <span class="skill-pct">76%</span>
+      </div>
+      <div class="skill-row" style="margin-bottom:0">
+        <span class="skill-name">Curiosidad</span>
+        <div class="skill-bar"><div class="skill-fill" style="width:99%;background:var(--accent4);"></div></div>
+        <span class="skill-pct">99%</span>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-header">inspiración</div>
+      <p class="quote-text">"Primero, resuelve el problema.<br>Luego, escribe el código."</p>
+      <span class="quote-author">— John Johnson</span>
+    </div>
+
+  </div>
+
+  <div class="bottombar">
+    <div class="bottom-tags">
+      <span class="tag active">En progreso</span>
+      <span class="tag">Git push</span>
+      <span class="tag">Deploy</span>
+      <span class="tag">Refactor</span>
+      <span class="tag">Learn</span>
+    </div>
+    <div class="bottom-right">
+      <div class="indicator">
+        <span class="indicator-dot"></span>
+        Sistema activo
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    const frases = [
+      "El código que escribes hoy",
+      "Una línea puede cambiar todo",
+      "El futuro se escribe línea a línea",
+      "Sigue escribiendo tu historia",
+      "Compila tu destino hoy",
+      "Cada línea construye quién eres",
+      "El futuro se programa hoy",
+      "El mañana se escribe hoy",
+      "El futuro empieza con una línea",
+      "Hoy escribes lo que mañana ejecutará",
+      "Piensa. Escribe. Construye",
+      "Una línea después de otra",
+      "Todo empieza con una idea",
+      "Escribe. Compila. Domina",
+      "Código hoy. Impacto mañana",
+      "Build. Break. Rebuild",
+      "Cada línea es un paso adelante",
+      "Construye algo que importe",
+      "Tu código también te escribe",
+      "No sueñes el futuro, prográmalo",
+      "Ideas convertidas en código",
+      "El mundo funciona con código",
+      "Crea. Rompe. Aprende"
+    ];
+
+    const citas = [
+      { texto: "Primero, resuelve el problema. Luego, escribe el código.", autor: "John Johnson" },
+      { texto: "La mejor manera de predecir el futuro es inventarlo.", autor: "Alan Kay" },
+      { texto: "El código es como el humor. Si tienes que explicarlo, es malo.", autor: "Cory House" },
+      { texto: "Cualquier tonto puede escribir código que una computadora entienda. Los buenos programadores escriben código que los humanos entienden.", autor: "Martin Fowler" },
+      { texto: "No te preocupes si no funciona bien. Si todo estuviera bien, te habrían despedido.", autor: "Mosher's Law" },
+      { texto: "La simplicidad es la sofisticación definitiva.", autor: "Leonardo da Vinci" },
+      { texto: "El único modo de hacer un gran trabajo es amar lo que haces.", autor: "Steve Jobs" },
+      { texto: "Hablar es barato. Muéstrame el código.", autor: "Linus Torvalds" },
+      { texto: "La perseverancia no es una carrera larga, son muchas carreras cortas una tras otra.", autor: "Walter Elliot" },
+      { texto: "Los programas deben escribirse para que la gente los lea y, de paso, las máquinas los ejecuten.", autor: "Harold Abelson" }
+    ];
+
+    const heroTitle = document.querySelector('.hero-title');
+    const fraseAleatoria = frases[Math.floor(Math.random() * frases.length)];
+    heroTitle.innerHTML = fraseAleatoria;
+
+    const citaAleatoria = citas[Math.floor(Math.random() * citas.length)];
+    document.querySelector('.quote-text').innerHTML = `"${citaAleatoria.texto}"`;
+    document.querySelector('.quote-author').innerHTML = `— ${citaAleatoria.autor}`;
+  });
+</script>
+
+</body>
+</html>

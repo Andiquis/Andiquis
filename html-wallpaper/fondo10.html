@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Developer Wallpaper - Minimal Elegance</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #0a0a0f;
+            color: #e4e4e7;
+            min-height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Fondo con gradiente elegante */
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .background::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(ellipse 80% 50% at 20% 40%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse 60% 40% at 80% 60%, rgba(139, 92, 246, 0.12) 0%, transparent 50%),
+                radial-gradient(ellipse 40% 30% at 50% 80%, rgba(16, 185, 129, 0.08) 0%, transparent 50%);
+        }
+
+        /* Patrón de grilla sutil */
+        .grid-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 60px 60px;
+            z-index: 1;
+        }
+
+        /* Contenedor principal */
+        .container {
+            position: relative;
+            z-index: 10;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            padding: 40px 50px;
+            gap: 40px;
+        }
+
+        /* Panel izquierdo - Código */
+        .code-panel {
+            flex: 1;
+            max-width: 600px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        /* Encabezado del editor */
+        .editor-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .editor-dots {
+            display: flex;
+            gap: 8px;
+        }
+
+        .editor-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .editor-dot.red { background: #ef4444; }
+        .editor-dot.yellow { background: #eab308; }
+        .editor-dot.green { background: #22c55e; }
+
+        .editor-title {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            color: #71717a;
+            margin-left: 15px;
+        }
+
+        /* Bloque de código */
+        .code-block {
+            background: rgba(15, 15, 20, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 25px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            line-height: 1.8;
+            overflow: hidden;
+        }
+
+        .line {
+            display: flex;
+            gap: 20px;
+        }
+
+        .line-number {
+            color: #3f3f46;
+            min-width: 25px;
+            text-align: right;
+            user-select: none;
+        }
+
+        .line-content {
+            flex: 1;
+        }
+
+        /* Sintaxis resaltada */
+        .keyword { color: #c084fc; }
+        .function { color: #60a5fa; }
+        .string { color: #34d399; }
+        .comment { color: #52525b; }
+        .variable { color: #fbbf24; }
+        .operator { color: #f472b6; }
+        .type { color: #22d3ee; }
+        .number { color: #fb923c; }
+        .bracket { color: #a1a1aa; }
+
+        /* Panel central - Info del desarrollador */
+        .info-panel {
+            flex: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            text-align: center;
+        }
+
+        .dev-title {
+            font-size: 64px;
+            font-weight: 700;
+            letter-spacing: -2px;
+            background: linear-gradient(135deg, #e4e4e7 0%, #a1a1aa 50%, #e4e4e7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .dev-subtitle {
+            font-size: 18px;
+            font-weight: 300;
+            color: #71717a;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+        }
+
+        /* Stack tecnológico */
+        .tech-stack {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 500px;
+        }
+
+        .tech-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            padding: 20px 25px;
+            background: rgba(20, 20, 25, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            min-width: 100px;
+        }
+
+        .tech-icon {
+            font-size: 28px;
+            font-weight: 600;
+        }
+
+        .tech-icon.js { color: #fbbf24; }
+        .tech-icon.ts { color: #3b82f6; }
+        .tech-icon.py { color: #22c55e; }
+        .tech-icon.go { color: #22d3ee; }
+        .tech-icon.rust { color: #fb923c; }
+
+        .tech-name {
+            font-size: 11px;
+            font-weight: 500;
+            color: #71717a;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Panel derecho - Stats */
+        .stats-panel {
+            width: 280px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 25px;
+        }
+
+        .stat-card {
+            background: rgba(15, 15, 20, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .stat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .stat-label {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #52525b;
+        }
+
+        .stat-badge {
+            font-size: 10px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .stat-badge.active {
+            background: rgba(34, 197, 94, 0.15);
+            color: #22c55e;
+        }
+
+        .stat-badge.info {
+            background: rgba(59, 130, 246, 0.15);
+            color: #60a5fa;
+        }
+
+        .stat-value {
+            font-size: 36px;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: -1px;
+        }
+
+        .stat-detail {
+            font-size: 12px;
+            color: #52525b;
+        }
+
+        /* Barra de progreso elegante */
+        .progress-bar {
+            height: 4px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            border-radius: 10px;
+        }
+
+        .progress-fill.blue {
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            width: 78%;
+        }
+
+        .progress-fill.green {
+            background: linear-gradient(90deg, #10b981, #22d3ee);
+            width: 92%;
+        }
+
+        .progress-fill.purple {
+            background: linear-gradient(90deg, #8b5cf6, #ec4899);
+            width: 65%;
+        }
+
+        /* Métrica circular */
+        .metric-circle {
+            position: relative;
+            width: 60px;
+            height: 60px;
+        }
+
+        .metric-circle svg {
+            transform: rotate(-90deg);
+        }
+
+        .metric-circle circle {
+            fill: none;
+            stroke-width: 4;
+            stroke-linecap: round;
+        }
+
+        .metric-bg {
+            stroke: rgba(255, 255, 255, 0.05);
+        }
+
+        .metric-value-circle {
+            stroke: url(#gradient);
+            stroke-dasharray: 163;
+            stroke-dashoffset: 35;
+        }
+
+        .metric-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 14px;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        /* Quote inspiracional */
+        .quote-section {
+            position: absolute;
+            bottom: 50px;
+            left: 50px;
+            right: 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .quote {
+            max-width: 500px;
+        }
+
+        .quote-text {
+            font-size: 16px;
+            font-weight: 300;
+            color: #71717a;
+            font-style: italic;
+            line-height: 1.6;
+        }
+
+        .quote-author {
+            margin-top: 12px;
+            font-size: 12px;
+            color: #3f3f46;
+            font-weight: 500;
+        }
+
+        /* Timestamp */
+        .timestamp {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            color: #3f3f46;
+        }
+
+        /* Decoración geométrica */
+        .geo-decoration {
+            position: absolute;
+            top: 50%;
+            right: 15%;
+            transform: translateY(-50%);
+            opacity: 0.03;
+            z-index: 0;
+        }
+
+        .geo-decoration svg {
+            width: 400px;
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <div class="background">
+        <div class="grid-pattern"></div>
+    </div>
+
+    <!-- Decoración geométrica -->
+    <div class="geo-decoration">
+        <svg viewBox="0 0 200 200">
+            <polygon points="100,10 190,75 160,170 40,170 10,75" fill="none" stroke="white" stroke-width="0.5"/>
+            <polygon points="100,30 170,80 150,155 50,155 30,80" fill="none" stroke="white" stroke-width="0.5"/>
+            <polygon points="100,50 150,85 140,140 60,140 50,85" fill="none" stroke="white" stroke-width="0.5"/>
+            <circle cx="100" cy="100" r="70" fill="none" stroke="white" stroke-width="0.5"/>
+            <circle cx="100" cy="100" r="50" fill="none" stroke="white" stroke-width="0.5"/>
+            <circle cx="100" cy="100" r="30" fill="none" stroke="white" stroke-width="0.5"/>
+        </svg>
+    </div>
+
+    <div class="container">
+        <!-- Panel izquierdo - Código -->
+        <div class="code-panel">
+            <div class="editor-header">
+                <div class="editor-dots">
+                    <span class="editor-dot red"></span>
+                    <span class="editor-dot yellow"></span>
+                    <span class="editor-dot green"></span>
+                </div>
+                <span class="editor-title">main.js — project</span>
+            </div>
+
+            <div class="code-block">
+                <div class="line">
+                    <span class="line-number">1</span>
+                    <span class="line-content"><span class="keyword">const</span> <span class="variable">developer</span> <span class="operator">=</span> <span class="bracket">{</span></span>
+                </div>
+                <div class="line">
+                    <span class="line-number">2</span>
+                    <span class="line-content">  <span class="string">name</span>: <span class="string">"Creative Mind"</span>,</span>
+                </div>
+                <div class="line">
+                    <span class="line-number">3</span>
+                    <span class="line-content">  <span class="string">passion</span>: <span class="string">"Building"</span>,</span>
+                </div>
+                <div class="line">
+                    <span class="line-number">4</span>
+                    <span class="line-content">  <span class="string">focus</span>: <span class="number">100</span>,</span>
+                </div>
+                <div class="line">
+                    <span class="line-number">5</span>
+                    <span class="line-content"><span class="bracket">}</span>;</span>
+                </div>
+                <div class="line">
+                    <span class="line-number">6</span>
+                    <span class="line-content"></span>
+                </div>
+                <div class="line">
+                    <span class="line-number">7</span>
+                    <span class="line-content"><span class="keyword">async function</span> <span class="function">createMagic</span><span class="bracket">()</span> <span class="bracket">{</span></span>
+                </div>
+                <div class="line">
+                    <span class="line-number">8</span>
+                    <span class="line-content">  <span class="keyword">const</span> <span class="variable">ideas</span> <span class="operator">=</span> <span class="keyword">await</span> <span class="function">imagine</span><span class="bracket">()</span>;</span>
+                </div>
+                <div class="line">
+                    <span class="line-number">9</span>
+                    <span class="line-content">  <span class="keyword">const</span> <span class="variable">code</span> <span class="operator">=</span> <span class="function">transform</span><span class="bracket">(</span><span class="variable">ideas</span><span class="bracket">)</span>;</span>
+                </div>
+                <div class="line">
+                    <span class="line-number">10</span>
+                    <span class="line-content">  <span class="keyword">return</span> <span class="function">deploy</span><span class="bracket">(</span><span class="variable">code</span><span class="bracket">)</span>;</span>
+                </div>
+                <div class="line">
+                    <span class="line-number">11</span>
+                    <span class="line-content"><span class="bracket">}</span></span>
+                </div>
+                <div class="line">
+                    <span class="line-number">12</span>
+                    <span class="line-content"></span>
+                </div>
+                <div class="line">
+                    <span class="line-number">13</span>
+                    <span class="line-content"><span class="comment">// Never stop learning</span></span>
+                </div>
+                <div class="line">
+                    <span class="line-number">14</span>
+                    <span class="line-content"><span class="function">createMagic</span><span class="bracket">()</span>.<span class="function">then</span><span class="bracket">(()</span> <span class="operator">=></span> <span class="bracket">{</span></span>
+                </div>
+                <div class="line">
+                    <span class="line-number">15</span>
+                    <span class="line-content">  <span class="variable">console</span>.<span class="function">log</span><span class="bracket">(</span><span class="string">"✨ Success"</span><span class="bracket">)</span>;</span>
+                </div>
+                <div class="line">
+                    <span class="line-number">16</span>
+                    <span class="line-content"><span class="bracket">})</span>;</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Panel central - Info -->
+        <div class="info-panel">
+            <div class="dev-subtitle">Software</div>
+            <div class="dev-title">Developer</div>
+            
+            <div class="tech-stack">
+                <div class="tech-item">
+                    <span class="tech-icon js">JS</span>
+                    <span class="tech-name">JavaScript</span>
+                </div>
+                <div class="tech-item">
+                    <span class="tech-icon ts">TS</span>
+                    <span class="tech-name">TypeScript</span>
+                </div>
+                <div class="tech-item">
+                    <span class="tech-icon py">Py</span>
+                    <span class="tech-name">Python</span>
+                </div>
+                <div class="tech-item">
+                    <span class="tech-icon go">Go</span>
+                    <span class="tech-name">Golang</span>
+                </div>
+                <div class="tech-item">
+                    <span class="tech-icon rust">Rs</span>
+                    <span class="tech-name">Rust</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Panel derecho - Stats -->
+        <div class="stats-panel">
+            <div class="stat-card">
+                <div class="stat-header">
+                    <span class="stat-label">Projects</span>
+                    <span class="stat-badge active">Active</span>
+                </div>
+                <div class="stat-value">24</div>
+                <div class="progress-bar">
+                    <div class="progress-fill blue"></div>
+                </div>
+                <div class="stat-detail">8 in production</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-header">
+                    <span class="stat-label">Commits</span>
+                    <span class="stat-badge info">This Week</span>
+                </div>
+                <div class="stat-value">847</div>
+                <div class="progress-bar">
+                    <div class="progress-fill green"></div>
+                </div>
+                <div class="stat-detail">+12% from last week</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-header">
+                    <span class="stat-label">Code Quality</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 20px;">
+                    <div class="metric-circle">
+                        <svg width="60" height="60">
+                            <defs>
+                                <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                    <stop offset="0%" stop-color="#8b5cf6"/>
+                                    <stop offset="100%" stop-color="#ec4899"/>
+                                </linearGradient>
+                            </defs>
+                            <circle class="metric-bg" cx="30" cy="30" r="26"/>
+                            <circle class="metric-value-circle" cx="30" cy="30" r="26"/>
+                        </svg>
+                        <span class="metric-text">78%</span>
+                    </div>
+                    <div>
+                        <div class="stat-detail">Test Coverage</div>
+                        <div style="color: #71717a; font-size: 11px; margin-top: 4px;">Target: 80%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer con quote -->
+    <div class="quote-section">
+        <div class="quote">
+            <div class="quote-text">"First, solve the problem. Then, write the code."</div>
+            <div class="quote-author">— John Johnson</div>
+        </div>
+        <div class="timestamp" id="timestamp"></div>
+    </div>
+
+    <script>
+        // Actualizar timestamp
+        function updateTimestamp() {
+            const now = new Date();
+            const options = { 
+                weekday: 'short', 
+                year: 'numeric', 
+                month: 'short', 
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            };
+            document.getElementById('timestamp').textContent = now.toLocaleDateString('en-US', options);
+        }
+        
+        updateTimestamp();
+        setInterval(updateTimestamp, 60000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Brillo automático por inactividad en Ubuntu (Wayland)</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      background: #0f1117;
+      color: #e6e6e6;
+      line-height: 1.6;
+      padding: 2rem;
+      max-width: 900px;
+      margin: auto;
+    }
+    h1, h2, h3 {
+      color: #7dd3fc;
+    }
+    code, pre {
+      background: #1e2230;
+      padding: .3rem .5rem;
+      border-radius: 6px;
+      color: #a7f3d0;
+    }
+    pre {
+      padding: 1rem;
+      overflow-x: auto;
+    }
+    section {
+      margin-bottom: 2.5rem;
+    }
+    .note {
+      color: #facc15;
+    }
+  </style>
+</head>
+<body>
+
+<h1>🌘 Brillo automático por inactividad (Ubuntu + Wayland)</h1>
+
+<p>
+Objetivo: que <strong>Ubuntu nunca se suspenda</strong>, pero que
+<strong>el brillo baje casi a cero cuando no hay actividad</strong>
+y vuelva instantáneamente al mover mouse o teclado.
+</p>
+
+---
+
+<section>
+<h2>🧠 Idea general</h2>
+<ul>
+  <li>No se usa suspensión</li>
+  <li>No se usa bloqueo</li>
+  <li>Wayland no mide tiempo exacto, solo <code>activo / inactivo</code></li>
+  <li>GNOME decide cuándo estás inactivo</li>
+  <li>Un script controla el brillo</li>
+  <li>Un servicio de usuario lo ejecuta siempre</li>
+</ul>
+</section>
+
+---
+
+<section>
+<h2>📦 Paquetes necesarios</h2>
+<pre><code>sudo apt install brightnessctl</code></pre>
+</section>
+
+---
+
+<section>
+<h2>📜 Script de brillo</h2>
+<p>Archivo:</p>
+<pre><code>~/.local/bin/brillo_inactividad.sh</code></pre>
+
+<pre><code>#!/bin/bash
+
+BRILLO_MIN=1
+apagado=false
+
+SESSION_ID=$(loginctl list-sessions --no-legend | awk -v user="$USER" '$3 == user {print $1; exit}')
+BRILLO_NORMAL=$(brightnessctl -d amdgpu_bl1 get)
+
+while true; do
+    idle=$(loginctl show-session "$SESSION_ID" -p IdleHint --value 2>/dev/null)
+
+    if [ "$idle" = "yes" ] && [ "$apagado" = false ]; then
+        brightnessctl -d amdgpu_bl1 set $BRILLO_MIN
+        apagado=true
+    fi
+
+    if [ "$idle" = "no" ] && [ "$apagado" = true ]; then
+        brightnessctl -d amdgpu_bl1 set $BRILLO_NORMAL
+        apagado=false
+    fi
+
+    sleep 2
+done
+</code></pre>
+
+<p>Dar permisos:</p>
+<pre><code>chmod +x ~/.local/bin/brillo_inactividad.sh</code></pre>
+</section>
+
+---
+
+<section>
+<h2>⚙️ Servicio systemd (usuario)</h2>
+
+<p>Archivo:</p>
+<pre><code>~/.config/systemd/user/brillo-inactividad.service</code></pre>
+
+<pre><code>[Unit]
+Description=Brillo automático por inactividad (Wayland)
+
+[Service]
+ExecStart=/home/andi/.local/bin/brillo_inactividad.sh
+Restart=always
+
+[Install]
+WantedBy=default.target
+</code></pre>
+
+<p>Activar (una sola vez):</p>
+<pre><code>systemctl --user daemon-reexec
+systemctl --user enable brillo-inactividad.service
+systemctl --user start brillo-inactividad.service</code></pre>
+</section>
+
+---
+
+<section>
+<h2>🔍 Comprobar estado</h2>
+<pre><code>systemctl --user status brillo-inactividad.service</code></pre>
+<p>Debe mostrar: <strong>Active: active (running)</strong></p>
+</section>
+
+---
+
+<section>
+<h2>⏱️ Control del tiempo de inactividad</h2>
+
+<p>Ver tiempo actual:</p>
+<pre><code>gsettings get org.gnome.desktop.session idle-delay</code></pre>
+
+<p>Ejemplo: 3 minutos</p>
+<pre><code>gsettings set org.gnome.desktop.session idle-delay 180</code></pre>
+
+<p class="note">
+GNOME decide cuándo estás inactivo.<br>
+El script solo obedece.
+</p>
+</section>
+
+---
+
+<section>
+<h2>🧪 Comportamiento final</h2>
+<ul>
+  <li>Inactividad → brillo casi a cero</li>
+  <li>Movimiento → brillo vuelve</li>
+  <li>Reinicias → sigue funcionando</li>
+  <li>No se suspende</li>
+  <li>No se bloquea</li>
+  <li>No depende de terminal</li>
+</ul>
+</section>
+
+---
+
+<section>
+<h2>🧘 Filosofía</h2>
+<p>
+La máquina despierta.<br>
+La pantalla descansa.<br>
+El control es tuyo.
+</p>
+</section>
+
+</body>
+</html>

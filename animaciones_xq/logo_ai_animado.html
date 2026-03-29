@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hacker Hexagon with Image Background</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Fira+Code:wght@400;500;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #0a0a0a;
+            margin: 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Fondo con efecto de grid */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 255, 0, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 0, 0.03) 1px, transparent 1px);
+            background-size: 30px 30px;
+            z-index: -3;
+        }
+
+        /* Fondo Matrix con dígitos cayendo */
+        .matrix-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: transparent;
+            overflow: hidden;
+        }
+
+        .matrix-bg::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(transparent, rgba(0, 255, 0, 0.15));
+            animation: rain 8s linear infinite;
+        }
+
+        .matrix-bg::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 0, 0.1), transparent);
+            animation: scanline 6s linear infinite;
+        }
+
+        .matrix-code {
+            position: absolute;
+            color: rgba(0, 255, 0, 0.8);
+            font-family: 'Fira Code', monospace;
+            font-size: 16px;
+            text-shadow: 0 0 10px rgba(0, 255, 0, 0.9);
+            animation: fall linear infinite;
+            white-space: nowrap;
+            pointer-events: none;
+        }
+
+        /* Efectos de fondo animados */
+        .bg-effects {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .scanning-line {
+            position: absolute;
+            width: 2px;
+            height: 100vh;
+            background: linear-gradient(180deg, transparent, #00ff00, transparent);
+            left: 20%;
+            animation: scan-vertical 8s linear infinite;
+            opacity: 0.4;
+        }
+
+        .scanning-line:nth-child(2) {
+            left: 80%;
+            animation-delay: 4s;
+        }
+
+        .data-particles {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #00ff00;
+            border-radius: 50%;
+            animation: float-particle 6s ease-in-out infinite;
+        }
+
+        .particle-1 { top: 20%; left: 10%; animation-delay: 0s; }
+        .particle-2 { top: 60%; left: 90%; animation-delay: 2s; }
+        .particle-3 { top: 80%; left: 30%; animation-delay: 4s; }
+
+        /* Hexágono */
+        .hexagon-container {
+            width: 180px;
+            height: 207.8px;
+            position: relative;
+            filter: drop-shadow(0 0 30px rgba(0, 255, 0, 0.6));
+            z-index: 10;
+        }
+
+        .hexagon {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://i.pinimg.com/736x/f2/76/98/f2769830bd45643f4ddfe78a858a7095.jpg');
+            background-size: cover;
+            background-position: center;
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 
+                0 0 25px #00ff00, 
+                0 0 50px rgba(0, 255, 0, 0.8),
+                0 0 100px rgba(0, 255, 0, 0.4),
+                inset 0 0 20px rgba(0, 0, 0, 0.3);
+            z-index: 10;
+            transition: all 0.5s ease-in-out;
+            border: 0px solid #00ff41;
+            cursor: pointer;
+        }
+
+    
+
+        /* Texto en el hexágono */
+        .hexagon-inner {
+            color: #00ff00;
+            font-family: 'Fira Code', monospace;
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-shadow: 
+                0 0 5px rgba(0, 255, 0, 0.8),
+                0 0 10px rgba(0, 255, 0, 0.5);
+            z-index: 20;
+            position: relative;
+            user-select: none;
+            animation: flicker 1.2s infinite;
+        }
+
+        /* Efecto de brillo interior */
+        .hexagon::before {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            right: 3px;
+            bottom: 3px;
+            background: linear-gradient(45deg, rgb(0, 255, 0), transparent, rgb(0, 200, 255));
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            z-index: 0;
+            animation: inner-glow 3s ease-in-out infinite alternate;
+        }
+
+        /* Fondo negro interior */
+        .hexagon::after {
+            content: '';
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            right: 12px;
+            bottom: 12px;
+            background: rgba(0, 0, 0, 0.5);
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            z-index: 5;
+        }
+
+        /* Bordes de targeting */
+        .targeting-frame {
+            position: absolute;
+            width: 220px;
+            height: 220px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+
+        .corner {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #00ff00;
+            box-shadow: 0 0 5px #00ff00;
+        }
+
+        .corner.top-left {
+            top: 0;
+            left: 0;
+            border-right: none;
+            border-bottom: none;
+            animation: corner-pulse 2s ease-in-out infinite;
+        }
+
+        .corner.top-right {
+            top: 0;
+            right: 0;
+            border-left: none;
+            border-bottom: none;
+            animation: corner-pulse 2s ease-in-out infinite 0.5s;
+        }
+
+        .corner.bottom-left {
+            bottom: 0;
+            left: 0;
+            border-right: none;
+            border-top: none;
+            animation: corner-pulse 2s ease-in-out infinite 1s;
+        }
+
+        .corner.bottom-right {
+            bottom: 0;
+            right: 0;
+            border-left: none;
+            border-top: none;
+            animation: corner-pulse 2s ease-in-out infinite 1.5s;
+        }
+
+        /* Líneas de conexión */
+        .connection-lines {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .line {
+            position: absolute;
+            background: linear-gradient(90deg, transparent, #00ff00, transparent);
+            opacity: 0.6;
+        }
+
+        .line.horizontal {
+            width: 60px;
+            height: 1px;
+            top: 50%;
+            left: -80px;
+            animation: line-flash 4s ease-in-out infinite;
+        }
+
+        .line.horizontal.right {
+            left: auto;
+            right: -80px;
+            animation-delay: 2s;
+        }
+
+        .line.vertical {
+            width: 1px;
+            height: 60px;
+            left: 50%;
+            top: -80px;
+            background: linear-gradient(180deg, transparent, #00ff00, transparent);
+            animation-delay: 1s;
+        }
+
+        .line.vertical.bottom {
+            top: auto;
+            bottom: -80px;
+            animation-delay: 3s;
+        }
+
+        /* Texto de estado */
+        .status-text {
+            position: absolute;
+            bottom: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Orbitron', monospace;
+            font-size: 15px;
+            color: #00ff00;
+            text-shadow: 0 0 5px #00ff00;
+            letter-spacing: 2px;
+            animation: text-flicker 3s ease-in-out infinite;
+            font-weight: bold;
+        }
+
+        .status-indicator {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: #00ff00;
+            border-radius: 50%;
+            margin-right: 8px;
+            box-shadow: 0 0 5px #00ff00;
+            animation: status-blink 2s ease-in-out infinite;
+        }
+
+        /* Código de acceso flotante */
+        .access-code {
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Fira Code', monospace;
+            font-size: 10px;
+            color: #00ff00;
+            opacity: 0.7;
+            letter-spacing: 1px;
+            animation: code-scroll 6s linear infinite;
+        }
+
+        /* Animaciones */
+        @keyframes fall {
+            0% {
+                transform: translateY(-10vh);
+                opacity: 0.8;
+            }
+            20% {
+                opacity: 1;
+            }
+            80% {
+                opacity: 0.5;
+            }
+            100% {
+                transform: translateY(110vh);
+                opacity: 0;
+            }
+        }
+
+        @keyframes rain {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 1200px; }
+        }
+
+        @keyframes scanline {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        @keyframes inner-glow {
+            0% { opacity: 0.3; }
+            100% { opacity: 0.7; }
+        }
+
+        @keyframes corner-pulse {
+            0%, 100% { 
+                box-shadow: 0 0 5px #00ff00;
+                border-color: #00ff00;
+            }
+            50% { 
+                box-shadow: 0 0 15px #00ff00, 0 0 25px #00ff00;
+                border-color: #00ff41;
+            }
+        }
+
+        @keyframes line-flash {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.8; }
+        }
+
+        @keyframes text-flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        @keyframes status-blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        @keyframes code-scroll {
+            0% { content: 'ACCESS_GRANTED'; }
+            25% { content: '0xDEADBEEF'; }
+            50% { content: 'SYSTEM_OK'; }
+            75% { content: 'EXPLOIT_READY'; }
+            100% { content: 'ACCESS_GRANTED'; }
+        }
+
+        @keyframes scan-vertical {
+            0% { transform: translateX(-100px); opacity: 0; }
+            50% { opacity: 0.4; }
+            100% { transform: translateX(100px); opacity: 0; }
+        }
+
+        @keyframes float-particle {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+            75% { opacity: 0.8; }
+        }
+
+        /* Efecto de click */
+        .hexagon:active {
+            transform: scale(0.95);
+            box-shadow: 
+                0 0 20px #00ff00, 
+                0 0 40px rgba(0, 255, 0, 0.6),
+                inset 0 0 40px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hexagon-container {
+                width: 150px;
+                height: 173.2px;
+            }
+            .hexagon-inner {
+                font-size: 28px;
+            }
+            .targeting-frame {
+                width: 190px;
+                height: 190px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="matrix-bg"></div>
+    <div class="bg-effects">
+        <div class="scanning-line"></div>
+        <div class="scanning-line"></div>
+        <div class="data-particles particle-1"></div>
+        <div class="data-particles particle-2"></div>
+        <div class="data-particles particle-3"></div>
+    </div>
+
+    <div class="targeting-frame">
+        <div class="corner top-left"></div>
+        <div class="corner top-right"></div>
+        <div class="corner bottom-left"></div>
+        <div class="corner bottom-right"></div>
+        <div class="connection-lines">
+            <div class="line horizontal"></div>
+            <div class="line horizontal right"></div>
+            <div class="line vertical"></div>
+            <div class="line vertical bottom"></div>
+        </div>
+    </div>
+
+    <div class="hexagon-container">
+        <div class="access-code">ADMIN</div>
+        <div class="hexagon">
+            <span class="hexagon-inner"><x_Q></span>
+        </div>
+        <div class="status-text">
+            <!--span class="status-indicator"--></span>ROOT
+        </div>
+    </div>
+
+    <script>
+        function createMatrixCode() {
+            const matrixBg = document.querySelector('.matrix-bg');
+            for (let i = 0; i < 120; i++) {
+                const code = document.createElement('div');
+                code.className = 'matrix-code';
+                code.textContent = Math.random().toString(36).substring(2, 8 + Math.floor(Math.random() * 12));
+                code.style.left = Math.random() * 100 + 'vw';
+                code.style.fontSize = 12 + Math.random() * 12 + 'px';
+                code.style.animationDuration = 3 + Math.random() * 7 + 's';
+                code.style.animationDelay = Math.random() * 3 + 's';
+                code.style.opacity = 0.5 + Math.random() * 0.5;
+                matrixBg.appendChild(code);
+            }
+        }
+        createMatrixCode();
+    </script>
+</body>
+</html>

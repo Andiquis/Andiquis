@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editor de código</title>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            line-height: 1.6;
+            background-color: #ffffff;
+            color: #d4d4d4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            width: 750px;
+            height: 450px;
+            display: flex;
+            flex-direction: row;
+        }
+        .line-numbers {
+            background-color: #333333;
+            color: #808080;
+            padding: 10px 15px;
+            text-align: right;
+            user-select: none;
+        }
+        .line-number {
+            cursor: default;
+        }
+        .line-number:hover {
+            font-weight: bold;
+        }
+        .code-editor {
+            flex: 1;
+            background-color: #1e1e1e;
+            padding: 10px 15px;
+            overflow-x: auto;
+        }
+        pre {
+            margin: 0;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="line-numbers">
+            <pre id="lineNumbers"></pre>
+        </div>
+        <div class="code-editor">
+            <pre><code id="code"></code></pre>
+        </div>
+    </div>
+    <script>
+        const lineNumbers = document.getElementById('lineNumbers');
+        const code = document.getElementById('code');
+        const codeText = `Hola señorita Lucero,
+Espero que te encuentres bien. Quería aprovechar este momento para expresarte 
+algo que ha estado en mi mente desde que nos conocimos.
+Aunque no hemos tenido muchas oportunidades de interactuar desde entonces, 
+cada momento que compartimos aquel día me dejó una impresión duradera.
+Quiero ser honesto contigo y decirte que desde esa noche, no he dejado 
+de pensar en ti. Me he encontrado sonriendo como un tonto recordando 
+aquellos momentos compartidos con usted y esperando la próxima vez que tenga la 
+oportunidad de verte.
+Sé que esto puede parecer un poco inesperado, pero sentí que era importante para 
+mí ser sincero contigo sobre mis sentimientos. No espero que sientas lo mismo de 
+inmediato, pero me encantaría tener la oportunidad de conocerte mejor y ver a 
+dónde nos lleva esta conexión que siento entre nosotros. Entiendo que ambos estamos 
+ocupados con nuestras carreras y que apenas estamos empezando a conocernos, 
+pero me gustaría preguntarte si estarías interesada en salir conmigo en algún 
+momento para seguir conversando y pasar tiempo juntos. Gracias por tomarte el 
+tiempo de leer esto y por la energía positiva que siempre transmites. 
+Espero con ansias la posibilidad de hablar contigo pronto y conocer más de ti.
+        `;
+
+        // Clear initial content
+        code.textContent = '';
+        lineNumbers.textContent = '1\n';
+
+        let chars = codeText.split('');
+        let charIndex = 0;
+        let lineIndex = 1;
+
+        function writeCharacter() {
+            let char = chars[charIndex++];
+            if (char === '\n') {
+                if (chars[charIndex] !== '\n') {
+                    lineNumbers.innerHTML += `<span class="line-number">${++lineIndex}</span>\n`;
+                }
+            }
+            code.textContent += char;
+
+            if (charIndex < chars.length) {
+                setTimeout(writeCharacter, 50); // Adjust the timing here (milliseconds per character)
+            }
+        }
+
+        writeCharacter();
+    </script>
+</body>
+</html>
