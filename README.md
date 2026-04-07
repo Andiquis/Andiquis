@@ -24,7 +24,7 @@ Soy **Andi**, un apasionado del desarrollo de software con experiencia en múlti
 - 🧠 **Inteligencia Artificial & ML** - Entrenamiento de modelos y análisis de datos
 - 👁️ **Visión por Computadora** - Reconocimiento de imágenes y procesamiento visual
 - 🔐 **Ciberseguridad** - Protección de sistemas y análisis de vulnerabilidades
-- 🤖 **Hardware con IA** - Integración de algoritmos inteligentes en dispositivos físicos
+- 🤖 **IOT + IA** - Integración de algoritmos inteligentes en dispositivos IOT
 
 <div align="center">
 
