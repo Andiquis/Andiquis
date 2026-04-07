@@ -23,7 +23,6 @@ Soy **Andi**, un apasionado del desarrollo de software con experiencia en múlti
 - 📱 **Desarrollo Móvil** - Experiencias fluidas con MAUI y tecnologías híbridas
 - 🧠 **Inteligencia Artificial & ML** - Entrenamiento de modelos y análisis de datos
 - 👁️ **Visión por Computadora** - Reconocimiento de imágenes y procesamiento visual
-- 🔐 **Ciberseguridad** - Protección de sistemas y análisis de vulnerabilidades
 - 🤖 **IOT + IA** - Integración de algoritmos inteligentes en dispositivos IOT
 
 <div align="center">
@@ -107,7 +106,7 @@ Soy **Andi**, un apasionado del desarrollo de software con experiencia en múlti
         <img src="https://img.shields.io/badge/-Cordova-E8E8E8?style=flat-square&logo=apache-cordova&logoColor=black" alt="Cordova">
       </td>
     </tr>
-    <tr>
+    <!--tr>
       <td align="center" style="background: rgba(244,67,54,0.1); padding: 15px; border: 2px solid rgba(244,67,54,0.3); font-weight: bold; color: #F44336;"><strong>Ciberseguridad</strong></td>
       <td align="left" style="background: rgba(244,67,54,0.05); padding: 15px; border: 2px solid rgba(244,67,54,0.3);">
         <img src="https://img.shields.io/badge/-Kali_Linux-557C94?style=flat-square&logo=kali-linux&logoColor=white" alt="Kali Linux"> 
@@ -115,7 +114,7 @@ Soy **Andi**, un apasionado del desarrollo de software con experiencia en múlti
         <img src="https://img.shields.io/badge/-Metasploit-2596CD?style=flat-square&logo=metasploit&logoColor=white" alt="Metasploit"> 
         <img src="https://img.shields.io/badge/-Nmap-4682B4?style=flat-square&logo=nmap&logoColor=white" alt="Nmap">
       </td>
-    </tr>
+  </tr-->
     <tr>
       <td align="center" style="background: rgba(103,58,183,0.1); padding: 15px; border: 2px solid rgba(103,58,183,0.3); font-weight: bold; color: #673AB7;"><strong>Testing & QA</strong></td>
       <td align="left" style="background: rgba(103,58,183,0.05); padding: 15px; border: 2px solid rgba(103,58,183,0.3);">
