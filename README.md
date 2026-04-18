@@ -1,3 +1,8 @@
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&height=300&color=0:1e90ff,100:00bfff&text=Hello%20World&fontColor=ffffff&desc=What%20is%20imagined%20demands%20to%20exist&descAlign=50&fontAlign=50&fontAlignY=45" width="100%" alt="header"/>
+</p>
+
+
 <div align="center">
   <img src="https://github.com/Andiquis/Andiquis/blob/main/face2.gif">
   <!--h1>👨‍💻 Andi Quis | Desarrollador Multidisciplinario 👨‍💻</h1-->
@@ -214,9 +219,9 @@ Soy **Andi**, un apasionado del desarrollo de software con experiencia en múlti
   <p>✨ <i>Gracias por visitar mi perfil. ¡Espero que podamos colaborar pronto!</i> ✨</p>
   
 <br>
-  <a href="https://github.com/termux/termux-app/releases/download/v0.118.0/termux-app_v0.118.0+github-debug_universal.apk">
+  <!--a href="https://github.com/termux/termux-app/releases/download/v0.118.0/termux-app_v0.118.0+github-debug_universal.apk">
     <img src="https://img.shields.io/badge/DOWNLOAD_TERMUX_APK-25D366?style=for-the-badge&logo=github&logoColor=black" />
-  </a>
+  </a-->
 </div>
 
 <img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:1e90ff,100:00bfff&height=120&section=footer"/>
