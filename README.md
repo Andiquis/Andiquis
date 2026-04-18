@@ -8,10 +8,11 @@
   <!--h1>👨‍💻 Andi Quis | Desarrollador Multidisciplinario 👨‍💻</h1-->
 
   
-
+<!--p>
 [![GitHub followers](https://img.shields.io/github/followers/Andiquis?style=social)](https://github.com/Andiquis)
 [![Visits Badge](https://badges.pufler.dev/visits/Andiquis/Andiquis)](https://github.com/Andiquis)
 [![Years Badge](https://badges.pufler.dev/years/Andiquis)](https://github.com/Andiquis)
+</!--p-->
 
   <hr style="border: 2px solid #FF5733; border-radius: 5px;">
 </div>
