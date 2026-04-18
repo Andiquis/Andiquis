@@ -26,13 +26,13 @@
 
 Soy **Andi**, un apasionado del desarrollo de software con experiencia en múltiples lenguajes y tecnologías. Algunas de mis áreas de interés incluyen:
 
-- 💻 **Desarrollo Web Full-Stack** - Creación de aplicaciones web responsivas y dinámicas
-- 🖥️ **Aplicaciones de Escritorio** - Soluciones robustas con C# .NET y Electron
-- 📱 **Desarrollo Móvil** - Experiencias fluidas con MAUI y tecnologías híbridas
-- 🧠 **Inteligencia Artificial & ML** - Entrenamiento de modelos y análisis de datos
-- 👁️ **Visión por Computadora** - Reconocimiento de imágenes y procesamiento visual
-- 🔐 **Ciberseguridad** - Protección de sistemas y análisis de vulnerabilidades
-- 🤖 **Hardware con IA** - Integración de algoritmos inteligentes en dispositivos físicos
+- 💻 **Desarrollo Web Full-Stack** — Sistemas web escalables, rápidos y orientados a producto  
+- 🖥️ **Aplicaciones de Escritorio** — Software robusto con .NET y Electron  
+- 📱 **Desarrollo Móvil** — Apps híbridas con Capacitor y experiencia fluida de usuario  
+- 🧠 **IA & Machine Learning** — Modelos que aprenden, predicen y optimizan decisiones  
+- 👁️ **Visión por Computadora** — Sistemas que interpretan el mundo visual en tiempo real  
+- 🔐 **Ciberseguridad** — Diseño de sistemas resistentes, análisis y prevención de ataques  
+- 🤖 **IoT & Hardware Inteligente** — Dispositivos conectados potenciados con algoritmos de IA  
 
 <div align="center">
 
