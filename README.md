@@ -169,8 +169,8 @@ Soy **Andi**, un apasionado del desarrollo de software con experiencia en múlti
 ## Proyectos Destacados
 
 <div align="left">
-  <a href="https://github.com/Andiquis/VBS-TK">
-    <img src="https://github-readme-stats.vercel.app/api/pin/?username=Andiquis&repo=VBS-TK&theme=radical">
+  <a href="https://github.com/Andiquis/RosaNegra">
+    <img src="https://github-readme-stats.vercel.app/api/pin/?username=Andiquis&repo=RosaNegra&theme=radical">
   </a>
   <a href="https://github.com/Andiquis/xQore">
     <img src="https://github-readme-stats.vercel.app/api/pin/?username=Andiquis&repo=xQore&theme=radical">
