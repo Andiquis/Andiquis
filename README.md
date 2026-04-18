@@ -148,53 +148,53 @@ Soy **Andi**, un apasionado del desarrollo de software con experiencia en múlti
 
 <hr style="border: 2px solid #FF5733; border-radius: 5px;">
 
-<h2>Github Stats : </h2>
-<div align="center" style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+<h2 align="center">📊 Github Stats</h2>
 
+<div align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats-six-seven.vercel.app/api?username=Andiquis&show_icons=true&count_private=true&theme=transparent&title_color=00bfff&icon_color=00bfff&text_color=ffffff">
     <source media="(prefers-color-scheme: light)" srcset="https://github-readme-stats-six-seven.vercel.app/api?username=Andiquis&show_icons=true&count_private=true&theme=default">
     <img alt="GitHub Stats" src="https://github-readme-stats-six-seven.vercel.app/api?username=Andiquis&show_icons=true&count_private=true&theme=default" height="200px">
   </picture>
-
+  &nbsp;&nbsp;&nbsp;
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats-six-seven.vercel.app/api/top-langs/?username=Andiquis&layout=compact&langs_count=8&theme=transparent&title_color=00bfff&text_color=ffffff">
     <source media="(prefers-color-scheme: light)" srcset="https://github-readme-stats-six-seven.vercel.app/api/top-langs/?username=Andiquis&layout=compact&langs_count=8&theme=default">
     <img alt="Top Languages" src="https://github-readme-stats-six-seven.vercel.app/api/top-langs/?username=Andiquis&layout=compact&langs_count=8&theme=default" height="200px">
   </picture>
-
 </div>
 
+<br>
 
+<h2 align="center">🚀 Proyectos Destacados</h2>
 
-## Proyectos Destacados
-
-<div align="left">
+<div align="center">
   <a href="https://github.com/Andiquis/RosaNegra">
-    <img src="https://github-readme-stats.vercel.app/api/pin/?username=Andiquis&repo=RosaNegra&theme=radical">
+    <img src="https://github-readme-stats.vercel.app/api/pin/?username=Andiquis&repo=RosaNegra&theme=radical" alt="RosaNegra">
   </a>
+  &nbsp;&nbsp;&nbsp;
   <a href="https://github.com/Andiquis/xQore">
-    <img src="https://github-readme-stats.vercel.app/api/pin/?username=Andiquis&repo=xQore&theme=radical">
+    <img src="https://github-readme-stats.vercel.app/api/pin/?username=Andiquis&repo=xQore&theme=radical" alt="xQore">
   </a>
 </div>
 
-
+<br>
 
 <hr style="border: 2px solid #FF5733; border-radius: 5px;">
 
+<br>
+
 <div align="center">
-
-<table width="85%" cellpadding="0" cellspacing="0">
-  <tr>
-    <td width="20%" align="center">
-      <img width="80" src="image1.webp" style="border-radius: 50%;">
-    </td>
-    <td width="80%">
-      <img src="http://readme-typing-svg.herokuapp.com?font=Delicious+Handrawn&pause=1000&color=F70000&size=32&width=1000&lines=Loading...............;Hola+👋👋;soy+asistente+de+Andi;que+opinas+de+tu+experiencia+x+aqui;comentanos+aqui+en+nuestras+redes+sociales+👇👇👇;no+te+pierdas+de+nuestros+nuevos+contenidos😁;aunque+no+subo+mucho+contenido+jeje;visitanos+en+WhatsApp+para+socializar😉" alt="Typing SVG" />
-    </td>
-  </tr>
-</table>
-
+  <table width="90%" border="0" cellpadding="15" cellspacing="0" style="background: rgba(255,87,51,0.05); border: 2px solid rgba(255,87,51,0.3); border-radius: 10px;">
+    <tr>
+      <td width="15%" align="center" valign="middle">
+        <img width="90" src="image1.webp" alt="Asistente" style="border-radius: 50%; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+      </td>
+      <td width="85%" align="left" valign="middle">
+        <img src="https://readme-typing-svg.herokuapp.com?font=Delicious+Handrawn&pause=1000&color=F70000&size=32&width=800&lines=Loading...............;Hola+👋👋;soy+asistente+de+Andi;que+opinas+de+tu+experiencia+x+aqui;comentanos+aqui+en+nuestras+redes+sociales+👇👇👇;no+te+pierdas+de+nuestros+nuevos+contenidos😁;aunque+no+subo+mucho+contenido+jeje;visitanos+en+WhatsApp+para+socializar😉" alt="Typing SVG" />
+      </td>
+    </tr>
+  </table>
 </div>
 <br>
 
