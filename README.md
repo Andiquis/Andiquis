@@ -47,7 +47,7 @@ Soy **Andi**, un apasionado del desarrollo de software con experiencia en múlti
       <td align="center" style="background: rgba(255,87,51,0.1); padding: 15px; border: 2px solid rgba(255,87,51,0.3); font-weight: bold; color: #FF5733;"><strong>Frontend</strong></td>
       <td align="left" style="background: rgba(255,87,51,0.05); padding: 15px; border: 2px solid rgba(255,87,51,0.3);">
         <img src="https://img.shields.io/badge/-HTML5-E34F26?style=flat-square&logo=html5&logoColor=white" alt="HTML5"> 
-        <img src="https://img.shields.io/badge/-CSS3-1572B6?style=flat-square&logo=css3" alt="CSS3"> 
+        <img src="https://img.shields.io/badge/-SCSS-CC6699?style=flat-square&logo=sass&logoColor=white" alt="SCSS">
         <img src="https://img.shields.io/badge/-JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black" alt="JavaScript"> 
         <img src="https://img.shields.io/badge/-TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white" alt="TypeScript"> 
         <img src="https://img.shields.io/badge/-Angular-DD0031?style=flat-square&logo=angular" alt="Angular"> 
@@ -59,7 +59,7 @@ Soy **Andi**, un apasionado del desarrollo de software con experiencia en múlti
       <td align="left" style="background: rgba(59,199,187,0.05); padding: 15px; border: 2px solid rgba(59,199,187,0.3);">
         <img src="https://img.shields.io/badge/-NodeJS-339933?style=flat-square&logo=node.js&logoColor=white" alt="NodeJS"> 
         <img src="https://img.shields.io/badge/-NestJS-E0234E?style=flat-square&logo=nestjs&logoColor=white" alt="NestJS"> 
-        <img src="https://img.shields.io/badge/-Express-000000?style=flat-square&logo=express&logoColor=white" alt="Express"> 
+        <!--img src="https://img.shields.io/badge/-Express-000000?style=flat-square&logo=express&logoColor=white" alt="Express"--> 
         <img src="https://img.shields.io/badge/-PHP-777BB4?style=flat-square&logo=php&logoColor=white" alt="PHP"> 
         <!--img src="https://img.shields.io/badge/-FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white" alt="FastAPI"--> 
         <!--img src="https://img.shields.io/badge/-C%23-239120?style=flat-square&logo=c-sharp&logoColor=white" alt="C#"> 
@@ -79,7 +79,7 @@ Soy **Andi**, un apasionado del desarrollo de software con experiencia en múlti
       <td align="left" style="background: rgba(156,39,176,0.05); padding: 15px; border: 2px solid rgba(156,39,176,0.3);">
         <img src="https://img.shields.io/badge/-Git-F05032?style=flat-square&logo=git&logoColor=white" alt="Git"> 
         <img src="https://img.shields.io/badge/-GitHub-181717?style=flat-square&logo=github" alt="GitHub"> 
-        <img src="https://img.shields.io/badge/-GitLab-FC6D26?style=flat-square&logo=gitlab&logoColor=white" alt="GitLab"> 
+        <!--img src="https://img.shields.io/badge/-GitLab-FC6D26?style=flat-square&logo=gitlab&logoColor=white" alt="GitLab"--> 
         <!--img src="https://img.shields.io/badge/-Docker-2496ED?style=flat-square&logo=docker&logoColor=white" alt="Docker"-->
       </td>
     </tr>
@@ -92,33 +92,33 @@ Soy **Andi**, un apasionado del desarrollo de software con experiencia en múlti
         <img src="https://img.shields.io/badge/-Scikit--learn-F7931E?style=flat-square&logo=scikit-learn&logoColor=white" alt="Scikit-learn"> 
         <img src="https://img.shields.io/badge/-Keras-D00000?style=flat-square&logo=keras&logoColor=white" alt="Keras"> 
         <img src="https://img.shields.io/badge/-YOLO-00FFFF?style=flat-square&logo=yolo&logoColor=black" alt="YOLO"> 
-        <img src="https://img.shields.io/badge/-Detectron2-1877F2?style=flat-square&logo=facebook&logoColor=white" alt="Detectron2"> 
+        <!--img src="https://img.shields.io/badge/-Detectron2-1877F2?style=flat-square&logo=facebook&logoColor=white" alt="Detectron2"--> 
         <img src="https://img.shields.io/badge/-MediaPipe-0097A7?style=flat-square&logo=google&logoColor=white" alt="MediaPipe"> 
-        <img src="https://img.shields.io/badge/-Roboflow-6737EE?style=flat-square&logo=roboflow&logoColor=white" alt="Roboflow"> 
+        <!--img src="https://img.shields.io/badge/-Roboflow-6737EE?style=flat-square&logo=roboflow&logoColor=white" alt="Roboflow"--> 
         <img src="https://img.shields.io/badge/-Ultralytics-0052CC?style=flat-square&logo=ultralytics&logoColor=white" alt="Ultralytics"> 
         <img src="https://img.shields.io/badge/-Hugging%20Face-FFD21E?style=flat-square&logo=huggingface&logoColor=black" alt="Hugging Face"> 
-        <img src="https://img.shields.io/badge/-LangChain-1C3C3C?style=flat-square&logo=langchain&logoColor=white" alt="LangChain">
+        <!--img src="https://img.shields.io/badge/-LangChain-1C3C3C?style=flat-square&logo=langchain&logoColor=white" alt="LangChain"-->
       </td>
     </tr>
     <tr>
       <td align="center" style="background: rgba(76,175,80,0.1); padding: 15px; border: 2px solid rgba(76,175,80,0.3); font-weight: bold; color: #4CAF50;"><strong>Desarrollo Móvil</strong></td>
       <td align="left" style="background: rgba(76,175,80,0.05); padding: 15px; border: 2px solid rgba(76,175,80,0.3);">
         <img src="https://img.shields.io/badge/-Flutter-02569B?style=flat-square&logo=flutter&logoColor=white" alt="Flutter"> 
-        <img src="https://img.shields.io/badge/-Dart-0175C2?style=flat-square&logo=dart&logoColor=white" alt="Dart"> 
+        <!--img src="https://img.shields.io/badge/-Dart-0175C2?style=flat-square&logo=dart&logoColor=white" alt="Dart"--> 
         <img src="https://img.shields.io/badge/-Android%20Studio-3DDC84?style=flat-square&logo=android-studio&logoColor=white" alt="Android Studio"> 
         <!--img src="https://img.shields.io/badge/-Kotlin-0095D5?style=flat-square&logo=kotlin&logoColor=white" alt="Kotlin"> 
         <img src="https://img.shields.io/badge/-MAUI-512BD4?style=flat-square&logo=dotnet&logoColor=white" alt="MAUI"> 
         <img src="https://img.shields.io/badge/-React_Native-61DAFB?style=flat-square&logo=react&logoColor=black" alt="React Native"> 
         <img src="https://img.shields.io/badge/-Xamarin-3498DB?style=flat-square&logo=xamarin&logoColor=white" alt="Xamarin"-->
         <img src="https://img.shields.io/badge/-Capacitor-119EFF?style=flat-square&logo=capacitor&logoColor=white" alt="Capacitor">
-        <img src="https://img.shields.io/badge/-Cordova-E8E8E8?style=flat-square&logo=apache-cordova&logoColor=black" alt="Cordova">
+        <!--img src="https://img.shields.io/badge/-Cordova-E8E8E8?style=flat-square&logo=apache-cordova&logoColor=black" alt="Cordova"-->
       </td>
     </tr>
     <tr>
       <td align="center" style="background: rgba(244,67,54,0.1); padding: 15px; border: 2px solid rgba(244,67,54,0.3); font-weight: bold; color: #F44336;"><strong>Ciberseguridad</strong></td>
       <td align="left" style="background: rgba(244,67,54,0.05); padding: 15px; border: 2px solid rgba(244,67,54,0.3);">
         <img src="https://img.shields.io/badge/-Kali_Linux-557C94?style=flat-square&logo=kali-linux&logoColor=white" alt="Kali Linux"> 
-        <img src="https://img.shields.io/badge/-Wireshark-1679A7?style=flat-square&logo=wireshark&logoColor=white" alt="Wireshark"> 
+        <!--img src="https://img.shields.io/badge/-Wireshark-1679A7?style=flat-square&logo=wireshark&logoColor=white" alt="Wireshark"--> 
         <img src="https://img.shields.io/badge/-Metasploit-2596CD?style=flat-square&logo=metasploit&logoColor=white" alt="Metasploit"> 
         <img src="https://img.shields.io/badge/-Nmap-4682B4?style=flat-square&logo=nmap&logoColor=white" alt="Nmap">
       </td>
