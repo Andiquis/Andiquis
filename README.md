@@ -178,22 +178,7 @@ Soy **Andi**, un apasionado del desarrollo de software con experiencia en múlti
   </a>
 </div>
 
-## 🔗 Conéctate Conmigo
 
-<div align="center">
-  <a href="https://wa.me/51942287756">
-    <img src="https://img.shields.io/badge/WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=white" />
-  </a>
-  <a href="https://github.com/Andiquis">
-    <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" />
-  </a>
-  <a href="mailto:andiquispe9422@gmail.com">
-    <img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" />
-  </a>
-  <a href="https://linkedin.com/in/tulinkedin">
-    <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" />
-  </a>
-</div>
 
 <hr style="border: 2px solid #FF5733; border-radius: 5px;">
 
@@ -227,3 +212,20 @@ Soy **Andi**, un apasionado del desarrollo de software con experiencia en múlti
   </a-->
 </div>
 
+
+
+
+<div align="center">
+  <a href="https://wa.me/51942287756">
+    <img src="https://img.shields.io/badge/WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=white" />
+  </a>
+  <a href="https://github.com/Andiquis">
+    <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" />
+  </a>
+  <a href="mailto:andiquispe9422@gmail.com">
+    <img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" />
+  </a>
+  <a href="https://linkedin.com/in/tulinkedin">
+    <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" />
+  </a>
+</div>
